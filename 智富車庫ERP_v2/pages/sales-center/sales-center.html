@@ -1,0 +1,425 @@
+<!-- 業務中心 -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Elite Motors ERP - Business Center</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f9f2ef",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "surface-container-highest": "#e8e1de",
+              "on-primary-fixed-variant": "#55433b",
+              "surface-tint": "#6e5a52",
+              surface: "#fff8f5",
+              "on-tertiary-container": "#7a858c",
+              "inverse-primary": "#dbc1b7",
+              outline: "#817570",
+              tertiary: "#000000",
+              "on-primary-container": "#967f76",
+              "inverse-surface": "#33302e",
+              "surface-variant": "#e8e1de",
+              "surface-container-high": "#ede7e4",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#5c4200",
+              "on-primary-fixed": "#271812",
+              "error-muted": "#BA1A1A",
+              background: "#fff8f5",
+              "inverse-on-surface": "#f6efec",
+              "secondary-fixed-dim": "#e8c176",
+              "on-secondary": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#4f4541",
+              primary: "#000000",
+              "on-tertiary-fixed": "#121d22",
+              "surface-container": "#f3ecea",
+              "on-tertiary": "#ffffff",
+              "sidebar-bg": "#140804",
+              "surface-bright": "#fff8f5",
+              "primary-fixed": "#f9ddd2",
+              "gold-accent": "#775A19",
+              "on-secondary-container": "#785a19",
+              "on-primary": "#ffffff",
+              secondary: "#775a19",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "tertiary-container": "#121d22",
+              "surface-border": "#EBE1D9",
+              "outline-variant": "#d2c3be",
+              "secondary-fixed": "#ffdea3",
+              "primary-fixed-dim": "#dbc1b7",
+              "secondary-container": "#fdd587",
+              "surface-elevated": "#FFFFFF",
+              "primary-container": "#271812",
+              "surface-container-lowest": "#ffffff",
+              error: "#ba1a1a",
+              "success-muted": "#8DA399",
+              "on-background": "#1d1b1a",
+              "on-surface": "#1d1b1a",
+              "on-secondary-fixed": "#261900",
+              "tertiary-fixed": "#d9e4ec",
+              "surface-dim": "#dfd9d6",
+              "on-error-container": "#93000a",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-desktop": "48px",
+              gutter: "24px",
+              "margin-mobile": "16px",
+              "container-max": "1440px",
+              unit: "4px",
+            },
+            fontFamily: {
+              "headline-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fff8f5;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .material-symbols-outlined.filled {
+        font-variation-settings: "FILL" 1;
+      }
+    </style>
+    <link href="../../assets/css/components.css" rel="stylesheet" />
+  </head>
+  <body
+    class="bg-surface text-on-surface antialiased overflow-hidden flex h-screen"
+  >
+    <!-- SideNavBar -->
+    <script>
+      window.currentPage = "sales";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+    <!-- Main Content Area -->
+    <main
+      class="ml-[280px] flex-1 flex flex-col h-screen overflow-hidden bg-surface relative"
+    >
+      <div data-sales-center-topbar="fixed"></div>
+      <script src="../../assets/layouts/sales-center-topbar.js"></script>
+      <!-- Scrollable Content Canvas -->
+      <div class="flex-1 overflow-y-auto">
+        <div
+          class="erp-page-container is-header-offset flex flex-col gap-8 erp-page-b"
+        >
+          <!-- Page Header -->
+          <div class="erp-main-page-header flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <h3 class="erp-main-page-title">業務中心</h3>
+              <p class="erp-main-page-desc">管理業務人員與销售績效</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+              <button class="erp-btn-primary is-lg">
+                <span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                新增業務
+              </button>
+            </div>
+          </div>
+          <!-- KPI Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <p class="erp-kpi-title">總業務人數</p>
+                <div class="erp-kpi-icon">
+                  <span class="material-symbols-outlined">badge</span>
+                </div>
+              </div>
+              <div class="erp-kpi-value-row">
+                <span class="erp-kpi-value">4</span>
+                <span class="erp-kpi-unit">位</span>
+              </div>
+            </div>
+            <div class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <p class="erp-kpi-title">本月成交台數</p>
+                <div class="erp-kpi-icon">
+                  <span class="material-symbols-outlined">directions_car</span>
+                </div>
+              </div>
+              <div class="erp-kpi-value-row">
+                <span class="erp-kpi-value">15</span>
+                <span class="erp-kpi-unit">台</span>
+              </div>
+            </div>
+            <div class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <p class="erp-kpi-title">本月成交金額</p>
+                <div class="erp-kpi-icon">
+                  <span class="material-symbols-outlined">payments</span>
+                </div>
+              </div>
+              <div class="erp-kpi-value-row">
+                <span class="erp-kpi-value">780</span>
+                <span class="erp-kpi-unit">萬</span>
+              </div>
+            </div>
+            <div class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <p class="erp-kpi-title">本月總獎金</p>
+                <div class="erp-kpi-icon">
+                  <span class="material-symbols-outlined">military_tech</span>
+                </div>
+              </div>
+              <div class="erp-kpi-value-row">
+                <span class="erp-kpi-value">180</span>
+                <span class="erp-kpi-unit">萬</span>
+              </div>
+            </div>
+          </div>
+          <!-- Data Table Section -->
+          <div
+            class="bg-surface-elevated rounded-xl shadow-[0_8px_32px_rgba(20,8,4,0.08)] border border-surface-border overflow-hidden flex flex-col erp-table-card"
+          >
+            <!-- Table Header Area -->
+            <div
+              class="px-6 py-5 border-b border-surface-border flex justify-between items-center bg-surface-container-low"
+            >
+              <h3 class="font-headline-md text-headline-md text-sidebar-bg">
+                業務清單
+              </h3>
+            </div>
+            <!-- Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse erp-ranking-table">
+                <thead>
+                  <tr
+                    class="border-b border-surface-border bg-surface/50 erp-table-header"
+                  >
+                    <th
+                      class="py-4 px-6 font-label-md text-label-md text-on-primary-fixed-variant whitespace-nowrap"
+                    >
+                      業務編號
+                    </th>
+                    <th
+                      class="py-4 px-6 font-label-md text-label-md text-on-primary-fixed-variant whitespace-nowrap"
+                    >
+                      姓名
+                    </th>
+                    <th
+                      class="py-4 px-6 font-label-md text-label-md text-on-primary-fixed-variant whitespace-nowrap"
+                    >
+                      客戶數
+                    </th>
+                    <th
+                      class="py-4 px-6 font-label-md text-label-md text-on-primary-fixed-variant whitespace-nowrap"
+                    >
+                      本月成交訂單
+                    </th>
+                    <th
+                      class="py-4 px-6 font-label-md text-label-md text-on-primary-fixed-variant whitespace-nowrap"
+                    >
+                      本月成交金額
+                    </th>
+                    <th
+                      class="py-4 px-6 font-label-md text-label-md text-on-primary-fixed-variant whitespace-nowrap text-right"
+                    >
+                      操作
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-surface-border/50 erp-table-body">
+                  <!-- Row 1 -->
+                  <tr
+                    class="hover:bg-surface-container-low/50 transition-colors"
+                  >
+                    <td
+                      class="py-4 px-6 font-body-sm text-body-sm text-on-surface"
+                    >
+                      S001
+                    </td>
+                    <td class="py-4 px-6">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-md"
+                        >
+                          王
+                        </div>
+                        <span
+                          class="font-label-md text-label-md text-sidebar-bg"
+                          >王大明</span
+                        >
+                      </div>
+                    </td>
+                    <td
+                      class="py-4 px-6 font-body-sm text-body-sm text-on-surface"
+                    >
+                      35位
+                    </td>
+                    <td
+                      class="py-4 px-6 font-body-sm text-body-sm text-on-surface"
+                    >
+                      5台
+                    </td>
+                    <td
+                      class="py-4 px-6 font-body-sm text-body-sm text-on-surface"
+                    >
+                      260萬
+                    </td>
+                    <td class="py-4 px-6 text-right">
+                      <div class="erp-table-actions">
+                        <button class="erp-btn-sm is-secondary">
+                          查看客戶
+                        </button>
+                        <button class="erp-btn-sm is-primary">編輯</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Row 2 -->
+                  <tr
+                    class="hover:bg-surface-container-low/50 transition-colors"
+                  >
+                    <td
+                      class="py-4 px-6 font-body-sm text-body-sm text-on-surface"
+                    >
+                      S002
+                    </td>
+                    <td class="py-4 px-6">
+                      <div class="flex items-center gap-3">
+                        <div
+                          class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-md"
+                        >
+                          陳
+                        </div>
+                        <span
+                          class="font-label-md text-label-md text-sidebar-bg"
+                          >陳怡君</span
+                        >
+                      </div>
+                    </td>
+                    <td
+                      class="py-4 px-6 font-body-sm text-body-sm text-on-surface"
+                    >
+                      30位
+                    </td>
+                    <td
+                      class="py-4 px-6 font-body-sm text-body-sm text-on-surface"
+                    >
+                      4台
+                    </td>
+                    <td
+                      class="py-4 px-6 font-body-sm text-body-sm text-on-surface"
+                    >
+                      210萬
+                    </td>
+                    <td class="py-4 px-6 text-right">
+                      <div class="erp-table-actions">
+                        <button class="erp-btn-sm is-secondary">
+                          查看客戶
+                        </button>
+                        <button class="erp-btn-sm is-primary">編輯</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

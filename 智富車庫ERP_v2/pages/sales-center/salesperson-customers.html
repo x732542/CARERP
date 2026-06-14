@@ -1,0 +1,529 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>業務中心 - 業務客戶名單 | 智富車庫 ERP</title>
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Theme Config -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f9f2ef",
+              "surface-bright": "#fff8f5",
+              "surface-container-high": "#ede7e4",
+              "secondary-fixed-dim": "#e8c176",
+              "surface-dim": "#dfd9d6",
+              "surface-tint": "#6e5a52",
+              primary: "#000000",
+              tertiary: "#000000",
+              "on-tertiary-fixed": "#121d22",
+              "on-primary-container": "#967f76",
+              "primary-fixed-dim": "#dbc1b7",
+              "surface-border": "#EBE1D9",
+              "inverse-surface": "#33302e",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#93000a",
+              "outline-variant": "#d2c3be",
+              outline: "#817570",
+              "on-error": "#ffffff",
+              "on-secondary-fixed": "#261900",
+              "surface-variant": "#e8e1de",
+              "gold-accent": "#775A19",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "tertiary-fixed": "#d9e4ec",
+              "secondary-container": "#fdd587",
+              error: "#ba1a1a",
+              "secondary-fixed": "#ffdea3",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "on-surface-variant": "#4f4541",
+              surface: "#fff8f5",
+              "success-muted": "#8DA399",
+              "on-secondary-container": "#785a19",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#7a858c",
+              "on-primary-fixed-variant": "#55433b",
+              "error-muted": "#BA1A1A",
+              "on-secondary": "#ffffff",
+              "inverse-primary": "#dbc1b7",
+              "primary-container": "#271812",
+              "surface-elevated": "#FFFFFF",
+              secondary: "#775a19",
+              "primary-fixed": "#f9ddd2",
+              "sidebar-bg": "#140804",
+              "on-primary-fixed": "#271812",
+              "inverse-on-surface": "#f6efec",
+              "tertiary-container": "#121d22",
+              "on-background": "#1d1b1a",
+              background: "#fff8f5",
+              "surface-container-highest": "#e8e1de",
+              "on-primary": "#ffffff",
+              "on-surface": "#1d1b1a",
+              "on-secondary-fixed-variant": "#5c4200",
+              "surface-container": "#f3ecea",
+              "error-container": "#ffdad6",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+              "container-max": "1440px",
+              unit: "4px",
+              gutter: "24px",
+            },
+            fontFamily: {
+              "body-sm": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <link href="../../assets/css/components.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="bg-surface-bright min-h-screen text-on-surface flex">
+    <!-- SideNavBar Component -->
+    <script>
+      window.currentPage = "sales";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+    <!-- Main Wrapper to accommodate sidebar -->
+    <div class="flex-1 ml-[280px] flex flex-col min-h-screen">
+      <div data-sales-center-topbar></div>
+      <script src="../../assets/layouts/sales-center-topbar.js"></script>
+      <!-- Main Content Canvas -->
+      <main class="flex-1 p-margin-desktop bg-surface-bright">
+        <!-- Page Header -->
+        <div class="mb-8 flex justify-between items-end">
+          <div>
+            <h2
+              class="font-headline-xl text-headline-xl text-sidebar-bg tracking-tight"
+            >
+              業務客戶名單
+            </h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-2">
+              查看此業務負責管理的客戶與訂單狀態。
+            </p>
+          </div>
+          <button class="erp-btn-primary is-lg">
+            <span class="material-symbols-outlined text-[18px]" data-icon="add"
+              >add</span
+            >
+            新增客戶
+          </button>
+        </div>
+        <!-- KPI Cards Section (Bento Grid Style) -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-8">
+          <div class="erp-kpi-card">
+            <div class="erp-kpi-head">
+              <p class="erp-kpi-title">客戶總數</p>
+              <div class="erp-kpi-icon">
+                <span class="material-symbols-outlined">group</span>
+              </div>
+            </div>
+            <div class="erp-kpi-value-row">
+              <span class="erp-kpi-value">35</span
+              ><span class="erp-kpi-unit">位</span>
+            </div>
+          </div>
+          <div class="erp-kpi-card">
+            <div class="erp-kpi-head">
+              <p class="erp-kpi-title">已成交客戶</p>
+              <div class="erp-kpi-icon">
+                <span class="material-symbols-outlined">handshake</span>
+              </div>
+            </div>
+            <div class="erp-kpi-value-row">
+              <span class="erp-kpi-value">5</span
+              ><span class="erp-kpi-unit">位</span>
+            </div>
+          </div>
+          <div class="erp-kpi-card">
+            <div class="erp-kpi-head">
+              <p class="erp-kpi-title">追蹤中客戶</p>
+              <div class="erp-kpi-icon">
+                <span class="material-symbols-outlined">pending_actions</span>
+              </div>
+            </div>
+            <div class="erp-kpi-value-row">
+              <span class="erp-kpi-value">20</span
+              ><span class="erp-kpi-unit">位</span>
+            </div>
+          </div>
+          <div class="erp-kpi-card">
+            <div class="erp-kpi-head">
+              <p class="erp-kpi-title">待追蹤客戶</p>
+              <div class="erp-kpi-icon">
+                <span class="material-symbols-outlined">hourglass_empty</span>
+              </div>
+            </div>
+            <div class="erp-kpi-value-row">
+              <span class="erp-kpi-value">3</span
+              ><span class="erp-kpi-unit">位</span>
+            </div>
+          </div>
+        </section>
+        <!-- Data Table Section -->
+        <section
+          class="bg-surface-elevated rounded-lg shadow-sm border border-surface-border overflow-hidden erp-table-card"
+        >
+          <div
+            class="p-6 border-b border-surface-border flex justify-between items-center bg-surface-bright"
+          >
+            <h3 class="font-headline-md text-headline-md text-sidebar-bg">
+              客戶名單
+            </h3>
+            <div class="flex gap-2">
+              <button class="erp-btn-table is-sm">
+                <span class="material-symbols-outlined" data-icon="filter_list"
+                  >filter_list</span
+                >
+              </button>
+              <button class="erp-btn-table is-sm">
+                <span class="material-symbols-outlined" data-icon="download"
+                  >download</span
+                >
+              </button>
+            </div>
+          </div>
+          <div class="overflow-x-auto erp-table-responsive">
+            <table
+              class="w-full text-left border-collapse erp-status-table erp-table"
+            >
+              <thead>
+                <tr
+                  class="bg-surface-container-low border-b border-surface-border erp-table-header"
+                >
+                  <th
+                    class="font-label-md text-label-md text-sidebar-bg py-4 px-6 font-semibold tracking-wider"
+                  >
+                    客戶姓名
+                  </th>
+                  <th
+                    class="font-label-md text-label-md text-sidebar-bg py-4 px-6 font-semibold tracking-wider"
+                  >
+                    客戶狀態
+                  </th>
+                  <th
+                    class="font-label-md text-label-md text-sidebar-bg py-4 px-6 font-semibold tracking-wider"
+                  >
+                    訂單編號
+                  </th>
+                  <th
+                    class="font-label-md text-label-md text-sidebar-bg py-4 px-6 font-semibold tracking-wider"
+                  >
+                    訂單狀態
+                  </th>
+                  <th
+                    class="font-label-md text-label-md text-sidebar-bg py-4 px-6 font-semibold tracking-wider text-right"
+                  >
+                    操作
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-surface-border erp-table-body">
+                <!-- Row 1 -->
+                <tr
+                  class="hover:bg-surface-container-lowest transition-colors group"
+                >
+                  <td
+                    class="py-4 px-6 font-body-md text-body-md text-sidebar-bg font-medium"
+                  >
+                    陳小姐
+                  </td>
+                  <td class="py-4 px-6">
+                    <span class="erp-badge is-warning"> 洽談中 </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 font-body-md text-body-md text-on-surface-variant"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="py-4 px-6 font-body-md text-body-md text-on-surface-variant"
+                  >
+                    -
+                  </td>
+                  <td class="py-4 px-6 text-right">
+                    <div class="erp-table-actions">
+                      <button
+                        class="erp-btn-sm is-secondary"
+                        onclick="
+                          window.location.href =
+                            '../order-management/order-management.html?customerId=C001'
+                        "
+                      >
+                        查看客戶
+                      </button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="
+                          window.location.href =
+                            '../customer-management/customer-create-modal.html?mode=edit&id=C001'
+                        "
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr
+                  class="hover:bg-surface-container-lowest transition-colors group"
+                >
+                  <td
+                    class="py-4 px-6 font-body-md text-body-md text-sidebar-bg font-medium"
+                  >
+                    王先生
+                  </td>
+                  <td class="py-4 px-6">
+                    <span class="erp-badge is-success"> 已成交 </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 font-body-md text-body-md text-sidebar-bg"
+                  >
+                    ORD001
+                  </td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 font-body-sm text-body-sm text-success-muted"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-success-muted"
+                      ></span>
+                      已交車
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-right">
+                    <div class="erp-table-actions">
+                      <button
+                        class="erp-btn-sm is-secondary"
+                        onclick="
+                          window.location.href =
+                            '../order-management/order-management.html?customerId=C002'
+                        "
+                      >
+                        查看客戶
+                      </button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="
+                          window.location.href =
+                            '../customer-management/customer-create-modal.html?mode=edit&id=C002'
+                        "
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr
+                  class="hover:bg-surface-container-lowest transition-colors group"
+                >
+                  <td
+                    class="py-4 px-6 font-body-md text-body-md text-sidebar-bg font-medium"
+                  >
+                    黃小姐
+                  </td>
+                  <td class="py-4 px-6">
+                    <span class="erp-badge is-success"> 已成交 </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 font-body-md text-body-md text-sidebar-bg"
+                  >
+                    ORD008
+                  </td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 font-body-sm text-body-sm text-secondary"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"
+                      ></span>
+                      資料審核中
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-right">
+                    <div class="erp-table-actions">
+                      <button
+                        class="erp-btn-sm is-secondary"
+                        onclick="
+                          window.location.href =
+                            '../order-management/order-management.html?customerId=C003'
+                        "
+                      >
+                        查看客戶
+                      </button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="
+                          window.location.href =
+                            '../customer-management/customer-create-modal.html?mode=edit&id=C003'
+                        "
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination Footer -->
+          <div
+            class="p-4 border-t border-surface-border bg-surface-bright flex items-center justify-between erp-pagination"
+          >
+            <span
+              class="font-body-sm text-body-sm text-on-surface-variant erp-pagination-info"
+              >顯示第 1 至 3 筆，共 35 筆資料</span
+            >
+            <div class="flex gap-1 erp-pagination-pages">
+              <button
+                class="p-1.5 rounded border border-surface-border text-outline opacity-50 cursor-not-allowed erp-page"
+                disabled=""
+              >
+                <span
+                  class="material-symbols-outlined text-[18px]"
+                  data-icon="chevron_left"
+                  >chevron_left</span
+                >
+              </button>
+              <button
+                class="px-3 py-1.5 rounded bg-sidebar-bg text-surface-bright font-label-sm erp-page is-active"
+              >
+                1
+              </button>
+              <button
+                class="px-3 py-1.5 rounded border border-surface-border text-sidebar-bg hover:bg-surface-container transition-colors font-label-sm erp-page"
+              >
+                2
+              </button>
+              <button
+                class="px-3 py-1.5 rounded border border-surface-border text-sidebar-bg hover:bg-surface-container transition-colors font-label-sm erp-page"
+              >
+                3
+              </button>
+              <button
+                class="p-1.5 rounded border border-surface-border text-sidebar-bg hover:bg-surface-container transition-colors erp-page"
+              >
+                <span
+                  class="material-symbols-outlined text-[18px]"
+                  data-icon="chevron_right"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,664 @@
+<!-- 車?管? -->
+<!doctype html>
+<html class="light" lang="en" style="">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>智富車庫 ERP - 車輛管理</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#f9ddd2",
+              "inverse-surface": "#33302e",
+              "surface-border": "#EBE1D9",
+              "on-background": "#1d1b1a",
+              "outline-variant": "#d2c3be",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#121d22",
+              "on-error-container": "#93000a",
+              "secondary-container": "#fdd587",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "primary-container": "#271812",
+              "on-primary-fixed-variant": "#55433b",
+              "surface-container-high": "#ede7e4",
+              "inverse-on-surface": "#f6efec",
+              "surface-container": "#f3ecea",
+              "error-container": "#ffdad6",
+              primary: "#000000",
+              tertiary: "#000000",
+              "gold-accent": "#775A19",
+              "surface-container-low": "#f9f2ef",
+              "on-tertiary": "#ffffff",
+              surface: "#fff8f5",
+              "inverse-primary": "#dbc1b7",
+              "tertiary-fixed": "#d9e4ec",
+              "on-primary": "#ffffff",
+              outline: "#817570",
+              error: "#ba1a1a",
+              secondary: "#775a19",
+              "on-secondary-fixed": "#261900",
+              "tertiary-container": "#121d22",
+              "secondary-fixed": "#ffdea3",
+              "surface-container-highest": "#e8e1de",
+              "sidebar-bg": "#140804",
+              "surface-elevated": "#FFFFFF",
+              background: "#fff8f5",
+              "on-secondary-container": "#785a19",
+              "secondary-fixed-dim": "#e8c176",
+              "error-muted": "#BA1A1A",
+              "surface-tint": "#6e5a52",
+              "surface-bright": "#fff8f5",
+              "primary-fixed-dim": "#dbc1b7",
+              "on-secondary": "#ffffff",
+              "success-muted": "#8DA399",
+              "on-primary-fixed": "#271812",
+              "on-tertiary-container": "#7a858c",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "on-surface": "#1d1b1a",
+              "on-primary-container": "#967f76",
+              "surface-variant": "#e8e1de",
+              "surface-dim": "#dfd9d6",
+              "on-surface-variant": "#4f4541",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#5c4200",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              gutter: "24px",
+              "margin-mobile": "16px",
+              "container-max": "1440px",
+              unit: "4px",
+              "margin-desktop": "48px",
+            },
+            fontFamily: {
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fff8f5;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .fill-icon {
+        font-variation-settings: "FILL" 1;
+      }
+      .custom-shadow {
+        box-shadow: 0 4px 16px -4px rgba(20, 8, 4, 0.08);
+      }
+
+      /* Hide scrollbar for clean UI */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d2c3be;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #817570;
+      }
+    </style>
+    <link href="../../assets/css/components.css" rel="stylesheet" />
+  </head>
+  <body
+    class="bg-background text-on-surface antialiased overflow-x-hidden min-h-screen flex"
+  >
+    <!-- Sidebar Component (Anchored) -->
+    <script>
+      window.currentPage = "vehicle";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+    <!-- Main Content Canvas -->
+    <div
+      class="flex-1 md:ml-[280px] w-full min-h-screen flex flex-col relative"
+    >
+      <!-- TopAppBar Component (Anchored) -->
+      <header
+        class="h-[70px] bg-sidebar-bg border-b border-primary-container flex items-center justify-between px-margin-desktop sticky top-0 z-30 w-full shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
+      >
+        <div class="ml-auto flex items-center justify-end gap-4">
+          <button
+            class="p-2 text-on-primary-container hover:text-gold-accent transition-colors rounded-full hover:bg-primary-container relative"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"
+            ></span>
+          </button>
+          <button
+            class="p-2 text-on-primary-container hover:text-gold-accent transition-colors rounded-full hover:bg-primary-container"
+          >
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+          <div class="h-8 w-px bg-primary-container"></div>
+          <button
+            class="flex items-center gap-3 hover:bg-primary-container p-1.5 rounded-full pr-4 transition-colors"
+          >
+            <img
+              alt="Profile"
+              class="w-10 h-10 rounded-full object-cover border border-primary-container"
+              data-alt="A professional headshot of an Asian male executive in a sharp navy suit, clean corporate background, high key lighting, crisp focus, projecting authority and approachability suitable for an enterprise dashboard profile picture."
+              src="../../assets/images/avatar-default.jpg"
+            />
+            <div class="text-left hidden md:block">
+              <p class="text-label-md font-label-md text-on-primary">王大明</p>
+              <p class="text-[10px] font-label-sm text-on-primary-container">
+                系統管理員
+              </p>
+            </div>
+          </button>
+        </div>
+      </header>
+      <!-- Page Content -->
+      <main class="flex-1 w-full erp-page-a erp-page-container">
+        <div class="erp-main-page-header">
+          <h3 class="erp-main-page-title">車輛管理</h3>
+          <p class="erp-main-page-desc">管理與維護車輛庫存資料</p>
+        </div>
+        <!-- Controls Bar (Filter & Sort) -->
+        <div
+          class="bg-surface-elevated rounded-lg shadow-ambient border border-surface-border p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+        >
+          <!-- Filter Form -->
+          <form class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <!-- Year Dropdown -->
+            <div class="relative w-full sm:w-auto">
+              <select class="erp-filter-control w-full sm:w-36 text-on-surface">
+                <option>全部年份</option>
+                <option>2024</option>
+                <option>2023</option>
+                <option>2022</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]"
+                >keyboard_arrow_down</span
+              >
+            </div>
+            <!-- Brand Dropdown -->
+            <div class="relative w-full sm:w-auto">
+              <select class="erp-filter-control w-full sm:w-40 text-on-surface">
+                <option>全部廠牌</option>
+                <option>Toyota</option>
+                <option>BMW</option>
+                <option>Porsche</option>
+                <option>Mercedes-Benz</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]"
+                >keyboard_arrow_down</span
+              >
+            </div>
+            <!-- Price Range -->
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <input
+                class="erp-filter-control w-full sm:w-32 text-on-surface"
+                placeholder="最低價格"
+                type="text"
+              />
+              <span class="text-on-surface-variant">-</span>
+              <input
+                class="erp-filter-control w-full sm:w-32 text-on-surface"
+                placeholder="最高價格"
+                type="text"
+              />
+            </div>
+            <!-- Search Button -->
+            <button
+              class="erp-btn-primary is-lg w-full sm:w-auto"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[18px]">search</span>
+              搜尋車輛
+            </button>
+          </form>
+          <!-- Status Filter Dropdown (Right Side) -->
+          <div
+            class="relative w-full sm:w-auto md:w-48 self-end md:self-auto shrink-0"
+          >
+            <select
+              class="erp-filter-control w-full text-on-surface font-label-md cursor-pointer"
+            >
+              <option>全部車況</option>
+              <option>販售中</option>
+              <option>已成交</option>
+            </select>
+            <span
+              class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-gold-accent pointer-events-none text-[20px]"
+              >expand_more</span
+            >
+          </div>
+        </div>
+        <!-- Content Area - Unsold (未售) -->
+        <section class="mb-12">
+          <div class="flex items-center gap-3 mb-6">
+            <h3 class="font-headline-md text-headline-md text-on-surface">
+              販售中
+            </h3>
+            <span
+              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-1 rounded-full"
+              >12 台</span
+            >
+            <div class="flex-1 h-[1px] bg-surface-border ml-4"></div>
+          </div>
+          <!-- Grid -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          >
+            <!-- Vehicle Card 1 -->
+            <div
+              class="bg-surface-elevated rounded-xl border border-surface-border custom-shadow overflow-hidden group hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col"
+              onclick="
+                window.location.href =
+                  './vehicle-management-detail.html?id=V001'
+              "
+            >
+              <div
+                class="relative h-48 w-full overflow-hidden bg-surface-variant"
+              >
+                <img
+                  alt="Toyota Corolla Cross"
+                  class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  data-alt="A bright red Toyota Corolla Cross parked on a clean asphalt road with a blurred background. The car is photographed from a dynamic low front three-quarter angle. Lighting is clear and sunny, emphasizing the sharp lines and glossy paint of the vehicle, fitting a high-end dealership inventory presentation."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl04ndCc0v4u_OK8EUAOO1DqM0flhEGj_7hfRE6Ty0YDONNnYidnUUeoH-x7GLq5rA2ymW3kc9qj36whYHH9riiX_hC2RAY5t0VMP5d9_SYbE7Oh_ohRiuIPnGg0aRFxVwRf0JZOxrZN00fNEirvL1Pev1hyRs3mwPSWiKJdQORsne-WPGArsJqVfYFDFEZDps-5zvXuYZGftwxy5Gqz4MRTfKJ-TN03hKDoVJksIOrLrNvuavUskuDUPHYIwHVQRDzY6ZcKNvGxVY"
+                />
+                <div class="absolute top-3 right-3">
+                  <span
+                    class="bg-surface-elevated/90 backdrop-blur-sm text-primary font-label-sm px-2.5 py-1 rounded-DEFAULT border border-surface-border/50 flex items-center gap-1 shadow-sm"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-success-muted"
+                    ></span>
+                    販售中
+                  </span>
+                </div>
+              </div>
+              <div class="p-5 flex flex-col flex-1">
+                <h4
+                  class="font-headline-md text-[20px] text-on-surface mb-3 line-clamp-1 group-hover:text-gold-accent transition-colors"
+                >
+                  Toyota Corolla Cross
+                </h4>
+                <div class="space-y-1.5 mb-4 flex-1">
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">年份：</span>
+                    <span class="font-medium text-on-surface">2024</span>
+                  </div>
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">廠牌：</span>
+                    <span class="font-medium text-on-surface">Toyota</span>
+                  </div>
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">里程：</span>
+                    <span class="font-medium text-on-surface">8,000 公里</span>
+                  </div>
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-surface-border flex items-end justify-between"
+                >
+                  <span
+                    class="font-headline-lg text-[24px] text-error-muted tracking-tight"
+                    >79.8 萬</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-outline-variant group-hover:text-gold-accent transition-colors"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Vehicle Card 2 (Target Detail Focus) -->
+            <div
+              class="bg-surface-elevated rounded-xl border border-surface-border custom-shadow overflow-hidden group hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col ring-2 ring-transparent hover:ring-gold-accent/30 relative"
+              onclick="
+                window.location.href =
+                  './vehicle-management-detail.html?id=V002'
+              "
+            >
+              <!-- Simulated interaction click highlight -->
+              <div
+                class="absolute inset-0 bg-gold-accent/0 group-active:bg-gold-accent/5 transition-colors z-10 pointer-events-none"
+              ></div>
+              <div
+                class="relative h-48 w-full overflow-hidden bg-surface-variant"
+              >
+                <img
+                  alt="BMW 320i"
+                  class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  data-alt="A sleek black BMW 3 series driving on a highway, photographed from the rear quarter angle. Motion blur on the road and wheels indicates speed, while the car remains in sharp focus. The lighting is moody and cinematic, late afternoon, highlighting the premium design of the luxury sedan."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7vDc1NzJ9qH5WzOwkLtQ2VsV2G2FmtHx6LGClxGgxqhBboz0Al3M44m_TOhrLbZgkgPfj6GaqbjdB11sj24dScT8mh3Rs8LLfBVDvf3irQuReWWuLDNgLa2ZCh-epFaFPMNP8_rWEYnpSIYrsu3ZuP4FL6-nGhyruWTxQC5SxPgmDD6iPi0dF5P_akw5A_gp_0IkvZnioPfN_0fbAMOrqkSp3k_i2axieASXQyW6JgQgcGQN74amkgACxXLZxLmS-Zd_Y9YcbEcFE"
+                />
+                <div class="absolute top-3 right-3">
+                  <span
+                    class="bg-surface-elevated/90 backdrop-blur-sm text-primary font-label-sm px-2.5 py-1 rounded-DEFAULT border border-surface-border/50 flex items-center gap-1 shadow-sm"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-success-muted"
+                    ></span>
+                    販售中
+                  </span>
+                </div>
+              </div>
+              <div class="p-5 flex flex-col flex-1">
+                <h4
+                  class="font-headline-md text-[20px] text-on-surface mb-3 line-clamp-1 group-hover:text-gold-accent transition-colors"
+                >
+                  BMW 320i
+                </h4>
+                <div class="space-y-1.5 mb-4 flex-1">
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">年份：</span>
+                    <span class="font-medium text-on-surface">2021</span>
+                  </div>
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">廠牌：</span>
+                    <span class="font-medium text-on-surface">BMW</span>
+                  </div>
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">里程：</span>
+                    <span class="font-medium text-on-surface">52,000 公里</span>
+                  </div>
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-surface-border flex items-end justify-between"
+                >
+                  <span
+                    class="font-headline-lg text-[24px] text-error-muted tracking-tight"
+                    >128 萬</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-outline-variant group-hover:text-gold-accent transition-colors"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Vehicle Card 3 -->
+            <div
+              class="bg-surface-elevated rounded-xl border border-surface-border custom-shadow overflow-hidden group hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col hidden lg:flex"
+              onclick="
+                window.location.href =
+                  './vehicle-management-detail.html?id=V003'
+              "
+            >
+              <div
+                class="relative h-48 w-full overflow-hidden bg-surface-variant"
+              >
+                <img
+                  alt="Porsche 911"
+                  class="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  data-alt="A classic silver Porsche 911 parked inside a modern, minimalist concrete showroom. The lighting is soft and diffused, creating elegant reflections on the car's curved surfaces. The overall aesthetic is high-end, quiet luxury, perfectly suited for an executive automotive management dashboard."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-Pqd-dcvWNTmnCKIDjNpRvRwzHkOZ5_iZ6kD__kUEkrW_vQj3WyeKt9wqtmvjDaLmRNqmgQ__-qQPMW5HAVYej196jZltn01rPaw7CaL-eoimr0UJAh_mzNEhO7XL5ekc3PFEOtAPHp7teol2L6tQDeBfr23oaCfnHgZsIMHHSJfOFipK-hr13ZBP_VcmNLDKuLvE5iFAt4xR_7X_QBYmF-3g04buB_eufcTXxxVNaR8n3csmJ7-A-l4jJt-zXkIkO4fBRycw0vpn"
+                />
+                <div class="absolute top-3 right-3">
+                  <span
+                    class="bg-surface-elevated/90 backdrop-blur-sm text-primary font-label-sm px-2.5 py-1 rounded-DEFAULT border border-surface-border/50 flex items-center gap-1 shadow-sm"
+                  >
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-secondary-fixed-dim"
+                    ></span>
+                    整備中
+                  </span>
+                </div>
+              </div>
+              <div class="p-5 flex flex-col flex-1">
+                <h4
+                  class="font-headline-md text-[20px] text-on-surface mb-3 line-clamp-1 group-hover:text-gold-accent transition-colors"
+                >
+                  Porsche 911 Carrera
+                </h4>
+                <div class="space-y-1.5 mb-4 flex-1">
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">年份：</span>
+                    <span class="font-medium text-on-surface">2020</span>
+                  </div>
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">廠牌：</span>
+                    <span class="font-medium text-on-surface">Porsche</span>
+                  </div>
+                  <div
+                    class="flex items-center text-body-sm text-on-surface-variant"
+                  >
+                    <span class="w-16 text-outline">里程：</span>
+                    <span class="font-medium text-on-surface">15,000 公里</span>
+                  </div>
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-surface-border flex items-end justify-between"
+                >
+                  <span
+                    class="font-headline-lg text-[24px] text-error-muted tracking-tight"
+                    >458 萬</span
+                  >
+                  <span
+                    class="material-symbols-outlined text-outline-variant group-hover:text-gold-accent transition-colors"
+                    >arrow_forward</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Content Area - Sold (已售) -->
+        <section class="mb-12 opacity-80 hover:opacity-100 transition-opacity">
+          <div class="flex items-center gap-3 mb-6">
+            <h3
+              class="font-headline-md text-headline-md text-on-surface-variant"
+            >
+              已成交
+            </h3>
+            <span
+              class="bg-surface-variant text-on-surface-variant font-label-sm px-2 py-1 rounded-full"
+              >45 台</span
+            >
+            <div class="flex-1 h-[1px] bg-surface-border ml-4"></div>
+          </div>
+          <!-- Minimalist List for Sold items to contrast with cards -->
+          <div
+            class="bg-surface-elevated rounded-xl border border-surface-border custom-shadow overflow-hidden"
+          >
+            <div class="divide-y divide-surface-border">
+              <!-- List Item 1 -->
+              <div
+                class="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors cursor-pointer"
+                onclick="
+                  window.location.href =
+                    './vehicle-management-detail.html?id=V004'
+                "
+              >
+                <div
+                  class="w-16 h-12 rounded bg-surface-variant overflow-hidden shrink-0"
+                >
+                  <img
+                    alt="Mercedes C300"
+                    class="w-full h-full object-cover grayscale"
+                    data-alt="A white Mercedes-Benz C-Class parked on a city street, photographed in black and white to indicate a sold or archived status. The image is crisp but desaturated, fitting a secondary list view in a luxury car dealership interface."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR1JNaNb-oc-clJcnmg25dGhDLFHNvCS74wz57nL3y_ye7DfdN0HPpazrgo17cPA5vrJINGc4Qxa6sZv8fqrS8LRhg_SpSJXrFMWohC28QjEY3BQ8aB-aUtfEMfo8eu2RfZK1cwC7qt7SsTOy8YrbL9ZSwQdAXOiKzN5zjJS1cEBXzjJw5qvgpfenDT_K-fxMcEhx9dU_29SKwiRt1PohVfuWStsLpybtUGtbyrUAKkyLQ8z6Y8L3zSCDOF3mYK4C7lkmzGrhbVvTc"
+                  />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4
+                    class="font-headline-md text-[16px] text-on-surface truncate"
+                  >
+                    Mercedes-Benz C300
+                  </h4>
+                  <p class="text-label-sm text-outline-variant">
+                    2022 年｜32,000 公里｜2023/10/12 已成交
+                  </p>
+                </div>
+                <div class="text-right shrink-0 hidden sm:block">
+                  <p class="text-body-md font-medium text-outline">185 萬</p>
+                </div>
+                <div class="pl-4">
+                  <span
+                    class="bg-surface-variant text-outline font-label-sm px-2 py-1 rounded-DEFAULT border border-surface-border"
+                    >已成交</span
+                  >
+                </div>
+              </div>
+              <!-- List Item 2 -->
+              <div
+                class="p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors cursor-pointer"
+                onclick="
+                  window.location.href =
+                    './vehicle-management-detail.html?id=V005'
+                "
+              >
+                <div
+                  class="w-16 h-12 rounded bg-surface-variant overflow-hidden shrink-0"
+                >
+                  <img
+                    alt="Audi A3"
+                    class="w-full h-full object-cover grayscale"
+                    data-alt="A sleek silver Audi A3 parked against a concrete wall. The image is processed in grayscale to denote a completed transaction state. Soft lighting and clean lines maintain the premium feel despite the archival styling."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH4l775gPwvIhS_GedSjcfzk7fMS5ihea0BTBcgUtSId-M4NSXxkA8dE6JWxzHluHKYeMBBUtBIqxdw2Yx-cEQePh7gdnii6dp5d4dM_qBoxGGpRk4gWOoTWVSDPV_3CARBzNcj3QjoaUugstf9MMCAbZO-OtBLOdJjrAx1cfrh62SCthkWk7c7cXYZYQoEterKINc6F_0i7BXlRCqu7DFvKv317UoERGvj0Oc3cltpS7Gx05xbZDDVym9ctppPJ3seNxvxk1_FCbC"
+                  />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4
+                    class="font-headline-md text-[16px] text-on-surface truncate"
+                  >
+                    Audi A3 Sportback
+                  </h4>
+                  <p class="text-label-sm text-outline-variant">
+                    2019 年｜68,000 公里｜2023/09/28 已成交
+                  </p>
+                </div>
+                <div class="text-right shrink-0 hidden sm:block">
+                  <p class="text-body-md font-medium text-outline">95 萬</p>
+                </div>
+                <div class="pl-4">
+                  <span
+                    class="bg-surface-variant text-outline font-label-sm px-2 py-1 rounded-DEFAULT border border-surface-border"
+                    >已成交</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

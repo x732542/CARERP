@@ -1,0 +1,847 @@
+<!-- 客戶管理 -->
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>智富車庫 ERP - 客戶管理</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f9f2ef",
+              tertiary: "#000000",
+              "surface-variant": "#e8e1de",
+              "tertiary-container": "#121d22",
+              "surface-container-high": "#ede7e4",
+              "sidebar-bg": "#140804",
+              outline: "#817570",
+              "on-secondary-container": "#785a19",
+              "secondary-fixed": "#ffdea3",
+              "tertiary-fixed": "#d9e4ec",
+              "on-primary-fixed": "#271812",
+              "on-secondary": "#ffffff",
+              error: "#ba1a1a",
+              "on-tertiary-fixed": "#121d22",
+              "on-error": "#ffffff",
+              "surface-elevated": "#FFFFFF",
+              "on-tertiary": "#ffffff",
+              surface: "#fff8f5",
+              "inverse-on-surface": "#f6efec",
+              "surface-container-highest": "#e8e1de",
+              "secondary-fixed-dim": "#e8c176",
+              "primary-container": "#271812",
+              secondary: "#775a19",
+              "error-muted": "#BA1A1A",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "on-secondary-fixed-variant": "#5c4200",
+              "inverse-surface": "#33302e",
+              "surface-dim": "#dfd9d6",
+              "on-surface-variant": "#4f4541",
+              "gold-accent": "#775A19",
+              primary: "#000000",
+              "secondary-container": "#fdd587",
+              "surface-container": "#f3ecea",
+              "primary-fixed-dim": "#dbc1b7",
+              "surface-tint": "#6e5a52",
+              "inverse-primary": "#dbc1b7",
+              "on-surface": "#1d1b1a",
+              "on-secondary-fixed": "#261900",
+              "error-container": "#ffdad6",
+              "surface-bright": "#fff8f5",
+              "on-tertiary-container": "#7a858c",
+              "on-primary-fixed-variant": "#55433b",
+              "primary-fixed": "#f9ddd2",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "on-primary": "#ffffff",
+              "success-muted": "#8DA399",
+              "on-primary-container": "#967f76",
+              "on-error-container": "#93000a",
+              "outline-variant": "#d2c3be",
+              "on-background": "#1d1b1a",
+              background: "#fff8f5",
+              "surface-border": "#EBE1D9",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              unit: "4px",
+              "container-max": "1440px",
+              gutter: "24px",
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+            },
+            fontFamily: {
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: theme("colors.background");
+        color: theme("colors.on-background");
+      }
+      .ambient-shadow {
+        box-shadow: 0 16px 32px -12px rgba(20, 8, 4, 0.08);
+      }
+      .input-field {
+        @apply bg-transparent border border-outline-variant rounded px-4 py-2 font-body-sm text-body-sm text-on-surface focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none w-full transition-colors;
+      }
+
+      .customer-table .erp-badge {
+        white-space: nowrap;
+      }
+
+      .customer-table .erp-table-actions {
+        flex-wrap: nowrap;
+      }
+
+      .modal-backup {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+      .hidden { display: none !important; }
+      .flex { display: flex !important; }
+    </style>
+    <link href="../../assets/css/components.css" rel="stylesheet" />
+  </head>
+  <body class="antialiased min-h-screen flex bg-surface">
+    <!-- SideNavBar -->
+    <script>
+      window.currentPage = "customer";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+    <!-- Main Content Canvas -->
+    <div class="flex-1 md:ml-[280px] flex flex-col min-h-screen">
+      <!-- TopAppBar -->
+      <header
+        class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] h-[70px] bg-sidebar-bg border-b border-primary-container flex justify-between items-center px-4 md:px-margin-desktop z-10 shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
+      >
+        <div class="ml-auto flex items-center justify-end gap-4">
+          <button
+            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+          >
+            <span class="material-symbols-outlined" data-icon="notifications"
+              >notifications</span
+            >
+          </button>
+          <button
+            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+          >
+            <span class="material-symbols-outlined" data-icon="settings"
+              >settings</span
+            >
+          </button>
+          <div class="h-8 w-px bg-primary-container"></div>
+          <div class="flex items-center gap-3 cursor-pointer">
+            <img
+              alt="王大明"
+              class="w-10 h-10 rounded-full object-cover border border-primary-container"
+              data-alt="A professional headshot of an Asian male automotive sales executive wearing a crisp white shirt and dark tailored suit jacket. The background is a slightly blurred, high-end, well-lit modern car showroom interior. Soft, flattering lighting highlights a confident, approachable expression, consistent with luxury brand representation."
+              src="../../assets/images/avatar-default.jpg"
+            />
+            <div class="text-left hidden md:block">
+              <p class="font-label-md text-label-md text-on-primary">王大明</p>
+              <p class="font-label-sm text-label-sm text-on-primary-container">
+                業務主管
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Page Content -->
+      <main
+        class="flex-1 overflow-x-hidden erp-page-a erp-page-container is-header-offset"
+      >
+        <!-- Header Section -->
+        <div
+          class="erp-main-page-header flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
+          <div>
+            <h3 class="erp-main-page-title">客戶管理</h3>
+            <p class="erp-main-page-desc">管理與追蹤客戶資料</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button class="erp-btn-secondary is-lg">
+              <span class="material-symbols-outlined text-[18px]"
+                >download</span
+              >
+              匯出資料
+            </button>
+            <button class="erp-btn-primary is-lg" data-modal-open="addCustomerModal">
+              <span class="material-symbols-outlined text-[18px]">add</span>
+              新增客戶
+            </button>
+          </div>
+        </div>
+        <!-- Search & Filter -->
+        <div
+          class="bg-surface-elevated rounded-xl p-6 ambient-shadow border border-surface-border"
+        >
+          <div class="flex flex-col gap-4">
+            <div class="erp-search-wrapper erp-header-search-wrapper">
+              <input
+                type="text"
+                class="erp-search erp-header-search"
+                placeholder="搜尋客戶姓名、手機號碼"
+              />
+              <span
+                class="material-symbols-outlined erp-search-icon erp-header-search-icon"
+                >search</span
+              >
+            </div>
+
+            <div
+              class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3"
+            >
+              <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-1 xl:max-w-[780px]"
+              >
+                <div class="relative">
+                  <select class="erp-filter-control">
+                    <option>全部狀態</option>
+                    <option>初步洽談</option>
+                    <option>已預約賞車</option>
+                    <option>考慮中</option>
+                    <option>已簽約付款</option>
+                    <option>已交車完成</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
+                    >expand_more</span
+                  >
+                </div>
+
+                <div class="relative">
+                  <select class="erp-filter-control">
+                    <option>全部業務</option>
+                    <option>王大明</option>
+                    <option>李佳玲</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
+                    >expand_more</span
+                  >
+                </div>
+
+                <div class="relative">
+                  <select class="erp-filter-control">
+                    <option>全部來源</option>
+                    <option>8891汽車網</option>
+                    <option>Facebook 粉絲專頁</option>
+                    <option>LINE 官方帳號</option>
+                    <option>客戶介紹</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
+                    >expand_more</span
+                  >
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 shrink-0 xl:pl-4">
+                <button class="erp-btn-primary is-lg">
+                  <span class="material-symbols-outlined text-[18px]"
+                    >search</span
+                  >
+                  搜尋
+                </button>
+                <button class="erp-btn-secondary is-lg">
+                  <span class="material-symbols-outlined text-[18px]"
+                    >refresh</span
+                  >
+                  重設
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Data Table Card -->
+        <div
+          class="bg-surface-elevated rounded-xl ambient-shadow border border-surface-border overflow-hidden erp-table-card customer-table"
+        >
+          <div class="erp-table-responsive erp-table-container">
+            <table
+              class="w-full text-left border-collapse min-w-full erp-table"
+            >
+              <thead>
+                <tr
+                  class="border-b border-surface-border bg-surface-container-low/50 erp-table-header"
+                >
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    建立日期
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    客戶姓名
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    聯絡電話
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    偏好車型
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    預算範圍
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    客戶狀態
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    客戶來源
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    負責業務
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary text-center whitespace-nowrap"
+                  >
+                    操作
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                class="font-body-sm text-body-sm text-on-surface erp-table-body"
+              >
+                <!-- Row 1 -->
+                <tr
+                  class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
+                >
+                  <td class="py-4 px-6 whitespace-nowrap">2023-10-24</td>
+                  <td class="py-4 px-6 font-medium">王小明</td>
+                  <td class="py-4 px-6">0912-345-678</td>
+                  <td class="py-4 px-6">S-Class 350d</td>
+                  <td class="py-4 px-6">400 - 450</td>
+                  <td class="py-4 px-6">
+                    <span class="erp-badge is-neutral">初步洽談</span>
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">8891汽車網</td>
+                  <td class="py-4 px-6">王大明</td>
+                  <td class="py-4 px-6 text-center">
+                    <div class="erp-table-actions justify-center">
+                      <button
+                        class="erp-btn-sm is-secondary"
+                        onclick="
+                          window.location.href =
+                            '../sales-center/salesperson-customers.html?customerId=C001'
+                        "
+                      >
+                        查看客戶
+                      </button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="
+                          window.location.href =
+                            './customer-create-modal.html?mode=edit&id=C001'
+                        "
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr
+                  class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
+                >
+                  <td class="py-4 px-6 whitespace-nowrap">2023-10-23</td>
+                  <td class="py-4 px-6 font-medium">林佳玲</td>
+                  <td class="py-4 px-6">0988-123-456</td>
+                  <td class="py-4 px-6">Macan S</td>
+                  <td class="py-4 px-6">350 - 400</td>
+                  <td class="py-4 px-6">
+                    <span class="erp-badge is-warning">已預約賞車</span>
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">
+                    Facebook 粉絲專頁
+                  </td>
+                  <td class="py-4 px-6">王大明</td>
+                  <td class="py-4 px-6 text-center">
+                    <div class="erp-table-actions justify-center">
+                      <button
+                        class="erp-btn-sm is-secondary"
+                        onclick="
+                          window.location.href =
+                            '../sales-center/salesperson-customers.html?customerId=C002'
+                        "
+                      >
+                        查看客戶
+                      </button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="
+                          window.location.href =
+                            './customer-create-modal.html?mode=edit&id=C002'
+                        "
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr
+                  class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
+                >
+                  <td class="py-4 px-6 whitespace-nowrap">2023-10-21</td>
+                  <td class="py-4 px-6 font-medium">張建國</td>
+                  <td class="py-4 px-6">0933-987-654</td>
+                  <td class="py-4 px-6">Cayenne Coupe</td>
+                  <td class="py-4 px-6">500萬以上</td>
+                  <td class="py-4 px-6">
+                    <span class="erp-badge is-neutral">考慮中</span>
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">
+                    LINE 官方帳號
+                  </td>
+                  <td class="py-4 px-6">李佳玲</td>
+                  <td class="py-4 px-6 text-center">
+                    <div class="erp-table-actions justify-center">
+                      <button
+                        class="erp-btn-sm is-secondary"
+                        onclick="
+                          window.location.href =
+                            '../sales-center/salesperson-customers.html?customerId=C003'
+                        "
+                      >
+                        查看客戶
+                      </button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="
+                          window.location.href =
+                            './customer-create-modal.html?mode=edit&id=C003'
+                        "
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr
+                  class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
+                >
+                  <td class="py-4 px-6 whitespace-nowrap">2023-10-18</td>
+                  <td class="py-4 px-6 font-medium">黃先生</td>
+                  <td class="py-4 px-6">0955-444-333</td>
+                  <td class="py-4 px-6">G-Class 500</td>
+                  <td class="py-4 px-6">800萬以上</td>
+                  <td class="py-4 px-6">
+                    <span class="erp-badge is-success">已簽約付款</span>
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">客戶介紹</td>
+                  <td class="py-4 px-6">王大明</td>
+                  <td class="py-4 px-6 text-center">
+                    <div class="erp-table-actions justify-center">
+                      <button
+                        class="erp-btn-sm is-secondary"
+                        onclick="
+                          window.location.href =
+                            '../sales-center/salesperson-customers.html?customerId=C004'
+                        "
+                      >
+                        查看客戶
+                      </button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="
+                          window.location.href =
+                            './customer-create-modal.html?mode=edit&id=C004'
+                        "
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 5 -->
+                <tr class="hover:bg-surface-container-low/30 transition-colors">
+                  <td class="py-4 px-6 whitespace-nowrap">2023-10-10</td>
+                  <td class="py-4 px-6 font-medium">陳怡君</td>
+                  <td class="py-4 px-6">0922-555-888</td>
+                  <td class="py-4 px-6">GLE 300d</td>
+                  <td class="py-4 px-6">300 - 350</td>
+                  <td class="py-4 px-6">
+                    <span class="erp-badge is-success">已交車完成</span>
+                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">
+                    WeWanted 購好幫
+                  </td>
+                  <td class="py-4 px-6">王大明</td>
+                  <td class="py-4 px-6 text-center">
+                    <div class="erp-table-actions justify-center">
+                      <button
+                        class="erp-btn-sm is-secondary"
+                        onclick="
+                          window.location.href =
+                            '../sales-center/salesperson-customers.html?customerId=C005'
+                        "
+                      >
+                        查看客戶
+                      </button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="
+                          window.location.href =
+                            './customer-create-modal.html?mode=edit&id=C005'
+                        "
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination -->
+          <div
+            class="border-t border-surface-border px-6 py-4 flex items-center justify-between erp-pagination"
+          >
+            <p
+              class="font-body-sm text-body-sm text-on-surface-variant erp-pagination-info"
+            >
+              顯示第 1 至 5 筆，共 42 筆資料
+            </p>
+            <div class="flex items-center gap-1 erp-pagination-pages">
+              <button
+                class="p-2 rounded text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50 transition-colors flex items-center justify-center erp-page"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >chevron_left</span
+                >
+              </button>
+              <button
+                class="w-8 h-8 rounded bg-gold-accent text-surface font-label-md text-label-md flex items-center justify-center erp-page is-active"
+              >
+                1
+              </button>
+              <button
+                class="w-8 h-8 rounded text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md flex items-center justify-center transition-colors erp-page"
+              >
+                2
+              </button>
+              <button
+                class="w-8 h-8 rounded text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md flex items-center justify-center transition-colors erp-page"
+              >
+                3
+              </button>
+              <span
+                class="w-8 h-8 flex items-center justify-center text-on-surface-variant"
+                >...</span
+              >
+              <button
+                class="p-2 rounded text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center justify-center erp-page"
+              >
+                <span class="material-symbols-outlined text-[20px]"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+  <!-- 新增客戶 Modal -->
+  <div id="addCustomerModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-tertiary/60 backdrop-blur-sm overflow-y-auto modal-backup">
+    <div class="bg-surface-elevated w-full max-w-2xl rounded-xl shadow-2xl border border-surface-border flex flex-col max-h-[90vh] my-auto">
+
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between px-8 py-6 border-b border-surface-border bg-surface-container-low rounded-t-xl">
+        <div>
+          <h2 class="font-headline-md text-headline-md text-on-surface">新增客戶資料</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">請填寫客戶基本資訊與購車偏好</p>
+        </div>
+        <button data-modal-close type="button" class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="flex-1 overflow-y-auto px-8 py-8 bg-surface">
+        <form class="space-y-5">
+
+          <!-- 基本資料區塊 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">基本資料</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">建立日期</label>
+                <input type="date" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">客戶類別</label>
+                <div class="relative">
+                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇</option>
+                    <option>潛在客戶</option>
+                    <option>意向客戶</option>
+                    <option>成交客戶</option>
+                    <option>舊客回購</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">
+                  <span class="text-error mr-0.5">*</span>客戶姓名
+                </label>
+                <input type="text" placeholder="請輸入人姓名" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">
+                  <span class="text-error mr-0.5">*</span>聯絡電話
+                </label>
+                <input type="tel" placeholder="請輸入聯絡電話" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 購車偏好區塊 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">購車偏好</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">
+                  <span class="text-secondary mr-0.5">#</span>偏好車型
+                </label>
+                <input type="text" placeholder="品牌與車款(例如：Lexus NX200)" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">
+                  <span class="text-secondary mr-0.5">#</span>預算區間
+                </label>
+                <input type="text" placeholder="填入價格範圍(例如：100萬-150萬)" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">出廠年份區間</label>
+                <input type="text" placeholder="例如：2020-2024" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">顏色偏好</label>
+                <input type="text" placeholder="例如：白、黑、灰" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+            </div>
+          </div>
+
+          <!-- 財務需求區塊 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">財務需求</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">付款方式</label>
+                <div class="relative">
+                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇</option>
+                    <option>全額付清</option>
+                    <option>銀行貸款</option>
+                    <option>分期付款</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">是否有貸款協助需求</label>
+                <div class="relative">
+                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇</option>
+                    <option>是</option>
+                    <option>否</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">是否需要舊換新</label>
+                <div class="relative">
+                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇</option>
+                    <option>是</option>
+                    <option>否</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-8 py-5 border-t border-surface-border bg-surface flex items-center justify-between gap-4 rounded-b-xl">
+        <p class="font-body-sm text-body-sm text-on-surface-variant">標示「*」為必填欄位，「#」為擇一填寫欄位</p>
+        <div class="flex gap-4">
+          <button type="button" data-modal-close class="erp-btn-secondary is-lg">取消</button>
+          <button type="button" class="erp-btn-primary is-lg">
+            <span class="material-symbols-outlined text-[18px]">save</span>
+            儲存客戶
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const modalOpens = document.querySelectorAll("[data-modal-open]");
+      const modalCloses = document.querySelectorAll("[data-modal-close]");
+
+      modalOpens.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const targetId = trigger.getAttribute("data-modal-open");
+          const modal = document.getElementById(targetId);
+          if (!modal) return;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      modalCloses.forEach((closeBtn) => {
+        closeBtn.addEventListener("click", () => {
+          const modal = closeBtn.closest(".modal-backup");
+          if (!modal) return;
+          modal.classList.remove("flex");
+          modal.classList.add("hidden");
+          document.body.style.overflow = "";
+        });
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        document.querySelectorAll(".modal-backup.flex").forEach((modal) => {
+          modal.classList.remove("flex");
+          modal.classList.add("hidden");
+        });
+        document.body.style.overflow = "";
+      });
+    })();
+  </script>
+
+  </body>
+</html>

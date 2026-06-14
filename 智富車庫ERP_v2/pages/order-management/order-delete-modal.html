@@ -1,0 +1,290 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Delete Order Confirmation - Elite Motors ERP</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#bdc8cf",
+              "surface-tint": "#6e5a52",
+              "inverse-primary": "#dbc1b7",
+              "surface-container-high": "#ede7e4",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#55433b",
+              "on-secondary-fixed-variant": "#5c4200",
+              "on-surface-variant": "#4f4541",
+              "on-error": "#ffffff",
+              "primary-fixed": "#f9ddd2",
+              "inverse-on-surface": "#f6efec",
+              "on-tertiary-fixed": "#121d22",
+              "on-surface": "#1d1b1a",
+              "tertiary-fixed": "#d9e4ec",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#ffdea3",
+              "surface-variant": "#e8e1de",
+              background: "#fff8f5",
+              tertiary: "#000000",
+              "surface-container-low": "#f9f2ef",
+              "surface-container-highest": "#e8e1de",
+              "surface-bright": "#fff8f5",
+              "error-muted": "#BA1A1A",
+              surface: "#fff8f5",
+              "on-primary": "#ffffff",
+              "secondary-container": "#fdd587",
+              "outline-variant": "#d2c3be",
+              "surface-dim": "#dfd9d6",
+              secondary: "#775a19",
+              primary: "#000000",
+              "on-secondary-container": "#785a19",
+              "gold-accent": "#775A19",
+              "on-background": "#1d1b1a",
+              error: "#ba1a1a",
+              "surface-elevated": "#FFFFFF",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "secondary-fixed-dim": "#e8c176",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#7a858c",
+              "sidebar-bg": "#140804",
+              "primary-container": "#271812",
+              "inverse-surface": "#33302e",
+              "surface-container": "#f3ecea",
+              "on-secondary-fixed": "#261900",
+              "surface-border": "#EBE1D9",
+              outline: "#817570",
+              "success-muted": "#8DA399",
+              "tertiary-container": "#121d22",
+              "on-primary-container": "#967f76",
+              "primary-fixed-dim": "#dbc1b7",
+              "on-primary-fixed": "#271812",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-desktop": "48px",
+              unit: "4px",
+              gutter: "24px",
+              "container-max": "1440px",
+              "margin-mobile": "16px",
+            },
+            fontFamily: {
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fff8f5; /* theme.colors.background */
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .icon-fill {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface h-screen flex overflow-hidden">
+    <!-- Sidebar Shell (Suppressed as this is a specific dialog state, but keeping structure for context if needed, though instructions say "If the page content... does not logically sit under the categories defined in the JSON, suppress the navigation to prioritize the content canvas."  A dialog overlay usually sits on top of the app, but since the user requested specifically the dialog, I will render it centered on a blurred background to simulate the active app state). -->
+    <!-- Simulating the main app in the background to provide context for the dialog -->
+    <div
+      aria-hidden="true"
+      class="fixed inset-0 bg-surface/50 backdrop-blur-sm z-0"
+    ></div>
+    <!-- Main Content Canvas (Dialog Overlay) -->
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <!-- Dialog Container -->
+      <div
+        aria-labelledby="dialog-title"
+        aria-modal="true"
+        class="bg-surface-elevated w-full max-w-md rounded-lg shadow-lg border border-surface-border overflow-hidden"
+        role="dialog"
+      >
+        <!-- Dialog Header -->
+        <div
+          class="px-6 py-6 border-b border-surface-border flex items-start gap-4"
+        >
+          <div
+            class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-error-container text-on-error-container"
+          >
+            <span
+              class="material-symbols-outlined text-2xl icon-fill"
+              data-icon="warning"
+              >warning</span
+            >
+          </div>
+          <div class="flex-1 pt-1">
+            <h2
+              class="font-headline-md text-headline-md text-on-surface"
+              id="dialog-title"
+            >
+              確認刪除訂單？
+            </h2>
+          </div>
+        </div>
+        <!-- Dialog Body -->
+        <div class="px-6 py-6">
+          <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+            此操作無法復原，確定要刪除此筆訂單嗎？
+          </p>
+          <!-- Order Details Card within Dialog -->
+          <div
+            class="bg-surface-container-low rounded p-4 border border-surface-border"
+          >
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span
+                  class="font-label-sm text-label-sm text-outline uppercase tracking-wider"
+                  >訂單編號</span
+                >
+                <span
+                  class="font-body-md text-body-md font-semibold text-primary"
+                  >ORD-01</span
+                >
+              </div>
+              <div class="flex items-center justify-between">
+                <span
+                  class="font-label-sm text-label-sm text-outline uppercase tracking-wider"
+                  >客戶名稱</span
+                >
+                <span class="font-body-md text-body-md text-on-surface"
+                  >朱小妹</span
+                >
+              </div>
+              <div class="flex items-center justify-between">
+                <span
+                  class="font-label-sm text-label-sm text-outline uppercase tracking-wider"
+                  >車輛型號</span
+                >
+                <span
+                  class="font-body-md text-body-md text-on-surface truncate max-w-[200px]"
+                  title="Porsche Taycan 4S"
+                  >Porsche Taycan 4S</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Dialog Footer / Actions -->
+        <div
+          class="px-6 py-4 bg-surface-container-lowest flex items-center justify-end gap-3 border-t border-surface-border"
+        >
+          <button class="erp-btn-secondary is-md" type="button">取消</button>
+          <button class="erp-btn-danger is-md" type="button">
+            <span
+              class="material-symbols-outlined text-[18px]"
+              data-icon="delete"
+              >delete</span
+            >
+            確認刪除
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

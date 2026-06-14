@@ -1,0 +1,524 @@
+<!doctype html>
+<html class="light" lang="en" style="">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>智富車庫 ERP - 新增客戶資料</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f9f2ef",
+              tertiary: "#000000",
+              "surface-variant": "#e8e1de",
+              "tertiary-container": "#121d22",
+              "surface-container-high": "#ede7e4",
+              "sidebar-bg": "#140804",
+              outline: "#817570",
+              "on-secondary-container": "#785a19",
+              "secondary-fixed": "#ffdea3",
+              "tertiary-fixed": "#d9e4ec",
+              "on-primary-fixed": "#271812",
+              "on-secondary": "#ffffff",
+              error: "#ba1a1a",
+              "on-tertiary-fixed": "#121d22",
+              "on-error": "#ffffff",
+              "surface-elevated": "#FFFFFF",
+              "on-tertiary": "#ffffff",
+              surface: "#fff8f5",
+              "inverse-on-surface": "#f6efec",
+              "surface-container-highest": "#e8e1de",
+              "secondary-fixed-dim": "#e8c176",
+              "primary-container": "#271812",
+              secondary: "#775a19",
+              "error-muted": "#BA1A1A",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "on-secondary-fixed-variant": "#5c4200",
+              "inverse-surface": "#33302e",
+              "surface-dim": "#dfd9d6",
+              "on-surface-variant": "#4f4541",
+              "gold-accent": "#775A19",
+              primary: "#000000",
+              "secondary-container": "#fdd587",
+              "surface-container": "#f3ecea",
+              "primary-fixed-dim": "#dbc1b7",
+              "surface-tint": "#6e5a52",
+              "inverse-primary": "#dbc1b7",
+              "on-surface": "#1d1b1a",
+              "on-secondary-fixed": "#261900",
+              "error-container": "#ffdad6",
+              "surface-bright": "#fff8f5",
+              "on-tertiary-container": "#7a858c",
+              "on-primary-fixed-variant": "#55433b",
+              "primary-fixed": "#f9ddd2",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "on-primary": "#ffffff",
+              "success-muted": "#8DA399",
+              "on-primary-container": "#967f76",
+              "on-error-container": "#93000a",
+              "outline-variant": "#d2c3be",
+              "on-background": "#1d1b1a",
+              background: "#fff8f5",
+              "surface-border": "#EBE1D9",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              unit: "4px",
+              "container-max": "1440px",
+              gutter: "24px",
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+            },
+            fontFamily: {
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .form-input {
+        @apply w-full bg-surface-elevated border border-outline-variant rounded px-4 py-2 font-body-md text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors duration-200;
+      }
+      .form-select {
+        @apply w-full bg-surface-elevated border border-outline-variant rounded px-4 py-2 font-body-md text-on-surface appearance-none focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors duration-200;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234f4541' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.5rem center;
+        background-repeat: no-repeat;
+        background-size: 1.5em 1.5em;
+      }
+      .form-label {
+        @apply block font-label-md text-on-surface-variant mb-1;
+      }
+      .required-asterisk {
+        @apply text-error ml-1;
+      }
+      .section-title {
+        @apply font-headline-md text-primary mb-4 border-b border-surface-border pb-2;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface font-body-md text-on-surface antialiased overflow-hidden"
+  >
+    <!-- Background Context (Blurred out for modal overlay) -->
+    <div
+      class="h-screen w-full flex opacity-30 pointer-events-none filter blur-sm"
+    >
+      <script>window.currentPage = "customer";</script>
+      <div data-sidebar></div>
+      <script src="../../assets/layouts/sidebar.js"></script>
+      <!-- Top App Bar Placeholder -->
+      <div
+        class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface border-b border-surface-border flex justify-between items-center px-margin-desktop z-0"
+      >
+        <div class="flex items-center gap-2">
+          <h2 class="font-headline-md text-headline-md text-primary">
+            智富車庫 ERP
+          </h2>
+        </div>
+      </div>
+      <!-- Main Content Area Placeholder -->
+      <div class="ml-[280px] mt-16 p-margin-desktop w-full">
+        <h1 class="font-headline-xl text-primary mb-8">客戶管理</h1>
+        <div
+          class="bg-surface-elevated p-8 rounded-lg border border-surface-border shadow-sm h-[600px]"
+        >
+          <div class="animate-pulse flex space-x-4">
+            <div class="flex-1 space-y-6 py-1">
+              <div class="h-2 bg-surface-variant rounded"></div>
+              <div class="space-y-3">
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="h-2 bg-surface-variant rounded col-span-2"></div>
+                  <div class="h-2 bg-surface-variant rounded col-span-1"></div>
+                </div>
+                <div class="h-2 bg-surface-variant rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Overlay Backdrop -->
+    <div
+      class="fixed inset-0 bg-tertiary/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-margin-mobile md:p-margin-desktop overflow-y-auto"
+    >
+      <!-- Modal Container -->
+      <div
+        class="bg-surface-elevated w-full max-w-4xl rounded-xl shadow-2xl border border-surface-border flex flex-col max-h-[90vh] my-auto animate-[fadeIn_0.3s_ease-out]"
+      >
+        <!-- Modal Header -->
+        <div
+          class="flex items-center justify-between px-8 py-6 border-b border-surface-border rounded-t-xl sticky top-0 z-10 bg-surface-container-low"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="bg-sidebar-bg w-10 h-10 rounded flex items-center justify-center"
+            >
+              <span class="material-symbols-outlined text-gold-accent"
+                >person_add</span
+              >
+            </div>
+            <div>
+              <h2 class="font-headline-lg text-primary">新增客戶資料</h2>
+              <p class="font-body-sm text-on-surface-variant mt-1">
+              建立新的潛在或既有客戶檔案
+              </p>
+            </div>
+          </div>
+          <button
+            class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-variant"
+          >
+            <span class="material-symbols-outlined text-2xl">close</span>
+          </button>
+        </div>
+        <!-- Modal Body (Scrollable) -->
+        <div class="px-8 py-8 overflow-y-auto flex-1 bg-surface scrollbar-hide">
+          <form class="space-y-12">
+            <!-- Section 1: 基本資料 (Basic Info) -->
+            <section
+              class="bg-surface-container-low/30 p-6 rounded-xl border border-surface-border/50"
+            >
+              <h3
+                class="section-title tracking-wide text-sidebar-bg font-bold mb-6"
+              >
+                基本資料
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="form-label">建立日期</label>
+                  <div class="relative">
+                    <input
+                      class="form-input text-on-surface-variant"
+                      type="date"
+                      value="2023-10-27"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label class="form-label"
+                    >客戶姓名<span class="required-asterisk">*</span></label
+                  >
+                  <input
+                    class="form-input"
+                    placeholder="請輸入姓名"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label class="form-label"
+                    >聯絡電話<span class="required-asterisk">*</span></label
+                  >
+                  <input
+                    class="form-input"
+                    placeholder="請輸入聯絡電話"
+                    type="tel"
+                  />
+                </div>
+                <div>
+                  <label class="form-label">客戶類別</label>
+                  <div class="relative">
+                    <select class="form-select">
+                      <option disabled="" selected="" value="">請選擇</option>
+                      <option value="vip">VIP 客戶</option>
+                      <option value="potential">潛在客戶</option>
+                      <option value="existing">既有客戶</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- Section 2: 購車需求 (Purchase Requirements) -->
+            <section
+              class="bg-surface-container-low/30 p-6 rounded-xl border border-surface-border/50"
+            >
+              <h3
+                class="section-title tracking-wide text-sidebar-bg font-bold mb-6"
+              >
+                購車需求
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label class="form-label"
+                    >偏好車型
+                    <span class="text-gold-accent text-xs ml-1">#</span></label
+                  >
+                  <input
+                    class="form-input"
+                    placeholder="請輸入偏好品牌與車款，例如凌志休旅車"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label class="form-label"
+                    >預算區間
+                    <span class="text-gold-accent text-xs ml-1">#</span></label
+                  >
+                  <input
+                    class="form-input"
+                    placeholder="例如：150萬 - 200萬 (台幣)"
+                    type="text"
+                  />
+                </div>
+                <div>
+                  <label class="form-label">出廠年份區間</label>
+                  <input
+                    class="form-input"
+                    placeholder="例如：2020 - 2024 (西元年)"
+                    type="text"
+                  />
+                </div>
+                <div class="md:col-span-2">
+                  <label class="form-label mb-2">顏色偏好</label>
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="例如：珍珠白、曜石黑"
+                  />
+                </div>
+              </div>
+            </section>
+            <!-- Section 3: 購車條件 (Purchase Conditions) -->
+            <section
+              class="bg-surface-container-low/30 p-6 rounded-xl border border-surface-border/50"
+            >
+              <h3
+                class="section-title tracking-wide text-sidebar-bg font-bold mb-6"
+              >
+                購車條件
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <label class="form-label">付款方式</label>
+                  <select class="form-select">
+                    <option disabled="" selected="" value="">請選擇</option>
+                    <option value="cash">現金</option>
+                    <option value="loan">貸款</option>
+                    <option value="lease">租賃</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label">貸款需求</label>
+                  <select class="form-select">
+                    <option disabled="" selected="" value="">請選擇</option>
+                    <option value="yes">需要</option>
+                    <option value="no">不需要</option>
+                    <option value="undecided">未定</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label">舊換新需求</label>
+                  <select class="form-select">
+                    <option disabled="" selected="" value="">請選擇</option>
+                    <option value="yes">有</option>
+                    <option value="no">無</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+            <!-- Section 4: CRM 管理資訊 (CRM Management) -->
+            <section
+              class="bg-surface-container-low/30 p-6 rounded-xl border border-surface-border/50"
+            >
+              <h3
+                class="section-title tracking-wide text-sidebar-bg font-bold mb-6"
+              >
+                CRM 管理資訊
+              </h3>
+              <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div>
+                  <label class="form-label">負責業務</label>
+                  <select class="form-select">
+                    <option disabled="" selected="" value="">
+                      請選擇業務人員
+                    </option>
+                    <option value="agent1">陳業務</option>
+                    <option value="agent2">林業務</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label">狀態</label>
+                  <select class="form-select">
+                    <option disabled="" selected="" value="">請選擇狀態</option>
+                    <option value="new">新進件</option>
+                    <option value="contacting">聯繫中</option>
+                    <option value="negotiating">商談中</option>
+                    <option value="closed_won">成交</option>
+                  </select>
+                </div>
+                <div class="md:col-span-2">
+                  <label class="form-label">客源管道</label>
+                  <select class="form-select">
+                    <option disabled="" selected="" value="">請選擇管道</option>
+                    <option value="walk_in">展間來店</option>
+                    <option value="website">官方網站</option>
+                    <option value="referral">親友介紹</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+            <!-- Section 5: 備註欄 (Remarks) -->
+            <section
+              class="bg-surface-container-low/30 p-6 rounded-xl border border-surface-border/50"
+            >
+              <h3
+                class="section-title tracking-wide text-sidebar-bg font-bold mb-6"
+              >
+                備註欄
+              </h3>
+              <div>
+                <label class="form-label sr-only">備註內容</label>
+                <textarea
+                  class="form-input h-32 resize-y"
+                  placeholder="請輸入此客戶的相關紀錄、特殊需求或注意事項..."
+                ></textarea>
+              </div>
+            </section>
+          </form>
+        </div>
+        <!-- Modal Footer -->
+        <div
+          class="px-8 py-5 border-t border-surface-border rounded-b-xl flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface-container-low"
+        >
+          <div
+            class="flex flex-col gap-1 text-on-surface-variant font-label-md"
+          >
+            <p class=""><span class="text-error">*</span> 為必填項目</p>
+            <p class="">
+              <span class="text-gold-accent">#</span> 標示 # 的欄位（偏好車型、
+              預算區間）至少擇一填寫
+            </p>
+          </div>
+          <div class="flex items-center gap-4 w-full sm:w-auto mt-4 sm:mt-0">
+            <button
+              class="flex-1 sm:flex-none px-6 py-2.5 rounded border-[1.5px] border-gold-accent text-sidebar-bg font-label-md hover:bg-gold-accent hover:text-surface transition-colors duration-200"
+              type="button"
+            >
+              關閉
+            </button>
+            <button
+              class="flex-1 sm:flex-none px-6 py-2.5 rounded bg-sidebar-bg text-surface font-label-md hover:bg-tertiary-container transition-colors duration-200 shadow-sm"
+              type="button"
+            >
+              儲存客戶資料
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.98) translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      /* Custom Scrollbar for Modal */
+      .scrollbar-hide::-webkit-scrollbar {
+        width: 8px;
+      }
+      .scrollbar-hide::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .scrollbar-hide::-webkit-scrollbar-thumb {
+        background-color: #dfd9d6;
+        border-radius: 20px;
+      }
+    </style>
+  </body>
+</html>

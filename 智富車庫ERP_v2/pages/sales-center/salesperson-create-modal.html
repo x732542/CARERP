@@ -1,0 +1,394 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>智富車庫 ERP - 新增業務人員</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f9f2ef",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "surface-container-highest": "#e8e1de",
+              "on-primary-fixed-variant": "#55433b",
+              "surface-tint": "#6e5a52",
+              surface: "#fff8f5",
+              "on-tertiary-container": "#7a858c",
+              "inverse-primary": "#dbc1b7",
+              outline: "#817570",
+              tertiary: "#000000",
+              "on-primary-container": "#967f76",
+              "inverse-surface": "#33302e",
+              "surface-variant": "#e8e1de",
+              "surface-container-high": "#ede7e4",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#5c4200",
+              "on-primary-fixed": "#271812",
+              "error-muted": "#BA1A1A",
+              background: "#fff8f5",
+              "inverse-on-surface": "#f6efec",
+              "secondary-fixed-dim": "#e8c176",
+              "on-secondary": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#4f4541",
+              primary: "#000000",
+              "on-tertiary-fixed": "#121d22",
+              "surface-container": "#f3ecea",
+              "on-tertiary": "#ffffff",
+              "sidebar-bg": "#140804",
+              "surface-bright": "#fff8f5",
+              "primary-fixed": "#f9ddd2",
+              "gold-accent": "#775A19",
+              "on-secondary-container": "#785a19",
+              "on-primary": "#ffffff",
+              secondary: "#775a19",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "tertiary-container": "#121d22",
+              "surface-border": "#EBE1D9",
+              "outline-variant": "#d2c3be",
+              "secondary-fixed": "#ffdea3",
+              "primary-fixed-dim": "#dbc1b7",
+              "secondary-container": "#fdd587",
+              "surface-elevated": "#FFFFFF",
+              "primary-container": "#271812",
+              "surface-container-lowest": "#ffffff",
+              error: "#ba1a1a",
+              "success-muted": "#8DA399",
+              "on-background": "#1d1b1a",
+              "on-surface": "#1d1b1a",
+              "on-secondary-fixed": "#261900",
+              "tertiary-fixed": "#d9e4ec",
+              "surface-dim": "#dfd9d6",
+              "on-error-container": "#93000a",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-desktop": "48px",
+              gutter: "24px",
+              "margin-mobile": "16px",
+              "container-max": "1440px",
+              unit: "4px",
+            },
+            fontFamily: {
+              "headline-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .ambient-shadow {
+        box-shadow:
+          0 16px 32px -4px rgba(20, 8, 4, 0.08),
+          0 8px 16px -8px rgba(20, 8, 4, 0.04);
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #ebe1d9;
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface antialiased overflow-hidden">
+    <!-- App Layout Shell -->
+    <div class="flex h-screen w-full relative">
+      <!-- Background Dashboard Content (Blurred) -->
+      <div
+        class="absolute inset-0 z-0 flex blur-sm opacity-60 pointer-events-none"
+      >
+        <div data-sidebar></div>
+        <script src="../../assets/layouts/sidebar.js"></script>
+        <div class="w-[280px] h-screen shrink-0"></div>
+        <!-- Simulated Main Content -->
+        <main class="flex-1 flex flex-col h-screen">
+          <div data-sales-center-topbar></div>
+          <script src="../../assets/layouts/sales-center-topbar.js"></script>
+          <div class="p-margin-desktop p-8 flex-1 bg-surface-container-low">
+            <div class="w-full max-w-container-max mx-auto space-y-6">
+              <!-- KPI Cards Mock -->
+              <div class="grid grid-cols-4 gap-6">
+                <div
+                  class="bg-surface-elevated p-6 rounded-xl ambient-shadow border border-surface-border h-32"
+                ></div>
+                <div
+                  class="bg-surface-elevated p-6 rounded-xl ambient-shadow border border-surface-border h-32"
+                ></div>
+                <div
+                  class="bg-surface-elevated p-6 rounded-xl ambient-shadow border border-surface-border h-32"
+                ></div>
+                <div
+                  class="bg-surface-elevated p-6 rounded-xl ambient-shadow border border-surface-border h-32"
+                ></div>
+              </div>
+              <!-- Table Mock -->
+              <div
+                class="bg-surface-elevated rounded-xl ambient-shadow border border-surface-border h-96"
+              ></div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <!-- Modal Overlay Backdrop -->
+      <div
+        class="fixed inset-0 z-50 bg-sidebar-bg/40 backdrop-blur-md flex items-center justify-center p-4"
+      >
+        <!-- Modal Container -->
+        <div
+          class="bg-surface-elevated w-full max-w-[600px] max-h-[921px] rounded-xl ambient-shadow border border-surface-border flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+        >
+          <!-- Modal Header -->
+          <div
+            class="flex items-center justify-between px-8 py-6 border-b border-surface-border bg-surface-container-lowest"
+          >
+            <h2 class="font-headline-md text-headline-md text-primary">
+              新增業務人員
+            </h2>
+            <button
+              class="text-on-surface-variant hover:text-primary transition-colors focus:outline-none rounded-full p-1 hover:bg-surface-container-low"
+            >
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+          <!-- Modal Body (Scrollable Form) -->
+          <div
+            class="px-8 py-6 overflow-y-auto custom-scrollbar flex-1 bg-surface-container-lowest space-y-6"
+          >
+            <form class="space-y-5" id="addBusinessForm">
+              <!-- Input Group: Business ID -->
+              <div class="flex flex-col space-y-1.5">
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant"
+                  for="businessId"
+                  >業務編號</label
+                >
+                <input
+                  class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors shadow-sm placeholder:text-on-surface-variant/40"
+                  id="businessId"
+                  name="businessId"
+                  placeholder="請輸入業務編號"
+                  type="text"
+                />
+              </div>
+              <!-- Input Group: Name -->
+              <div class="flex flex-col space-y-1.5">
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant"
+                  for="name"
+                  >姓名</label
+                >
+                <input
+                  class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors shadow-sm placeholder:text-on-surface-variant/40"
+                  id="name"
+                  name="name"
+                  placeholder="請輸入姓名"
+                  type="text"
+                />
+              </div>
+              <!-- Input Group: Birthday -->
+              <div class="flex flex-col space-y-1.5 relative">
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant"
+                  for="birthday"
+                  >生日</label
+                >
+                <div class="relative">
+                  <input
+                    class="w-full bg-surface border border-outline-variant rounded-lg pl-4 pr-10 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors shadow-sm placeholder:text-on-surface-variant/40"
+                    id="birthday"
+                    name="birthday"
+                    placeholder="請選擇生日"
+                    type="text"
+                  />
+                  <span
+                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[20px]"
+                    >calendar_today</span
+                  >
+                </div>
+              </div>
+              <!-- Input Group: ID Number -->
+              <div class="flex flex-col space-y-1.5">
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant"
+                  for="idNumber"
+                  >身分證字號</label
+                >
+                <input
+                  class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors shadow-sm placeholder:text-on-surface-variant/40"
+                  id="idNumber"
+                  name="idNumber"
+                  placeholder="請輸入身分證字號"
+                  type="text"
+                />
+              </div>
+              <!-- Input Group: Mobile Phone -->
+              <div class="flex flex-col space-y-1.5">
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant"
+                  for="mobilePhone"
+                  >手機號碼</label
+                >
+                <input
+                  class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors shadow-sm placeholder:text-on-surface-variant/40"
+                  id="mobilePhone"
+                  name="mobilePhone"
+                  placeholder="請輸入手機號碼"
+                  type="tel"
+                />
+              </div>
+              <!-- Input Group: Email -->
+              <div class="flex flex-col space-y-1.5">
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant"
+                  for="email"
+                  >電子郵件</label
+                >
+                <input
+                  class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-2.5 font-body-md text-body-md text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors shadow-sm placeholder:text-on-surface-variant/40"
+                  id="email"
+                  name="email"
+                  placeholder="請輸入電子郵件"
+                  type="email"
+                />
+              </div>
+              <!-- Input Group: Remarks -->
+              <div class="flex flex-col space-y-1.5 pb-2">
+                <label
+                  class="font-label-md text-label-md text-on-surface-variant"
+                  for="remarks"
+                  >備註</label
+                >
+                <textarea
+                  class="w-full bg-surface border border-outline-variant rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-colors shadow-sm resize-none custom-scrollbar placeholder:text-on-surface-variant/40"
+                  id="remarks"
+                  name="remarks"
+                  placeholder="請輸入備註內容"
+                  rows="3"
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <!-- Modal Footer -->
+          <div
+            class="flex items-center justify-end px-8 py-5 border-t border-surface-border bg-surface-container-low gap-4"
+          >
+            <button class="erp-btn-secondary is-md" type="button">取消</button>
+            <button
+              class="erp-btn-primary is-md"
+              form="addBusinessForm"
+              type="submit"
+            >
+              儲存
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

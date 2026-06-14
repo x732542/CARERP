@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="zh-TW"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>列印訂單預覽 - 智富車庫 ERP 系統</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fff8f5",
+                        "inverse-primary": "#dbc1b6",
+                        "on-primary-fixed-variant": "#55433a",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#494644",
+                        "tertiary-container": "#23211f",
+                        "surface-tint": "#6e5a51",
+                        "primary-fixed-dim": "#dbc1b6",
+                        "on-surface-variant": "#4f4540",
+                        "on-tertiary-fixed": "#1d1b1a",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f5ece8",
+                        "primary-fixed": "#f9ddd1",
+                        "tertiary-fixed-dim": "#cbc5c3",
+                        "on-primary": "#ffffff",
+                        "background": "#fff8f5",
+                        "outline": "#817570",
+                        "outline-variant": "#d2c3be",
+                        "on-secondary-container": "#785a1a",
+                        "inverse-surface": "#342f2d",
+                        "tertiary-fixed": "#e8e1de",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#fbf2ee",
+                        "secondary-fixed": "#ffdea5",
+                        "surface-dim": "#e1d8d4",
+                        "secondary-container": "#fed488",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#9b847a",
+                        "secondary-fixed-dim": "#e9c176",
+                        "surface-variant": "#eae1dd",
+                        "on-surface": "#1f1b19",
+                        "on-background": "#1f1b19",
+                        "surface-container-highest": "#eae1dd",
+                        "secondary": "#775a19",
+                        "on-error-container": "#93000a",
+                        "primary": "#140804",
+                        "surface-container-high": "#efe6e2",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#fff8f5",
+                        "tertiary": "#0c0a09",
+                        "inverse-on-surface": "#f8efeb",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#261900",
+                        "primary-container": "#2d1e17",
+                        "on-primary-fixed": "#271811",
+                        "on-tertiary-container": "#8c8885"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "base-unit": "8px",
+                        "gutter": "24px",
+                        "container-max-width": "1440px",
+                        "margin-desktop": "32px",
+                        "topbar-height": "70px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "title-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-lg": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .erp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding: 0 1.25rem;
+            border-radius: 0.5rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .erp-btn-primary {
+            background-color: #2d1e17;
+            color: #ffffff;
+            border: none;
+        }
+        .erp-btn-primary:hover {
+            opacity: 0.9;
+        }
+        .erp-btn-outline {
+            background-color: transparent;
+            color: #2d1e17;
+            border: 1px solid #2d1e17;
+        }
+        .erp-btn-outline:hover {
+            background-color: #f5ece8;
+        }
+        .a4-ratio {
+            aspect-ratio: 1 / 1.414;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        @media print {
+            .no-print { display: none; }
+            body { background: white; }
+            .a4-ratio { box-shadow: none; margin: 0; padding: 0; width: 100%; aspect-ratio: auto; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="no-print fixed top-0 left-0 w-full h-[70px] flex items-center justify-between px-margin-desktop text-surface-bright shadow-[0_2px_10px_rgba(0,0,0,0.06)] z-50 bg-primary-container">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md text-surface-bright">智富車庫 ERP 系統</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer text-surface-bright/80 hover:text-surface-bright transition-colors">notifications</span>
+<span class="material-symbols-outlined cursor-pointer text-surface-bright/80 hover:text-surface-bright transition-colors">settings</span>
+</div>
+<div class="flex items-center gap-3 border-l pl-6 border-outline-variant/30">
+<span class="font-body-md text-surface-bright/90">王小明｜管理員</span>
+<div class="w-8 h-8 rounded-full bg-surface-variant/30 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-surface-bright text-sm">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 mt-[70px] p-margin-desktop overflow-y-auto flex flex-col items-center">
+<!-- Action Bar -->
+<div class="no-print w-full max-w-[800px] flex justify-between items-center mb-6">
+<h1 class="font-title-lg text-title-lg text-on-surface">列印訂單預覽</h1>
+<div class="flex gap-3">
+<button class="erp-btn erp-btn-outline gap-2">
+<span class="material-symbols-outlined text-[18px]">close</span>
+                關閉
+            </button>
+<button class="erp-btn erp-btn-primary gap-2" onclick="window.print()">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                列印文件
+            </button>
+</div>
+</div>
+<!-- A4 Document Canvas -->
+<div class="w-full bg-surface-container-lowest shadow-xl rounded-lg a4-ratio p-16 flex flex-col relative border border-outline-variant/30">
+<!-- Document Header -->
+<div class="flex justify-between items-start border-b-2 border-primary-container pb-8 mb-10">
+<div>
+<h2 class="font-display-lg text-[32px] text-primary-container tracking-tight">智富車庫 Automotive ERP</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mt-2 tracking-[0.2em] uppercase">Corporate Sales &amp; Operations Report</p>
+</div>
+<div class="text-right">
+<div class="font-label-md text-label-md text-outline mb-1">訂單編號</div>
+<div class="font-headline-md text-primary-container">ORD-01</div>
+</div>
+</div>
+<!-- Document Meta -->
+<div class="grid grid-cols-2 gap-12 mb-10">
+<div>
+<div class="font-label-md text-label-md text-on-surface-variant mb-3 border-b border-outline-variant pb-1 uppercase tracking-wider">基本資訊 / Basic Info</div>
+<div class="grid grid-cols-3 gap-y-2 mt-3">
+<span class="text-body-md text-on-surface-variant">簽約日期:</span>
+<span class="text-body-md text-on-surface col-span-2 font-medium">2023-10-25</span>
+<span class="text-body-md text-on-surface-variant">業務代表:</span>
+<span class="text-body-md text-on-surface col-span-2 font-medium">陳冠宇 (EMP-104)</span>
+</div>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface-variant mb-3 border-b border-outline-variant pb-1 uppercase tracking-wider">客戶資料 / Customer</div>
+<div class="grid grid-cols-3 gap-y-2 mt-3">
+<span class="text-body-md text-on-surface-variant">客戶姓名:</span>
+<span class="text-body-md text-on-surface col-span-2 font-semibold">李大媽</span>
+<span class="text-body-md text-on-surface-variant">聯絡電話:</span>
+<span class="text-body-md text-on-surface col-span-2">0912-345-678</span>
+</div>
+</div>
+</div>
+<!-- Vehicle Details -->
+<div class="mb-10 flex-1">
+<div class="font-label-md text-label-md text-on-surface-variant mb-4 uppercase tracking-wider">車輛明細 / Itemized Details</div>
+<table class="w-full border-collapse">
+<thead class="bg-surface-container-low text-left">
+<tr>
+<th class="py-4 px-4 font-label-md text-on-primary-fixed-variant border-b border-outline-variant">項目</th>
+<th class="py-4 px-4 font-label-md text-on-primary-fixed-variant border-b border-outline-variant">規格 / 描述</th>
+<th class="py-4 px-4 font-label-md text-on-primary-fixed-variant border-b border-outline-variant text-right">單價 (NTD)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant/40">
+<td class="py-5 px-4 font-body-md text-on-surface font-medium">主車輛</td>
+<td class="py-5 px-4 font-body-md text-on-surface">Mercedes-Benz S-Class S450 4MATIC L</td>
+<td class="py-5 px-4 font-body-md text-on-surface text-right font-semibold">7,500,000</td>
+</tr>
+<tr class="border-b border-outline-variant/40">
+<td class="py-5 px-4 font-body-md text-on-surface font-medium">選配</td>
+<td class="py-5 px-4 font-body-md text-on-surface-variant">尊榮套件 (全景天窗, 後座娛樂系統)</td>
+<td class="py-5 px-4 font-body-md text-on-surface text-right font-semibold">850,000</td>
+</tr>
+<tr class="border-b border-outline-variant/40">
+<td class="py-5 px-4 font-body-md text-on-surface font-medium">手續費</td>
+<td class="py-5 px-4 font-body-md text-on-surface-variant">代辦領牌及保險處理費</td>
+<td class="py-5 px-4 font-body-md text-on-surface text-right font-semibold">15,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Financial Summary -->
+<div class="w-1/2 self-end mb-16">
+<div class="flex justify-between py-2.5 border-b border-outline-variant border-dashed">
+<span class="text-body-md text-on-surface-variant">小計 Subtotal</span>
+<span class="text-body-md text-on-surface font-semibold">8,365,000</span>
+</div>
+<div class="flex justify-between py-2.5 border-b border-outline-variant border-dashed">
+<span class="text-body-md text-on-surface-variant">折扣 Discount</span>
+<span class="text-body-md text-error font-semibold">- 15,000</span>
+</div>
+<div class="flex justify-between py-5 mt-4 border-b-2 border-primary-container">
+<span class="font-title-lg text-on-surface">總計 Total Amount</span>
+<span class="text-[36px] font-bold text-primary-container tracking-tight">8,350,000</span>
+</div>
+</div>
+<!-- Signature Section -->
+<div class="mt-auto grid grid-cols-2 gap-16 pt-10 border-t border-outline-variant/30">
+<div>
+<div class="font-label-md text-on-surface-variant mb-20 uppercase tracking-tight">業務代表簽名 / Authorized Signature</div>
+<div class="border-t border-primary-container pt-3 font-label-md text-on-surface-variant">
+                    Date: <span class="ml-4 text-on-surface">____ / ____ / ____</span>
+</div>
+</div>
+<div>
+<div class="font-label-md text-on-surface-variant mb-20 uppercase tracking-tight">客戶確認簽名 / Customer Signature</div>
+<div class="border-t border-primary-container pt-3 font-label-md text-on-surface-variant">
+                    Date: <span class="ml-4 text-on-surface">____ / ____ / ____</span>
+</div>
+</div>
+</div>
+<!-- Footer Print Note -->
+<div class="absolute bottom-6 left-16 right-16 flex justify-between items-center opacity-40">
+<span class="text-[10px] font-label-md uppercase">Gilded Automotive ERP System</span>
+<span class="text-[10px] font-label-md">Page 01 of 01</span>
+</div>
+</div>
+</main>
+
+
+</body></html>

@@ -1,0 +1,697 @@
+<!-- Dashboard -->
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Prestige Auto ERP Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              outline: "#817570",
+              "outline-variant": "#d2c3be",
+              "on-secondary-fixed": "#261900",
+              "on-error": "#ffffff",
+              "on-error-container": "#93000a",
+              "surface-container-lowest": "#ffffff",
+              "inverse-surface": "#33302e",
+              "surface-border": "#EBE1D9",
+              "primary-fixed-dim": "#dbc1b7",
+              primary: "#000000",
+              "surface-tint": "#6e5a52",
+              "surface-dim": "#dfd9d6",
+              "on-tertiary-fixed": "#121d22",
+              tertiary: "#000000",
+              "on-primary-container": "#967f76",
+              "secondary-fixed-dim": "#e8c176",
+              "surface-container-high": "#ede7e4",
+              "surface-bright": "#fff8f5",
+              "surface-container-low": "#f9f2ef",
+              "on-secondary-fixed-variant": "#5c4200",
+              "error-container": "#ffdad6",
+              "surface-container": "#f3ecea",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#e8e1de",
+              "on-surface": "#1d1b1a",
+              background: "#fff8f5",
+              "on-background": "#1d1b1a",
+              "inverse-on-surface": "#f6efec",
+              "tertiary-container": "#121d22",
+              "sidebar-bg": "#140804",
+              "on-primary-fixed": "#271812",
+              "primary-fixed": "#f9ddd2",
+              "surface-elevated": "#FFFFFF",
+              secondary: "#775a19",
+              "error-muted": "#BA1A1A",
+              "primary-container": "#271812",
+              "on-secondary": "#ffffff",
+              "inverse-primary": "#dbc1b7",
+              "on-primary-fixed-variant": "#55433b",
+              "success-muted": "#8DA399",
+              "on-secondary-container": "#785a19",
+              surface: "#fff8f5",
+              "on-tertiary-container": "#7a858c",
+              "on-tertiary": "#ffffff",
+              "secondary-container": "#fdd587",
+              error: "#ba1a1a",
+              "on-surface-variant": "#4f4541",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "secondary-fixed": "#ffdea3",
+              "tertiary-fixed": "#d9e4ec",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "surface-variant": "#e8e1de",
+              "gold-accent": "#775A19",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              "container-max": "1440px",
+              "margin-desktop": "48px",
+              unit: "4px",
+              gutter: "24px",
+            },
+            fontFamily: {
+              "label-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+    <!-- SideNavBar -->
+    <!-- SideNavBar -->
+    <script>
+      window.currentPage = "dashboard";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+    <!-- Main Content -->
+    <main class="flex-1 ml-[280px] overflow-y-auto bg-background">
+      <!-- TopAppBar -->
+      <header
+        class="h-[70px] bg-sidebar-bg border-b border-primary-container flex items-center justify-between px-margin-desktop sticky top-0 z-30 shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
+      >
+        <div class="ml-auto flex items-center justify-end gap-4">
+          <button
+            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <button
+            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+          >
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+          <div class="h-8 w-px bg-primary-container"></div>
+          <button
+            class="flex items-center gap-3 hover:bg-primary-container p-1.5 rounded-full pr-3 transition-colors"
+          >
+            <img
+              alt="使用者頭像"
+              class="w-10 h-10 rounded-full object-cover border border-primary-container"
+              src="../../assets/images/avatar-default.jpg"
+            />
+            <div class="text-left hidden md:block">
+              <p class="text-label-md font-label-md text-on-primary">王大明</p>
+              <p class="text-label-sm font-label-sm text-on-primary-container">
+                系統管理員
+              </p>
+            </div>
+          </button>
+        </div>
+      </header>
+      <!-- Dashboard Canvas -->
+      <div class="px-margin-desktop py-gutter">
+        <div class="erp-main-page-header"></div>
+
+        <div
+          class="grid grid-cols-1 lg:grid-cols-3 gap-gutter max-w-container-max mx-auto"
+        >
+          <!-- Column 1: 業務概覽 -->
+          <div
+            class="bg-surface-elevated rounded-xl shadow-[0_16px_32px_-16px_rgba(20,8,4,0.08)] border border-surface-border p-6 flex flex-col gap-6 cursor-pointer"
+            onclick="
+              window.location.href =
+                '../customer-management/customer-management.html'
+            "
+          >
+            <div
+              class="flex items-center gap-2 text-on-surface border-b border-surface-border pb-4"
+            >
+              <span
+                class="material-symbols-outlined text-gold-accent"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >work</span
+              >
+              <h3 class="font-headline-md text-headline-md">業務概覽</h3>
+            </div>
+            <div class="flex flex-col items-center justify-center py-4">
+              <p
+                class="font-label-md text-label-md text-on-surface-variant mb-2"
+              >
+                成交率
+              </p>
+              <div
+                class="font-headline-xl text-headline-xl text-gold-accent font-bold mb-4"
+              >
+                68%
+              </div>
+              <p class="font-label-sm text-label-sm text-outline-variant mb-3">
+                累計目標達成率（截至本月）
+              </p>
+              <div
+                class="w-full bg-surface-container h-2 rounded-full overflow-hidden"
+              >
+                <div
+                  class="bg-gold-accent h-full rounded-full"
+                  style="width: 68%"
+                ></div>
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-3 gap-2 py-4 border-y border-surface-border"
+            >
+              <div
+                class="text-center p-2 rounded-lg bg-surface-container-low cursor-pointer"
+                onclick="
+                  event.stopPropagation();
+                  window.location.href =
+                    '../customer-management/customer-management.html';
+                "
+              >
+                <div
+                  class="font-headline-md text-headline-md text-on-surface mb-1"
+                >
+                  42
+                </div>
+                <div class="font-label-sm text-label-sm text-outline-variant">
+                  潛在客戶
+                </div>
+              </div>
+              <div
+                class="text-center p-2 rounded-lg bg-surface-container-low cursor-pointer"
+                onclick="
+                  event.stopPropagation();
+                  window.location.href =
+                    '../customer-management/customer-management.html?status=tracking';
+                "
+              >
+                <div
+                  class="font-headline-md text-headline-md text-gold-accent mb-1"
+                >
+                  18
+                </div>
+                <div class="font-label-sm text-label-sm text-outline-variant">
+                  追蹤中
+                </div>
+              </div>
+              <div
+                class="text-center p-2 rounded-lg bg-surface-container-low cursor-pointer"
+                onclick="
+                  event.stopPropagation();
+                  window.location.href =
+                    '../order-management/order-management.html?status=closed';
+                "
+              >
+                <div
+                  class="font-headline-md text-headline-md text-success-muted mb-1"
+                >
+                  24
+                </div>
+                <div class="font-label-sm text-label-sm text-outline-variant">
+                  已成交
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-4 pt-2">
+              <h4 class="font-label-md text-label-md text-on-surface-variant">
+                業務成交率
+              </h4>
+              <div class="flex flex-col gap-3">
+                <div>
+                  <div
+                    class="flex justify-between font-label-sm text-label-sm mb-1"
+                  >
+                    <span class="text-on-surface">王大明</span>
+                    <span class="text-gold-accent font-bold">75%</span>
+                  </div>
+                  <div
+                    class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"
+                  >
+                    <div
+                      class="bg-gold-accent h-full rounded-full"
+                      style="width: 75%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="flex justify-between font-label-sm text-label-sm mb-1"
+                  >
+                    <span class="text-on-surface"></span>
+                    <span class="text-gold-accent font-bold">62%</span>
+                  </div>
+                  <div
+                    class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"
+                  >
+                    <div
+                      class="bg-success-muted h-full rounded-full"
+                      style="width: 62%"
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    class="flex justify-between font-label-sm text-label-sm mb-1"
+                  >
+                    <span class="text-on-surface"></span>
+                    <span class="text-gold-accent font-bold">55%</span>
+                  </div>
+                  <div
+                    class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"
+                  >
+                    <div
+                      class="bg-outline-variant h-full rounded-full"
+                      style="width: 55%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Column 2: 財務 -->
+          <div
+            class="bg-surface-elevated rounded-xl shadow-[0_16px_32px_-16px_rgba(20,8,4,0.08)] border border-surface-border p-6 flex flex-col gap-6 cursor-pointer"
+            onclick="
+              window.location.href =
+                '../accounting-management/accounting-management.html'
+            "
+          >
+            <div
+              class="flex items-center justify-between border-b border-surface-border pb-4"
+            >
+              <div class="flex items-center gap-2 text-on-surface">
+                <span
+                  class="material-symbols-outlined text-gold-accent"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >insert_chart</span
+                >
+                <h3 class="font-headline-md text-headline-md">財務報表</h3>
+              </div>
+              <span
+                class="bg-success-muted/10 text-success-muted font-label-sm text-label-sm px-2 py-1 rounded"
+                >2026</span
+              >
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div
+                class="border border-surface-border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer"
+                onclick="
+                  event.stopPropagation();
+                  window.location.href =
+                    '../document-management/document-management.html';
+                "
+              >
+                <span class="material-symbols-outlined text-gold-accent mb-2"
+                  >garage</span
+                >
+                <div
+                  class="font-label-sm text-label-sm text-outline-variant mb-1"
+                >
+                  總庫存
+                </div>
+                <div class="font-headline-lg text-headline-lg text-gold-accent">
+                  87 <span class="font-label-sm text-outline-variant"></span>
+                </div>
+              </div>
+              <div
+                class="border border-surface-border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer"
+                onclick="
+                  event.stopPropagation();
+                  window.location.href =
+                    '../order-management/order-management.html';
+                "
+              >
+                <span class="material-symbols-outlined text-success-muted mb-2"
+                  >directions_car</span
+                >
+                <div
+                  class="font-label-sm text-label-sm text-outline-variant mb-1"
+                >
+                  總銷量
+                </div>
+                <div
+                  class="font-headline-lg text-headline-lg text-success-muted"
+                >
+                  24 <span class="font-label-sm text-outline-variant"></span>
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-3 py-4 border-y border-surface-border font-body-sm text-body-sm"
+            >
+              <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant">總收入</span>
+                <span class="text-gold-accent font-semibold"
+                  >NT$ 12,480,000</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant">總成本</span>
+                <span class="text-error-muted font-semibold"
+                  >NT$ 8,950,000</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant">毛利金額</span>
+                <span class="text-gold-accent font-semibold"
+                  >NT$ 3,530,000</span
+                >
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-on-surface-variant">毛利率</span>
+                <span class="text-gold-accent font-semibold">28.3%</span>
+              </div>
+            </div>
+            <div
+              class="bg-success-muted/5 p-3 rounded-lg flex items-center gap-2 mt-auto text-success-muted font-label-sm text-label-sm"
+            >
+              <span class="material-symbols-outlined text-[16px]"
+                >trending_up</span
+              >
+              <span class="">收較去+5.2%</span>
+            </div>
+          </div>
+          <!-- Column 3: 車輛概覽 -->
+          <div
+            class="bg-surface-elevated rounded-xl shadow-[0_16px_32px_-16px_rgba(20,8,4,0.08)] border border-surface-border p-6 flex flex-col gap-6 cursor-pointer"
+            onclick="
+              window.location.href =
+                '../vehicle-management/vehicle-management.html'
+            "
+          >
+            <div
+              class="flex items-center gap-2 text-on-surface border-b border-surface-border pb-4"
+            >
+              <span
+                class="material-symbols-outlined text-gold-accent"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >directions_car</span
+              >
+              <h3 class="font-headline-md text-headline-md">車輛概覽</h3>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div
+                class="border border-surface-border rounded-lg p-3 flex justify-between items-center"
+              >
+                <div>
+                  <div
+                    class="font-label-sm text-label-sm text-outline-variant mb-1"
+                  >
+                    販售中車輛
+                  </div>
+                  <div
+                    class="font-headline-md text-headline-md text-success-muted"
+                  >
+                    52
+                    <span class="font-label-sm text-outline-variant"></span>
+                  </div>
+                </div>
+                <span
+                  class="material-symbols-outlined text-success-muted opacity-50"
+                  >check_circle</span
+                >
+              </div>
+              <div
+                class="border border-surface-border rounded-lg p-3 flex justify-between items-center"
+              >
+                <div>
+                  <div
+                    class="font-label-sm text-label-sm text-outline-variant mb-1"
+                  >
+                    維修中車輛
+                  </div>
+                  <div
+                    class="font-headline-md text-headline-md text-error-muted"
+                  >
+                    12
+                    <span class="font-label-sm text-outline-variant"></span>
+                  </div>
+                </div>
+                <span
+                  class="material-symbols-outlined text-error-muted opacity-50"
+                  >build</span
+                >
+              </div>
+              <div
+                class="border border-surface-border rounded-lg p-3 flex justify-between items-center"
+              >
+                <div>
+                  <div
+                    class="font-label-sm text-label-sm text-outline-variant mb-1"
+                  >
+                    已預約交車
+                  </div>
+                  <div
+                    class="font-headline-md text-headline-md text-on-surface"
+                  >
+                    15
+                    <span class="font-label-sm text-outline-variant"></span>
+                  </div>
+                </div>
+                <span
+                  class="material-symbols-outlined text-on-surface opacity-50"
+                  >event_available</span
+                >
+              </div>
+              <div
+                class="border border-surface-border rounded-lg p-3 flex justify-between items-center"
+              >
+                <div>
+                  <div
+                    class="font-label-sm text-label-sm text-outline-variant mb-1"
+                  >
+                    運送中車輛
+                  </div>
+                  <div
+                    class="font-headline-md text-headline-md text-gold-accent"
+                  >
+                    8 <span class="font-label-sm text-outline-variant"></span>
+                  </div>
+                </div>
+                <span
+                  class="material-symbols-outlined text-gold-accent opacity-50"
+                  >local_shipping</span
+                >
+              </div>
+            </div>
+            <div
+              class="flex flex-col gap-3 py-4 border-y border-surface-border"
+            >
+              <h4
+                class="font-label-md text-label-md text-on-surface-variant mb-1"
+              >
+                車庫庫存分析
+              </h4>
+              <div>
+                <div
+                  class="flex justify-between font-label-sm text-label-sm mb-1"
+                >
+                  <span class="text-on-surface">轎車</span>
+                  <span class="text-on-surface-variant">38 </span>
+                </div>
+                <div
+                  class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-on-surface h-full rounded-full"
+                    style="width: 45%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="flex justify-between font-label-sm text-label-sm mb-1"
+                >
+                  <span class="text-on-surface">SUV</span>
+                  <span class="text-on-surface-variant">29 </span>
+                </div>
+                <div
+                  class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-error-muted h-full rounded-full"
+                    style="width: 35%"
+                  ></div>
+                </div>
+              </div>
+              <div>
+                <div
+                  class="flex justify-between font-label-sm text-label-sm mb-1"
+                >
+                  <span class="text-on-surface">跑車</span>
+                  <span class="text-on-surface-variant">20 </span>
+                </div>
+                <div
+                  class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="bg-gold-accent h-full rounded-full"
+                    style="width: 20%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-3 mt-auto">
+              <h4 class="font-label-md text-label-md text-on-surface-variant">
+                近期入庫車輛
+              </h4>
+              <ul class="flex flex-col gap-2 font-body-sm text-body-sm">
+                <li
+                  class="flex items-center justify-between border-b border-surface-container pb-2"
+                >
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-[16px] text-outline-variant"
+                      >directions_car</span
+                    >
+                    <span class="text-on-surface">Toyota Camry 2025</span>
+                  </div>
+                  <span
+                    class="bg-success-muted/10 text-success-muted font-label-sm text-label-sm px-2 py-0.5 rounded"
+                    >2026/06/03</span
+                  >
+                </li>
+                <li
+                  class="flex items-center justify-between border-b border-surface-container pb-2"
+                >
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-[16px] text-outline-variant"
+                      >directions_car</span
+                    >
+                    <span class="text-on-surface">BMW X5 2025</span>
+                  </div>
+                  <span
+                    class="bg-success-muted/10 text-success-muted font-label-sm text-label-sm px-2 py-0.5 rounded"
+                    >2026/06/02</span
+                  >
+                </li>
+                <li class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="material-symbols-outlined text-[16px] text-outline-variant"
+                      >directions_car</span
+                    >
+                    <span class="text-on-surface">Ford Ranger 2025</span>
+                  </div>
+                  <span
+                    class="bg-success-muted/10 text-success-muted font-label-sm text-label-sm px-2 py-0.5 rounded"
+                    >2026/06/01</span
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

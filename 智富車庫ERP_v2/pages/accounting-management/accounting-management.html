@@ -1,0 +1,1189 @@
+﻿<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>智富車庫 ERP - 會計頁面</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f9f2ef",
+              tertiary: "#000000",
+              "surface-variant": "#e8e1de",
+              "tertiary-container": "#121d22",
+              "surface-container-high": "#ede7e4",
+              "sidebar-bg": "#140804",
+              outline: "#817570",
+              "on-secondary-container": "#785a19",
+              "secondary-fixed": "#ffdea3",
+              "tertiary-fixed": "#d9e4ec",
+              "on-primary-fixed": "#271812",
+              "on-secondary": "#ffffff",
+              error: "#ba1a1a",
+              "on-tertiary-fixed": "#121d22",
+              "on-error": "#ffffff",
+              "surface-elevated": "#FFFFFF",
+              "on-tertiary": "#ffffff",
+              surface: "#fff8f5",
+              "inverse-on-surface": "#f6efec",
+              "surface-container-highest": "#e8e1de",
+              "secondary-fixed-dim": "#e8c176",
+              "primary-container": "#271812",
+              secondary: "#775a19",
+              "error-muted": "#BA1A1A",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "on-secondary-fixed-variant": "#5c4200",
+              "inverse-surface": "#33302e",
+              "surface-dim": "#dfd9d6",
+              "on-surface-variant": "#4f4541",
+              "gold-accent": "#775A19",
+              primary: "#000000",
+              "secondary-container": "#fdd587",
+              "surface-container": "#f3ecea",
+              "primary-fixed-dim": "#dbc1b7",
+              "surface-tint": "#6e5a52",
+              "inverse-primary": "#dbc1b7",
+              "on-surface": "#1d1b1a",
+              "on-secondary-fixed": "#261900",
+              "error-container": "#ffdad6",
+              "surface-bright": "#fff8f5",
+              "on-tertiary-container": "#7a858c",
+              "on-primary-fixed-variant": "#55433b",
+              "primary-fixed": "#f9ddd2",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "on-primary": "#ffffff",
+              "success-muted": "#8DA399",
+              "on-primary-container": "#967f76",
+              "on-error-container": "#93000a",
+              "outline-variant": "#d2c3be",
+              "on-background": "#1d1b1a",
+              background: "#fff8f5",
+              "surface-border": "#EBE1D9",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              unit: "4px",
+              "container-max": "1440px",
+              gutter: "24px",
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+            },
+            fontFamily: {
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fff8f5;
+        color: #1d1b1a;
+      }
+
+      .ambient-shadow {
+        box-shadow: 0 16px 32px -12px rgba(20, 8, 4, 0.08);
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+
+      .erp-table-responsive {
+        overflow-x: auto;
+      }
+
+      .erp-table-responsive::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      .erp-table-responsive::-webkit-scrollbar-track {
+        background: #f9f2ef;
+      }
+
+      .erp-table-responsive::-webkit-scrollbar-thumb {
+        background: #6e5a52;
+        border-radius: 9999px;
+      }
+
+      .erp-table-wide {
+        min-width: unset;
+      }
+
+      .erp-modal-overlay {
+        background: rgba(20, 8, 4, 0.45);
+        backdrop-filter: blur(4px);
+      }
+
+      .erp-modal-panel {
+        box-shadow: 0 24px 48px rgba(20, 8, 4, 0.18);
+      }
+
+      .erp-modal-input {
+        width: 100%;
+        height: 48px;
+        border-radius: 12px;
+        border: 1px solid #e4d8d1;
+        background: #ffffff;
+        padding: 0 16px;
+        font-size: 14px;
+        color: #2b140a;
+        transition:
+          border-color 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .erp-modal-input:focus {
+        outline: none;
+        border-color: #d8c6ba;
+        box-shadow: none;
+      }
+
+      .erp-modal-input[readonly] {
+        background: #f9f2ef;
+        color: #5d514a;
+      }
+
+      .erp-summary-card {
+        background: #271812;
+        border: 1px solid #271812;
+      }
+
+      .accounting-scroll-shell {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+
+      .accounting-scroll-shell::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+
+      .accounting-scroll-shell::-webkit-scrollbar-track {
+        background: #f3ecea;
+      }
+
+      .accounting-scroll-shell::-webkit-scrollbar-thumb {
+        background: #d2c3be;
+        border-radius: 9999px;
+        border: 2px solid #f3ecea;
+      }
+
+      .accounting-scroll-shell::-webkit-scrollbar-thumb:hover {
+        background: #817570;
+      }
+
+      .accounting-kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 24px;
+        overflow-x: visible;
+      }
+
+      .accounting-kpi-grid .erp-kpi-card {
+        overflow: visible;
+        min-width: 220px;
+        max-width: none;
+      }
+
+      .accounting-kpi-grid .erp-kpi-value-row {
+        min-width: 0;
+        flex-wrap: nowrap;
+      }
+
+      .accounting-kpi-grid .erp-kpi-value-row.is-currency {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+      }
+
+      .accounting-kpi-grid .erp-kpi-value {
+        min-width: 0;
+        max-width: 100%;
+        line-height: 1.1;
+      }
+
+      .accounting-kpi-grid .erp-kpi-unit {
+        flex-shrink: 0;
+        font-size: 12px;
+      }
+
+      .accounting-kpi-grid .erp-kpi-value-large {
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+
+      .accounting-kpi-grid .erp-kpi-value-currency {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+    </style>
+    <link href="../../assets/css/components.css" rel="stylesheet" />
+  </head>
+  <body class="antialiased min-h-screen flex bg-surface">
+    <script>
+      window.currentPage = "accounting";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+
+    <div class="flex-1 md:ml-[280px] flex flex-col h-screen min-h-0">
+      <div
+        data-sales-center-topbar="fixed"
+        data-topbar-module="accounting"
+        data-topbar-role="財務主管"
+      ></div>
+      <script src="../../assets/layouts/sales-center-topbar.js"></script>
+
+      <div class="accounting-scroll-shell">
+        <main
+          class="erp-page-c erp-page-container is-header-offset"
+        >
+          <div
+            class="erp-main-page-header flex flex-col xl:flex-row xl:items-end justify-between gap-6"
+          >
+            <div>
+              <h1 class="erp-main-page-title">會計中心</h1>
+              <p class="erp-main-page-desc">Accounting &amp; Finance</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-3">
+              <button class="erp-btn-secondary is-lg" type="button">
+                <span class="material-symbols-outlined text-[18px]">tune</span>
+                篩選
+              </button>
+              <button
+                class="erp-btn-primary is-lg"
+                data-modal-open="recordModal"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                新增會計記錄
+              </button>
+            </div>
+          </div>
+
+          <section
+            class="erp-page-filter bg-surface-elevated rounded-xl border border-surface-border ambient-shadow"
+          >
+            <div
+              class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4"
+            >
+              <div class="erp-header-search-wrapper xl:max-w-[420px] w-full">
+                <input
+                  class="erp-header-search"
+                  placeholder="搜尋車牌、編號或底盤..."
+                  type="text"
+                />
+                <span
+                  class="material-symbols-outlined erp-search-icon erp-header-search-icon"
+                  >search</span
+                >
+              </div>
+              <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-3 w-full xl:w-auto xl:min-w-[620px]"
+              >
+                <div class="relative">
+                  <select class="erp-filter-control">
+                    <option>2023 年 10 月</option>
+                    <option>2023 年 9 月</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                    >expand_more</span
+                  >
+                </div>
+                <div class="relative">
+                  <select class="erp-filter-control">
+                    <option>全部認證狀態</option>
+                    <option>SAVE 認證</option>
+                    <option>待認證</option>
+                  </select>
+                  <span
+                    class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                    >expand_more</span
+                  >
+                </div>
+                <!-- <button class="erp-btn-secondary is-lg w-full" type="button">
+                  <span class="material-symbols-outlined text-[18px]"
+                    >download</span
+                  >
+                  匯出報表
+                </button> -->
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="erp-page-kpi erp-kpi-grid-responsive accounting-kpi-grid"
+          >
+            <article class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <span class="erp-kpi-title">本月收車數</span>
+                <span class="erp-kpi-icon"
+                  ><span class="material-symbols-outlined"
+                    >directions_car</span
+                  ></span
+                >
+              </div>
+              <div class="erp-kpi-value-row">
+                <span class="erp-kpi-value erp-kpi-value-large">18</span>
+                <span class="erp-kpi-unit">輛</span>
+              </div>
+            </article>
+            <article class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <span class="erp-kpi-title">收車總額</span>
+                <span class="erp-kpi-icon"
+                  ><span class="material-symbols-outlined">payments</span></span
+                >
+              </div>
+              <div class="erp-kpi-value-row is-currency">
+                <span class="erp-kpi-value erp-kpi-value-currency"
+                  >1,280,000</span
+                >
+                <span class="erp-kpi-unit">TWD</span>
+              </div>
+            </article>
+            <!-- 整備總額感覺先不用 -->
+            <!-- <article class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <span class="erp-kpi-title">整備總額</span>
+                <span class="erp-kpi-icon"
+                  ><span class="material-symbols-outlined">build</span></span
+                >
+              </div>
+              <div class="erp-kpi-value-row is-currency">
+                <span class="erp-kpi-value erp-kpi-value-currency"
+                  >420,000</span
+                >
+                <span class="erp-kpi-unit">TWD</span>
+              </div>
+            </article> -->
+            <!-- 間接成本感覺先不用 -->
+            <!-- <article class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <span class="erp-kpi-title">間接成本</span>
+                <span class="erp-kpi-icon"
+                  ><span class="material-symbols-outlined">receipt</span></span
+                >
+              </div>
+              <div class="erp-kpi-value-row is-currency">
+                <span class="erp-kpi-value erp-kpi-value-currency">72,000</span>
+                <span class="erp-kpi-unit">TWD</span>
+              </div>
+            </article> -->
+            <article class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <span class="erp-kpi-title">成交金額</span>
+                <span class="erp-kpi-icon"
+                  ><span class="material-symbols-outlined"
+                    >trending_up</span
+                  ></span
+                >
+              </div>
+              <div class="erp-kpi-value-row is-currency">
+                <span class="erp-kpi-value erp-kpi-value-currency"
+                  >960,000</span
+                >
+                <span class="erp-kpi-unit">TWD</span>
+              </div>
+            </article>
+            <article
+              class="erp-kpi-card !bg-primary-container !border-primary-container"
+            >
+              <div class="erp-kpi-head">
+                <span class="erp-kpi-title !text-on-primary-container"
+                  >總盈餘</span
+                >
+                <span
+                  class="erp-kpi-icon !bg-surface-bright/10 !text-surface-bright"
+                  ><span class="material-symbols-outlined"
+                    >monitoring</span
+                  ></span
+                >
+              </div>
+              <div class="erp-kpi-value-row is-currency">
+                <span
+                  class="erp-kpi-value erp-kpi-value-currency !text-surface-bright"
+                  >320,000</span
+                >
+                <span class="erp-kpi-unit !text-on-primary-container">TWD</span>
+              </div>
+            </article>
+            <article class="erp-kpi-card">
+              <div class="erp-kpi-head">
+                <span class="erp-kpi-title">已成交數</span>
+                <span class="erp-kpi-icon"
+                  ><span class="material-symbols-outlined"
+                    >check_circle</span
+                  ></span
+                >
+              </div>
+              <div class="erp-kpi-value-row">
+                <span class="erp-kpi-value erp-kpi-value-large">9</span>
+                <span class="erp-kpi-unit">輛</span>
+              </div>
+            </article>
+          </section>
+
+          <section
+            class="bg-surface-elevated rounded-xl ambient-shadow border border-surface-border overflow-hidden erp-table-card"
+          >
+            <div
+              class="px-6 py-5 border-b border-surface-border flex flex-col md:flex-row md:items-center justify-between gap-4"
+            >
+              <div>
+                <h2 class="font-headline-md text-headline-md text-primary">
+                  財務明細記錄
+                </h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant">
+                  彙整收車、整備、抽成與成交狀況
+                </p>
+              </div>
+              <button class="erp-btn-secondary is-md" type="button">
+                <span class="material-symbols-outlined text-[18px]"
+                  >download</span
+                >
+                匯出報表
+              </button>
+            </div>
+
+            <div class="erp-table-responsive erp-table-container">
+              <table
+                class="w-full text-left border-collapse erp-table" style="table-layout:auto"
+              >
+                <thead>
+                  <tr
+                    class="border-b border-surface-border bg-surface-container-low/50 erp-table-header"
+                  >
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary whitespace-nowrap">編號</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary whitespace-nowrap">車牌號碼</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary whitespace-nowrap">廠牌</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary whitespace-nowrap">型式</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary text-right whitespace-nowrap">收車價</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary text-right whitespace-nowrap">整備價</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary whitespace-nowrap">認證</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary text-right whitespace-nowrap">售價</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary whitespace-nowrap">成交日期</th>
+                    <th class="py-3 px-4 font-label-md text-label-md text-primary text-center whitespace-nowrap">操作</th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="font-body-sm text-body-sm text-on-surface erp-table-body"
+                >
+                  <tr
+                    class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
+                  >
+                    <td class="py-3 px-4 text-on-surface-variant whitespace-nowrap"
+                    >
+                      ACC-2310-001
+                    </td>
+                    <td class="py-3 px-4 font-semibold text-primary whitespace-nowrap"
+                    >
+                      ABC-1234
+                    </td>
+                    <td class="py-3 px-4">Toyota</td>
+                    <td class="py-3 px-4">RAV4 2.0</td>
+                    <td class="py-3 px-4 text-right font-semibold whitespace-nowrap"
+                    >
+                      650,000
+                    </td>
+                    <td class="py-3 px-4 text-right font-semibold whitespace-nowrap"
+                    >
+                      25,000
+                    </td>
+                    <td class="py-3 px-4 whitespace-nowrap">
+                      <span class="erp-badge is-success">SAVE 認證</span>
+                    </td>
+                    <td class="py-3 px-4 text-right font-semibold text-gold-accent whitespace-nowrap"
+                    >
+                      780,000
+                    </td>
+                    <td class="py-3 px-4 whitespace-nowrap">2023/10/12</td>
+                    <td class="py-3 px-4 text-center">
+                      <div class="erp-table-actions justify-center">
+                        <button
+                          class="erp-btn-sm is-secondary"
+                          data-modal-open="viewModal"
+                          type="button"
+                        >
+                          查看詳情
+                        </button>
+                        <button
+                          class="erp-btn-sm is-secondary"
+                          data-modal-open="recordModal"
+                          data-record-id="ACC-2310-001"
+                          data-record-plate="ABC-1234"
+                          data-record-brand="Toyota"
+                          data-record-model="RAV4 2.0"
+                          data-record-year="2020"
+                          data-record-purchase="650000"
+                          data-record-prep="25000"
+                          data-record-cert="SAVE"
+                          data-record-price="780000"
+                          data-record-commission="15000"
+                          data-record-date="2023-10-12"
+                          type="button"
+                        >
+                          編輯
+                        </button>
+                        <button
+                          class="erp-btn-sm is-danger"
+                          data-modal-open="deleteModal"
+                          type="button"
+                        >
+                          刪除
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr
+                    class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
+                  >
+                    <td class="py-3 px-4 text-on-surface-variant whitespace-nowrap"
+                    >
+                      ACC-2310-002
+                    </td>
+                    <td class="py-3 px-4 font-semibold text-primary whitespace-nowrap"
+                    >
+                      DEF-5678
+                    </td>
+                    <td class="py-3 px-4">Honda</td>
+                    <td class="py-3 px-4">CR-V 1.5</td>
+                    <td class="py-3 px-4 text-right font-semibold whitespace-nowrap"
+                    >
+                      720,000
+                    </td>
+                    <td class="py-3 px-4 text-right font-semibold whitespace-nowrap"
+                    >
+                      18,000
+                    </td>
+                    <td class="py-3 px-4 whitespace-nowrap">
+                      <span class="erp-badge is-neutral">待認證</span>
+                    </td>
+                    <td class="py-3 px-4 text-right text-on-surface-variant whitespace-nowrap"
+                    >
+                      -
+                    </td>
+                    <td class="py-3 px-4 text-on-surface-variant whitespace-nowrap"
+                    >
+                      -
+                    </td>
+                    <td class="py-3 px-4 text-center">
+                      <div class="erp-table-actions justify-center">
+                        <button
+                          class="erp-btn-sm is-secondary"
+                          data-modal-open="viewModal"
+                          type="button"
+                        >
+                          查看詳情
+                        </button>
+                        <button
+                          class="erp-btn-sm is-secondary"
+                          data-modal-open="recordModal"
+                          data-record-id="ACC-2310-002"
+                          data-record-plate="DEF-5678"
+                          data-record-brand="Honda"
+                          data-record-model="CR-V 1.5"
+                          data-record-year="2019"
+                          data-record-purchase="720000"
+                          data-record-prep="18000"
+                          data-record-cert="未認證"
+                          data-record-price=""
+                          data-record-commission=""
+                          data-record-date=""
+                          type="button"
+                        >
+                          編輯
+                        </button>
+                        <button
+                          class="erp-btn-sm is-danger"
+                          data-modal-open="deleteModal"
+                          type="button"
+                        >
+                          刪除
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr
+                    class="bg-surface-container-low border-t-2 border-primary-container font-body-sm text-body-sm text-on-surface"
+                  >
+                    <td class="py-3 px-4 text-right font-semibold" colspan="4">
+                      總計金額：
+                    </td>
+                    <td class="py-3 px-4 text-right font-semibold whitespace-nowrap"
+                    >
+                      1,370,000
+                    </td>
+                    <td class="py-3 px-4 text-right font-semibold whitespace-nowrap"
+                    >
+                      43,000
+                    </td>
+                    <td class="py-3 px-4"></td>
+                    <td class="py-3 px-4 text-right font-semibold text-gold-accent whitespace-nowrap"
+                    >
+                      780,000
+                    </td>
+                    <td class="py-3 px-4" colspan="2"></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+
+            <div
+              class="border-t border-surface-border px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 erp-pagination"
+            >
+              <p class="font-body-sm text-body-sm text-on-surface-variant">
+                顯示 1 - 2 筆，共 24 筆記錄
+              </p>
+              <div class="flex items-center gap-1 erp-pagination-pages">
+                <button
+                  class="p-2 rounded text-on-surface-variant opacity-50 cursor-not-allowed flex items-center justify-center erp-page"
+                  disabled
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >chevron_left</span
+                  >
+                </button>
+                <button
+                  class="w-8 h-8 rounded bg-gold-accent text-surface font-label-md text-label-md flex items-center justify-center erp-page is-active"
+                  type="button"
+                >
+                  1
+                </button>
+                <button
+                  class="w-8 h-8 rounded text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md flex items-center justify-center transition-colors erp-page"
+                  type="button"
+                >
+                  2
+                </button>
+                <button
+                  class="w-8 h-8 rounded text-on-surface-variant hover:bg-surface-container-low font-label-md text-label-md flex items-center justify-center transition-colors erp-page"
+                  type="button"
+                >
+                  3
+                </button>
+                <button
+                  class="p-2 rounded text-on-surface-variant hover:bg-surface-container-low transition-colors flex items-center justify-center erp-page"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >chevron_right</span
+                  >
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section
+            class="erp-summary-card rounded-xl px-6 py-5 flex flex-col md:flex-row md:items-center justify-between gap-4 text-surface-bright ambient-shadow"
+          >
+            <div
+              class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-on-primary-container font-body-sm text-body-sm"
+            >
+              <span class="flex items-center gap-2"
+                ><span class="w-2.5 h-2.5 rounded-full bg-success-muted"></span
+                >系統運作中</span
+              >
+              <span>最後更新：2023/10/24 14:30</span>
+            </div>
+            <div class="text-left md:text-right">
+              <span
+                class="block font-label-sm text-label-sm text-on-primary-container uppercase tracking-[0.1em] mb-1"
+                >今日累計收支概況</span
+              >
+              <span
+                class="font-headline-md text-headline-md text-surface-bright"
+                >+ 450,000 TWD</span
+              >
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4 erp-modal-overlay"
+      data-modal="recordModal"
+    >
+      <div
+        class="erp-modal-panel bg-surface-elevated w-full max-w-[960px] rounded-xl border border-surface-border overflow-hidden"
+      >
+        <div
+          class="px-8 py-6 border-b border-surface-border flex items-center justify-between bg-surface-container-low"
+        >
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-gold-accent"
+              >payments</span
+            >
+            <h3 class="font-headline-md text-headline-md text-primary">
+              編輯會計記錄
+            </h3>
+          </div>
+          <button
+            class="text-on-surface-variant hover:text-primary transition-colors"
+            data-modal-close="recordModal"
+            type="button"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="p-8">
+          <form class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >車牌號碼</label
+              >
+              <input
+                class="erp-modal-input"
+                placeholder="例: ABC-1234"
+                type="text"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >管理編號</label
+              >
+              <input
+                class="erp-modal-input"
+                readonly
+                type="text"
+                value="ACC-2310-004"
+              />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >廠牌</label
+              >
+              <input class="erp-modal-input" type="text" />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >車種型式</label
+              >
+              <input class="erp-modal-input" type="text" />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >年份</label
+              >
+              <input class="erp-modal-input" type="number" />
+            </div>
+            <div class="hidden xl:block"></div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >收車價</label
+              >
+              <input class="erp-modal-input" type="number" />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >整備成本</label
+              >
+              <input class="erp-modal-input" type="number" />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >認證狀態</label
+              >
+              <select class="erp-modal-input">
+                <option>未認證</option>
+                <option>SAVE</option>
+                <option>HOT</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >預計售價</label
+              >
+              <input class="erp-modal-input" type="number" />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >業務抽成</label
+              >
+              <input class="erp-modal-input" type="number" />
+            </div>
+            <div class="space-y-2">
+              <label
+                class="block font-label-md text-label-md text-on-surface-variant"
+                >成交日期</label
+              >
+              <input class="erp-modal-input" type="date" />
+            </div>
+          </form>
+        </div>
+        <div
+          class="px-8 py-5 bg-surface-container-low border-t border-surface-border flex justify-end gap-3"
+        >
+          <button
+            class="erp-btn-secondary is-lg"
+            data-modal-close="recordModal"
+            type="button"
+          >
+            取消
+          </button>
+          <button class="erp-btn-primary is-lg" type="button">儲存記錄</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 查看詳情 Modal -->
+    <div
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4 erp-modal-overlay"
+      data-modal="viewModal"
+    >
+      <div
+        class="erp-modal-panel bg-surface-elevated w-full max-w-[720px] rounded-xl border border-surface-border overflow-hidden flex flex-col max-h-[90vh]"
+      >
+        <!-- Header -->
+        <div
+          class="px-8 py-6 border-b border-surface-border flex items-center justify-between bg-surface-container-low"
+        >
+          <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-gold-accent">receipt_long</span>
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary">財務記錄詳情</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">ACC-2310-001</p>
+            </div>
+          </div>
+          <button
+            class="text-on-surface-variant hover:text-primary transition-colors"
+            data-modal-close="viewModal"
+            type="button"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <!-- Body -->
+        <div class="p-8 overflow-y-auto flex-1 space-y-6">
+          <!-- 車輛基本資訊 -->
+          <div>
+            <div class="flex items-center gap-2 mb-4 pb-2 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">車輛基本資訊</h4>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">編號</p>
+                <p class="font-body-md text-body-md text-on-surface font-medium">ACC-2310-001</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">車牌號碼</p>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">ABC-1234</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">廠牌</p>
+                <p class="font-body-md text-body-md text-on-surface">Toyota</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">型式</p>
+                <p class="font-body-md text-body-md text-on-surface">RAV4 2.0</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">年份</p>
+                <p class="font-body-md text-body-md text-on-surface">2020</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">認證狀態</p>
+                <span class="erp-badge is-success">SAVE 認證</span>
+              </div>
+            </div>
+          </div>
+          <!-- 成交資訊 -->
+          <div>
+            <div class="flex items-center gap-2 mb-4 pb-2 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">成交資訊</h4>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">收車價</p>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">650,000</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">整備價</p>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">25,000</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">售價</p>
+                <p class="font-body-md text-body-md text-gold-accent font-semibold">780,000</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">成交日期</p>
+                <p class="font-body-md text-body-md text-on-surface">2023/10/12</p>
+              </div>
+            </div>
+          </div>
+          <!-- 財務明細 -->
+          <div>
+            <div class="flex items-center gap-2 mb-4 pb-2 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">財務明細</h4>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">業務抽成</p>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">15,000</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">訂金</p>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">30,000</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">尾款</p>
+                <p class="font-body-md text-body-md text-on-surface font-semibold">750,000</p>
+              </div>
+              <div class="space-y-1">
+                <p class="font-label-md text-label-md text-on-surface-variant">貸款（期數）</p>
+                <p class="font-body-md text-body-md text-on-surface-variant">0 / 0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        <div class="px-8 py-5 bg-surface-container-low border-t border-surface-border flex justify-end gap-3">
+          <button
+            class="erp-btn-secondary is-lg"
+            data-modal-close="viewModal"
+            type="button"
+          >
+            關閉
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4 erp-modal-overlay"
+      data-modal="deleteModal"
+    >
+      <div
+        class="erp-modal-panel bg-surface-elevated w-full max-w-[420px] rounded-xl border border-surface-border overflow-hidden"
+      >
+        <div class="p-8 text-center">
+          <div
+            class="w-16 h-16 rounded-xl bg-error-container flex items-center justify-center mx-auto mb-4"
+          >
+            <span class="material-symbols-outlined text-error">warning</span>
+          </div>
+          <h3 class="font-headline-md text-headline-md text-primary mb-2">
+            確認刪除記錄？
+          </h3>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+            記錄
+            <strong class="text-on-surface">ACC-2310-001</strong>
+            將被永久刪除且無法復原。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button
+              class="erp-btn-secondary is-lg flex-1"
+              data-modal-close="deleteModal"
+              type="button"
+            >
+              取消
+            </button>
+            <button class="erp-btn-danger is-lg flex-1" type="button">
+              確認刪除
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const modalOpens = document.querySelectorAll("[data-modal-open]");
+        const modalCloses = document.querySelectorAll("[data-modal-close]");
+        const modals = document.querySelectorAll("[data-modal]");
+
+        function openModal(name, trigger) {
+          const modal = document.querySelector(`[data-modal="${name}"]`);
+          if (!modal) return;
+
+          // 若是編輯會計記錄 modal，帶入該列資料
+          if (name === "recordModal" && trigger && trigger.dataset.recordId) {
+            const d = trigger.dataset;
+            const form = modal.querySelector("form");
+            if (form) {
+              const setVal = (label, val) => {
+                const labels = form.querySelectorAll("label");
+                for (const l of labels) {
+                  if (l.textContent.trim() === label) {
+                    const inp = l.closest(".space-y-2").querySelector("input,select");
+                    if (inp) inp.value = val ?? "";
+                    break;
+                  }
+                }
+              };
+              setVal("管理編號", d.recordId);
+              setVal("車牌號碼", d.recordPlate);
+              setVal("廠牌", d.recordBrand);
+              setVal("車種型式", d.recordModel);
+              setVal("年份", d.recordYear);
+              setVal("收車價", d.recordPurchase);
+              setVal("整備成本", d.recordPrep);
+              setVal("認證狀態", d.recordCert);
+              setVal("預計售價", d.recordPrice);
+              setVal("業務抽成", d.recordCommission);
+              setVal("成交日期", d.recordDate);
+            }
+          }
+
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          document.body.classList.add("overflow-hidden");
+        }
+
+        function closeModal(name) {
+          const modal = document.querySelector(`[data-modal="${name}"]`);
+          if (!modal) return;
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+          if (!document.querySelector("[data-modal]:not(.hidden)")) {
+            document.body.classList.remove("overflow-hidden");
+          }
+        }
+
+        modalOpens.forEach((button) => {
+          button.addEventListener("click", () =>
+            openModal(button.dataset.modalOpen, button),
+          );
+        });
+
+        modalCloses.forEach((button) => {
+          button.addEventListener("click", () =>
+            closeModal(button.dataset.modalClose),
+          );
+        });
+
+        modals.forEach((modal) => {
+          modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+              closeModal(modal.dataset.modal);
+            }
+          });
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key !== "Escape") return;
+          document.querySelectorAll("[data-modal].flex").forEach((modal) => {
+            closeModal(modal.dataset.modal);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

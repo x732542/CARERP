@@ -1,0 +1,975 @@
+@import url("./common.css");
+
+.erp-search-wrapper {
+  position: relative;
+}
+
+input.erp-search {
+  width: 100%;
+  height: 48px;
+  padding-left: 48px;
+  padding-right: 20px;
+  border-radius: 16px;
+  border: 1px solid #e6d8cf;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  color: #2b140a;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.2s ease;
+}
+
+input.erp-search:hover {
+  background: #ffffff;
+  border-color: #e6d8cf;
+}
+
+input.erp-search:focus {
+  background: #ffffff;
+  border-color: #d8c6ba;
+  outline: none;
+  box-shadow: none;
+}
+
+input.erp-search::placeholder {
+  color: #b8a89d;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.erp-search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #b8a89d;
+  pointer-events: none;
+}
+
+/* Shared filter bar control: applies to date/select/input within the same filter row */
+.erp-filter-control {
+  height: 48px;
+  border-radius: 16px;
+  border: 1px solid #e6d8cf;
+  background: #ffffff;
+  font-size: 14px;
+  padding-left: 16px;
+  padding-right: 40px;
+  color: #2b140a;
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.erp-filter-control:focus {
+  border-color: #d8c6ba;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Higher specificity override for input elements to beat Tailwind forms plugin */
+input.erp-filter-control {
+  height: 48px;
+  border-radius: 16px;
+  border: 1px solid #e6d8cf;
+  background: #ffffff;
+  font-size: 14px;
+  padding-left: 16px;
+  padding-right: 16px;
+  color: #2b140a;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.2s ease;
+}
+
+input.erp-filter-control:focus {
+  border-color: #d8c6ba;
+  box-shadow: none;
+  outline: none;
+}
+
+input.erp-filter-control::placeholder {
+  color: #b8a89d;
+}
+
+/* Explicit height for select elements to ensure cross-browser consistency */
+select.erp-filter-control {
+  height: 48px;
+  line-height: 48px;
+}
+
+/* Header search variant (modern dashboard style) */
+.erp-header-search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+input.erp-header-search {
+  width: 100%;
+  height: 48px;
+  padding-left: 48px;
+  padding-right: 20px;
+  border: 1px solid #e6d8cf;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #2b140a;
+  font-size: 14px;
+  font-weight: 400;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.2s ease;
+}
+
+input.erp-header-search:hover {
+  border-color: #e6d8cf;
+  box-shadow: none;
+}
+
+input.erp-header-search:focus {
+  border-color: #d8c6ba;
+  outline: none;
+  box-shadow: none;
+}
+
+input.erp-header-search::placeholder {
+  color: #b8a89d;
+}
+
+.erp-header-search-icon {
+  left: 18px;
+  font-size: 16px;
+  color: #b8a89d;
+}
+
+/* Unified form-control radius: search/date/select */
+input.erp-search,
+input.erp-header-search,
+input[type="date"],
+select,
+input[type="text"][readonly] {
+  border-radius: 16px;
+}
+
+/* ============================================================
+   PAGE TEMPLATE SYSTEM
+   Three canonical layouts for the ERP. Apply to content canvas wrapper.
+   ============================================================ */
+
+/*
+ * Type A — 管理頁
+ * 適用：車輛管理、客戶管理、訂單管理、文件管理、預約管理
+ * 結構：Title + Button → Filter Bar → Table → Pagination
+ */
+.erp-page-a {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Section 1: title row (title + primary button) */
+.erp-page-a > .erp-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* Section 2: filter / search bar */
+.erp-page-a > .erp-page-filter {
+  /* consistent card treatment */
+  background: #ffffff;
+  border: 1px solid #e4d8d1;
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+
+/* Section 3: table card inherits erp-table-card */
+/* Section 4: pagination inherits erp-pagination */
+
+/*
+ * Type B — 績效頁
+ * 適用：業務中心、Dashboard
+ * 結構：Title → KPI Row → Table / Chart
+ */
+.erp-page-b {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.erp-page-b > .erp-page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.erp-page-b > .erp-page-kpi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+/*
+ * Type C — 財務頁
+ * 適用：會計管理、帳務紀錄、採購管理
+ * 結構：Title → Filter Bar → KPI Row → Financial Table → Summary
+ */
+.erp-page-c {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.erp-page-c > .erp-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.erp-page-c > .erp-page-filter {
+  background: #ffffff;
+  border: 1px solid #e4d8d1;
+  border-radius: 16px;
+  padding: 20px 24px;
+}
+
+.erp-page-c > .erp-page-kpi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+/* ============================================================
+   PAGE SECTION LABELS (shared across all types)
+   ============================================================ */
+
+/* Page title */
+.erp-page-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2b140a;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+/* Page description */
+.erp-page-desc {
+  font-size: 14px;
+  color: #7d7068;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+/* Unified ERP page header block (title + description above search/content) */
+.erp-main-page-header {
+  margin-bottom: 40px;
+}
+
+.erp-page-container > .erp-main-page-header:first-child {
+  margin-top: 16px;
+}
+
+.erp-page-container.is-header-offset > .erp-main-page-header:first-child {
+  margin-top: 22px;
+}
+
+.erp-main-page-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #2b140a;
+}
+
+.erp-main-page-desc {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #5d514a;
+}
+
+.erp-page-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 32px 48px;
+}
+
+.erp-page-container.is-header-offset {
+  padding-top: 96px;
+}
+
+.erp-btn-primary,
+.erp-btn-secondary,
+.erp-btn-danger,
+.erp-btn-table,
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.erp-btn-primary,
+.btn-primary {
+  background: #2b140a;
+  border-color: #2b140a;
+  color: #ffffff;
+}
+
+.erp-btn-primary:hover,
+.btn-primary:hover {
+  background: #1e0f07;
+  border-color: #1e0f07;
+}
+
+.erp-btn-secondary,
+.btn-secondary {
+  background: #ffffff;
+  border-color: #d8ccc4;
+  color: #5d514a;
+}
+
+.erp-btn-secondary:hover,
+.btn-secondary:hover {
+  background: #faf8f6;
+  border-color: #c7b8af;
+  color: #2b140a;
+}
+
+.erp-btn-danger {
+  background: #ffffff;
+  border-color: #e8c8c8;
+  color: #a24a4a;
+}
+
+.erp-btn-danger:hover {
+  background: #fceaea;
+  border-color: #dca8a8;
+}
+
+.erp-btn-table {
+  background: #ffffff;
+  border-color: #d8ccc4;
+  color: #5d514a;
+}
+
+.erp-btn-table:hover {
+  background: #faf8f6;
+  border-color: #c7b8af;
+  color: #2b140a;
+}
+
+.erp-btn-sm,
+.erp-btn-table.is-sm,
+.erp-btn-primary.is-sm,
+.erp-btn-secondary.is-sm,
+.erp-btn-danger.is-sm,
+.btn-primary.is-sm,
+.btn-secondary.is-sm {
+  height: 36px;
+  padding: 0 12px;
+  font-size: 12px;
+}
+
+.erp-btn-md,
+.erp-btn-table.is-md,
+.erp-btn-primary.is-md,
+.erp-btn-secondary.is-md,
+.erp-btn-danger.is-md,
+.erp-btn-primary,
+.erp-btn-secondary,
+.erp-btn-danger,
+.btn-primary,
+.btn-secondary {
+  height: 42px;
+  padding: 0 16px;
+}
+
+.erp-btn-lg,
+.erp-btn-table.is-lg,
+.erp-btn-primary.is-lg,
+.erp-btn-secondary.is-lg,
+.erp-btn-danger.is-lg,
+.btn-primary.is-lg,
+.btn-secondary.is-lg {
+  height: 48px;
+  padding: 0 20px;
+}
+
+.erp-kpi-card {
+  background: #ffffff;
+  border: 1px solid #e4d8d1;
+  border-radius: 16px;
+  padding: 24px;
+  height: 120px;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.erp-kpi-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.erp-kpi-title {
+  font-size: 13px;
+  color: #7d7068;
+  line-height: 1.2;
+}
+
+.erp-kpi-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.erp-kpi-value {
+  font-size: 42px;
+  line-height: 1;
+  font-weight: 700;
+  color: #2b140a;
+}
+
+.erp-kpi-unit {
+  font-size: 16px;
+  color: #6f625c;
+  line-height: 1.2;
+}
+
+.erp-kpi-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #f7f2ee;
+  color: #6f625c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.erp-kpi-icon .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* Accounting KPI responsive layout */
+.erp-kpi-grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+.erp-kpi-grid-responsive .erp-kpi-card {
+  height: auto;
+  min-height: 120px;
+}
+
+.erp-kpi-grid-responsive .erp-kpi-value-row {
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+.erp-kpi-value-fluid {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1;
+}
+
+.erp-table-card {
+  background: #ffffff;
+  border: 1px solid #e4d8d1;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.erp-table-wrap {
+  padding: 24px;
+  overflow-x: auto;
+}
+
+.erp-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.erp-table-container {
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.erp-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+  table-layout: fixed;
+}
+
+.erp-table-wide {
+  min-width: 1400px;
+  table-layout: auto;
+}
+
+.erp-table thead tr,
+.erp-table-header {
+  background: #faf8f6;
+}
+
+.erp-table th {
+  height: 52px;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5d514a;
+  border-bottom: 1px solid #efe6e1;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.erp-table td {
+  height: 64px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #2b140a;
+  border-bottom: 1px solid #efe6e1;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.erp-table-wide th,
+.erp-table-wide td {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.erp-col-year {
+  width: 96px;
+}
+
+.erp-col-plate {
+  width: 128px;
+}
+
+.erp-col-brand {
+  width: 120px;
+}
+
+.erp-col-model {
+  width: 148px;
+}
+
+.erp-col-type {
+  width: 104px;
+}
+
+.erp-col-color {
+  width: 104px;
+}
+
+.erp-col-mileage {
+  width: 116px;
+}
+
+.erp-col-code {
+  width: 84px;
+}
+
+.erp-col-date {
+  width: 128px;
+}
+
+.erp-col-amount {
+  width: 124px;
+}
+
+.erp-col-amount-lg {
+  width: 136px;
+}
+
+.erp-col-status {
+  width: 124px;
+}
+
+.erp-col-action {
+  width: 164px;
+}
+
+.erp-col-center {
+  text-align: center;
+}
+
+.erp-col-right,
+.erp-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.erp-table tbody tr:hover {
+  background: #fcfaf8;
+}
+
+.erp-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.erp-table td:first-child {
+  font-weight: 600;
+  color: #2b140a;
+}
+
+.erp-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  border-radius: 999px;
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.erp-badge.is-success {
+  background: #e8f3ed;
+  color: #2f6b48;
+}
+
+.erp-badge.is-warning {
+  background: #fff4e5;
+  color: #a86b00;
+}
+
+.erp-badge.is-danger {
+  background: #fceaea;
+  color: #a24a4a;
+}
+
+.erp-badge.is-neutral {
+  background: #f4efea;
+  color: #6f625c;
+}
+
+.erp-table-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+.erp-btn-sm {
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.erp-btn-sm.is-secondary {
+  background: #ffffff;
+  border: 1px solid #d8ccc4;
+  color: #5d514a;
+}
+
+.erp-btn-sm.is-secondary:hover {
+  background: #faf8f6;
+  border-color: #c7b8af;
+  color: #2b140a;
+}
+
+.erp-btn-sm.is-primary {
+  background: #2b140a;
+  border: 1px solid #2b140a;
+  color: #ffffff;
+}
+
+.erp-btn-sm.is-primary:hover {
+  background: #1e0f07;
+  border-color: #1e0f07;
+}
+
+.erp-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid #efe6e1;
+}
+
+.erp-pagination-info {
+  font-size: 13px;
+  color: #7d7068;
+}
+
+.erp-pagination-pages {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.erp-page {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #7d7068;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.erp-page:hover {
+  background: #f6f0eb;
+  color: #5d514a;
+}
+
+.erp-page.is-active {
+  background: #2b140a;
+  color: #ffffff;
+}
+
+/* ============================================================
+   RANKING TABLE — 業務排行 / 績效排名
+   Usage: sales-center, personal-sales-funnel
+   ============================================================ */
+.erp-ranking-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.erp-ranking-table thead tr,
+.erp-ranking-table .erp-table-header {
+  background: #faf8f6;
+}
+
+.erp-ranking-table th {
+  height: 52px;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5d514a;
+  border-bottom: 1px solid #efe6e1;
+  white-space: nowrap;
+}
+
+.erp-ranking-table td {
+  height: 64px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #2b140a;
+  border-bottom: 1px solid #efe6e1;
+  vertical-align: middle;
+}
+
+.erp-ranking-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Gold-tinted hover for performance emphasis */
+.erp-ranking-table tbody tr:hover {
+  background: #fdf7ee;
+}
+
+/* First column: rank identifier with gold accent */
+.erp-ranking-table td:first-child {
+  font-weight: 700;
+  font-size: 13px;
+  color: #a67c2d;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* Top performer row highlight */
+.erp-ranking-table tbody tr.is-top td:first-child {
+  color: #775a19;
+}
+
+/* ============================================================
+   FINANCIAL TABLE — 帳務 / 採購 / 財務數字
+   Usage: accounting-management, procurement-management
+   ============================================================ */
+.erp-financial-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.erp-financial-table thead tr,
+.erp-financial-table .erp-table-header {
+  background: #f7f3ef;
+}
+
+.erp-financial-table th {
+  height: 52px;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5d514a;
+  border-bottom: 1px solid #e8ddd6;
+  white-space: nowrap;
+}
+
+.erp-financial-table th.num {
+  text-align: right;
+}
+
+.erp-financial-table td {
+  height: 64px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #2b140a;
+  border-bottom: 1px solid #efe6e1;
+  vertical-align: middle;
+}
+
+.erp-financial-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.erp-financial-table tbody tr:hover {
+  background: #fcfaf8;
+}
+
+.erp-financial-table td:first-child {
+  font-weight: 600;
+  color: #2b140a;
+}
+
+/* Number cells: tabular nums, right-aligned */
+.erp-financial-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #2b140a;
+}
+
+/* Amount modifiers */
+.erp-financial-table td.num.is-income {
+  color: #2f6b48;
+}
+
+.erp-financial-table td.num.is-outstanding {
+  color: #a67c2d;
+}
+
+.erp-financial-table td.num.is-expense {
+  color: #a24a4a;
+}
+
+/* Total / summary row */
+.erp-financial-table tr.is-total td {
+  background: #f7f3ef;
+  font-weight: 700;
+  border-top: 2px solid #e8ddd6;
+  border-bottom: none;
+}
+
+/* ============================================================
+   STATUS TABLE — 訂單流程 / 文件審核 / 狀態追蹤
+   Usage: order-management, salesperson-customers, document-management
+   ============================================================ */
+.erp-status-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+.erp-status-table thead tr,
+.erp-status-table .erp-table-header {
+  background: #faf8f6;
+}
+
+.erp-status-table th {
+  height: 52px;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #5d514a;
+  border-bottom: 1px solid #efe6e1;
+  white-space: nowrap;
+}
+
+.erp-status-table td {
+  height: 64px;
+  padding: 0 24px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #2b140a;
+  border-bottom: 1px solid #efe6e1;
+  vertical-align: middle;
+}
+
+.erp-status-table td:first-child {
+  font-weight: 600;
+  color: #2b140a;
+}
+
+.erp-status-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.erp-status-table tbody tr:hover {
+  background: #fcfaf8;
+}
+
+/* Left-border accent per row status */
+.erp-status-table tbody tr {
+  border-left: 3px solid transparent;
+  transition: border-left-color 0.15s;
+}
+
+.erp-status-table tbody tr.is-completed {
+  border-left-color: #2f6b48;
+}
+
+.erp-status-table tbody tr.is-pending {
+  border-left-color: #a86b00;
+}
+
+.erp-status-table tbody tr.is-cancelled {
+  border-left-color: #a24a4a;
+}
+
+.erp-status-table tbody tr.is-active {
+  border-left-color: #a67c2d;
+}

@@ -1,0 +1,913 @@
+<!-- 訂單管理 -->
+<!doctype html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>訂單管理 - 智富車庫 ERP</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed-dim": "#bdc8cf",
+            "surface-tint": "#6e5a52",
+            "inverse-primary": "#dbc1b7",
+            "surface-container-high": "#ede7e4",
+            "on-error-container": "#93000a",
+            "on-primary-fixed-variant": "#55433b",
+            "on-secondary-fixed-variant": "#5c4200",
+            "on-surface-variant": "#4f4541",
+            "on-error": "#ffffff",
+            "primary-fixed": "#f9ddd2",
+            "inverse-on-surface": "#f6efec",
+            "on-tertiary-fixed": "#121d22",
+            "on-surface": "#1d1b1a",
+            "tertiary-fixed": "#d9e4ec",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#ffdea3",
+            "surface-variant": "#e8e1de",
+            background: "#fff8f5",
+            tertiary: "#000000",
+            "surface-container-low": "#f9f2ef",
+            "surface-container-highest": "#e8e1de",
+            "surface-bright": "#fff8f5",
+            "error-muted": "#BA1A1A",
+            surface: "#fff8f5",
+            "on-primary": "#ffffff",
+            "secondary-container": "#fdd587",
+            "outline-variant": "#d2c3be",
+            "surface-dim": "#dfd9d6",
+            secondary: "#775a19",
+            primary: "#000000",
+            "on-secondary-container": "#785a19",
+            "gold-accent": "#775A19",
+            "on-background": "#1d1b1a",
+            error: "#ba1a1a",
+            "surface-elevated": "#FFFFFF",
+            "on-tertiary-fixed-variant": "#3e484e",
+            "secondary-fixed-dim": "#e8c176",
+            "on-secondary": "#ffffff",
+            "on-tertiary-container": "#7a858c",
+            "sidebar-bg": "#140804",
+            "primary-container": "#271812",
+            "inverse-surface": "#33302e",
+            "surface-container": "#f3ecea",
+            "on-secondary-fixed": "#261900",
+            "surface-border": "#EBE1D9",
+            outline: "#817570",
+            "success-muted": "#8DA399",
+            "tertiary-container": "#121d22",
+            "on-primary-container": "#967f76",
+            "primary-fixed-dim": "#dbc1b7",
+            "on-primary-fixed": "#271812",
+            "error-container": "#ffdad6",
+            "on-tertiary": "#ffffff",
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px",
+          },
+          spacing: {
+            "margin-desktop": "48px",
+            unit: "4px",
+            gutter: "24px",
+            "container-max": "1440px",
+            "margin-mobile": "16px",
+          },
+          fontFamily: {
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+          },
+          fontSize: {
+            "body-sm": [
+              "14px",
+              { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+            ],
+            "body-md": [
+              "16px",
+              { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+            ],
+            "label-md": [
+              "13px",
+              {
+                lineHeight: "16px",
+                letterSpacing: "0.05em",
+                fontWeight: "600",
+              },
+            ],
+            "headline-xl": [
+              "40px",
+              {
+                lineHeight: "48px",
+                letterSpacing: "-0.02em",
+                fontWeight: "700",
+              },
+            ],
+            "headline-lg-mobile": [
+              "28px",
+              {
+                lineHeight: "34px",
+                letterSpacing: "-0.01em",
+                fontWeight: "600",
+              },
+            ],
+            "headline-md": [
+              "24px",
+              {
+                lineHeight: "32px",
+                letterSpacing: "-0.01em",
+                fontWeight: "600",
+              },
+            ],
+            "label-sm": [
+              "11px",
+              {
+                lineHeight: "14px",
+                letterSpacing: "0.02em",
+                fontWeight: "500",
+              },
+            ],
+            "body-lg": [
+              "18px",
+              { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+            ],
+            "headline-lg": [
+              "32px",
+              {
+                lineHeight: "40px",
+                letterSpacing: "-0.01em",
+                fontWeight: "600",
+              },
+            ],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    .icon-fill {
+      font-variation-settings:
+        "FILL" 1,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    /*新增*/
+
+    .modal-backup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      /* 黑色半透明背景 */
+      justify-content: center;
+      /* 讓內容水平居中 */
+      align-items: center;
+      /* 讓內容垂直居中 */
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 30px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+
+    /* 核心控制：隱藏時 */
+    .hidden {
+      display: none !important;
+    }
+
+    /* 核心控制：顯示時（利用 flex 讓裡面的白色框框居中） */
+    .flex {
+      display: flex !important;
+    }
+
+    /* Ambient shadow utility as per design guide */
+    .shadow-ambient {
+      box-shadow:
+        0 16px 32px -4px rgba(39, 24, 18, 0.08),
+        0 4px 12px -2px rgba(39, 24, 18, 0.04);
+    }
+  </style>
+  <link href="../../assets/css/components.css" rel="stylesheet" />
+</head>
+
+<body class="bg-background text-on-surface font-body-md min-h-screen flex">
+  <!-- SideNavBar (Shared Component) -->
+  <script>
+    window.currentPage = "order";
+  </script>
+  <div data-sidebar></div>
+  <script src="../../assets/layouts/sidebar.js"></script>
+  <!-- Main Content Wrapper -->
+  <main class="ml-[280px] flex-1 flex flex-col min-h-screen">
+    <!-- TopNavBar (Shared Component) -->
+    <header
+      class="flex justify-between items-center h-[70px] px-margin-desktop sticky top-0 z-40 bg-sidebar-bg border-b border-primary-container shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]">
+      <div class="ml-auto flex items-center justify-end gap-4">
+        <!-- Trailing Icon Actions -->
+        <button
+          class="text-on-primary-container hover:text-gold-accent cursor-pointer transition-colors opacity-80 transition-opacity">
+          <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        </button>
+        <button
+          class="text-on-primary-container hover:text-gold-accent cursor-pointer transition-colors opacity-80 transition-opacity">
+          <span class="material-symbols-outlined" data-icon="settings">settings</span>
+        </button>
+        <div class="h-8 w-px bg-primary-container"></div>
+        <!-- Trailing Secondary Action -->
+        <div class="flex items-center gap-3 cursor-pointer group">
+          <div class="w-10 h-10 rounded-full bg-primary-container overflow-hidden border border-primary-container">
+            <img alt="使用者頭像" class="w-full h-full object-cover" src="../../assets/images/avatar-default.jpg" />
+          </div>
+          <div class="text-left">
+            <p class="font-label-md text-label-md text-on-primary group-hover:text-gold-accent transition-colors">
+              王大明
+            </p>
+            <p class="font-label-sm text-label-sm text-on-primary-container">
+              系統管理員
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Page Content Canvas -->
+    <div class="w-full erp-page-a erp-page-container">
+      <!-- Page Header & CTA -->
+      <div class="erp-main-page-header flex justify-between items-end">
+        <div>
+          <h3 class="erp-main-page-title">訂單管理</h3>
+          <p class="erp-main-page-desc">管理與追蹤車輛銷售訂單</p>
+        </div>
+        <button class="erp-btn-primary is-lg" data-modal-open="addOrderModal">
+          <span class="material-symbols-outlined text-[20px]">add</span>
+          新增訂單
+        </button>
+
+        <!-- 新增訂單 Modal -->
+        <div id="addOrderModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-tertiary/60 backdrop-blur-sm overflow-y-auto modal-backup">
+          <div class="bg-surface-elevated w-full max-w-5xl rounded-xl shadow-2xl border border-surface-border flex flex-col max-h-[90vh] my-auto">
+
+            <!-- Modal Header -->
+            <div class="flex items-start justify-between px-8 py-6 border-b border-surface-border bg-surface-container-low rounded-t-xl">
+              <div>
+                <h2 class="font-headline-md text-headline-md text-on-surface">新增訂單</h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">請填寫完整的客戶與車輛詳細資料以建立新訂單</p>
+              </div>
+              <button data-modal-close type="button" class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+                <span class="material-symbols-outlined text-2xl">close</span>
+              </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="flex-1 overflow-y-auto px-8 py-8 bg-surface space-y-8">
+              <!-- Two-column layout -->
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+                <!-- Left: 客戶資訊 -->
+                <div class="space-y-5">
+                  <div class="flex items-center gap-2 pb-2 border-b border-surface-border">
+                    <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                    <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">客戶資訊</h3>
+                  </div>
+                  <!-- 客戶姓名 -->
+                  <div class="space-y-1.5">
+                    <label class="font-label-md text-label-md text-on-surface-variant block">客戶姓名</label>
+                    <input type="text" placeholder="例如：王小明"
+                      class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+                  </div>
+                  <!-- 聯絡電話 -->
+                  <div class="space-y-1.5">
+                    <label class="font-label-md text-label-md text-on-surface-variant block">聯絡電話</label>
+                    <input type="tel" placeholder="09XX-XXX-XXX"
+                      class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+                  </div>
+                  <!-- 電子郵件 -->
+                  <div class="space-y-1.5">
+                    <label class="font-label-md text-label-md text-on-surface-variant block">電子郵件</label>
+                    <input type="email" placeholder="example@email.com"
+                      class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+                  </div>
+                  <!-- 付款方式 -->
+                  <div class="space-y-1.5">
+                    <label class="font-label-md text-label-md text-on-surface-variant block">付款方式</label>
+                    <div class="relative">
+                      <select class="w-full appearance-none bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all pr-10">
+                        <option disabled selected value="">選擇付款方式</option>
+                        <option value="cash">現金匯款</option>
+                        <option value="loan">銀行貸款</option>
+                        <option value="lease">企業租賃</option>
+                      </select>
+                      <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[20px]">expand_more</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right: 車輛與成交資訊 -->
+                <div class="space-y-5">
+                  <div class="flex items-center gap-2 pb-2 border-b border-surface-border">
+                    <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                    <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">車輛與成交資訊</h3>
+                  </div>
+                  <!-- 車籍資料 -->
+                  <div class="space-y-1.5">
+                    <label class="font-label-md text-label-md text-on-surface-variant block">車籍資料</label>
+                    <div class="flex gap-3">
+                      <input type="text" id="orderModalPlateInput" placeholder="請輸入車牌號碼"
+                        class="flex-1 bg-surface-container-lowest border-2 border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary outline-none transition-all" />
+                      <button type="button" onclick="orderModalFillVehicle()" class="erp-btn-secondary is-lg whitespace-nowrap">一鍵帶入</button>
+                    </div>
+                  </div>
+                  <!-- 車輛資訊卡 (預設顯示 demo 資料) -->
+                  <div id="orderModalVehicleCard" class="bg-surface-container-low border border-surface-border rounded-lg p-4 space-y-2">
+                    <h4 class="font-headline-md text-headline-md text-on-surface">2020 Mercedes-Benz S-Class</h4>
+                    <div class="flex flex-wrap gap-x-5 gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+                      <span class="vehicle-color">車色：黑色</span>
+                      <span class="vehicle-model">年份／型號：2020 / S 580</span>
+                    </div>
+                    <div>
+                      <span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-secondary-fixed text-on-secondary-fixed-variant">預計在庫</span>
+                    </div>
+                  </div>
+                  <!-- 成交價格 & 已付訂金 -->
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1.5">
+                      <label class="font-label-md text-label-md text-on-surface-variant block">成交價格</label>
+                      <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 font-body-sm text-body-sm text-on-surface-variant">NT$</span>
+                        <input type="text" placeholder="0"
+                          class="w-full bg-surface-container-lowest border border-outline-variant rounded pl-11 pr-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+                      </div>
+                    </div>
+                    <div class="space-y-1.5">
+                      <label class="font-label-md text-label-md text-on-surface-variant block">已付訂金</label>
+                      <div class="relative">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 font-body-sm text-body-sm text-on-surface-variant">NT$</span>
+                        <input type="text" placeholder="0"
+                          class="w-full bg-surface-container-lowest border border-outline-variant rounded pl-11 pr-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 預計交車日期 -->
+                  <div class="space-y-1.5">
+                    <label class="font-label-md text-label-md text-on-surface-variant block">預計交車日期</label>
+                    <div class="relative">
+                      <input type="date"
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 備註與特殊要求 -->
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 pb-2 border-b border-surface-border">
+                  <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                  <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">備註與特殊要求</h3>
+                </div>
+                <textarea rows="4" placeholder="請輸入任何關於此訂單的額外說明事項..."
+                  class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all resize-none"></textarea>
+              </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="px-8 py-5 border-t border-surface-border bg-surface flex justify-end gap-4 rounded-b-xl">
+              <button type="button" data-modal-close class="erp-btn-secondary is-lg">取消</button>
+              <button type="button" class="erp-btn-primary is-lg">
+                <span class="material-symbols-outlined text-[18px]">save</span>
+                儲存訂單
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- Search & Filters Bar (Bento style integration) -->
+      <div class="bg-surface-elevated rounded-lg shadow-ambient border border-surface-border p-6">
+        <div class="flex flex-col xl:flex-row gap-4">
+          <!-- Dynamic Search -->
+          <div class="flex-1 erp-search-wrapper erp-header-search-wrapper">
+            <span class="material-symbols-outlined erp-search-icon erp-header-search-icon">search</span>
+            <input class="erp-search erp-header-search" placeholder="搜尋訂單編號、客戶姓名" type="text" />
+          </div>
+          <!-- Quick Filters -->
+          <div class="flex gap-4 flex-wrap xl:flex-nowrap">
+            <div class="relative min-w-[200px]">
+              <input class="erp-filter-control" type="date" />
+            </div>
+            <div class="relative min-w-[160px]">
+              <select class="erp-filter-control">
+                <option value="">全部狀態</option>
+                <option value="pending">待處理</option>
+                <option value="completed">已成交</option>
+                <option value="cancelled">已取消</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+            </div>
+            <div class="relative min-w-[160px]">
+              <select class="erp-filter-control">
+                <option value="">全部業務</option>
+                <option value="1">王大明</option>
+                <option value="2">李佳玲</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+            </div>
+            <button class="erp-btn-secondary is-lg">
+              <span class="material-symbols-outlined text-[18px]">filter_list</span>
+              篩選
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Data Table Card -->
+      <div
+        class="bg-surface-elevated rounded-lg shadow-ambient border border-surface-border overflow-hidden erp-table-card">
+        <div class="overflow-x-auto erp-table-responsive erp-table-container">
+          <table class="w-full text-left border-collapse min-w-[1000px] erp-status-table erp-table">
+            <thead>
+              <tr class="bg-surface-container-low border-b border-surface-border erp-table-header">
+                <th
+                  class="font-label-md text-label-md text-primary-container py-4 px-6 font-semibold whitespace-nowrap">
+                  訂單編號
+                </th>
+                <th
+                  class="font-label-md text-label-md text-primary-container py-4 px-6 font-semibold whitespace-nowrap">
+                  訂單日期
+                </th>
+                <th
+                  class="font-label-md text-label-md text-primary-container py-4 px-6 font-semibold whitespace-nowrap">
+                  客戶名稱
+                </th>
+                <th
+                  class="font-label-md text-label-md text-primary-container py-4 px-6 font-semibold whitespace-nowrap">
+                  負責業務
+                </th>
+                <th
+                  class="font-label-md text-label-md text-primary-container py-4 px-6 font-semibold whitespace-nowrap">
+                  車輛資訊
+                </th>
+                <th
+                  class="font-label-md text-label-md text-primary-container py-4 px-6 font-semibold whitespace-nowrap text-right">
+                  訂單金額
+                </th>
+                <th
+                  class="font-label-md text-label-md text-primary-container py-4 px-6 font-semibold whitespace-nowrap text-center">
+                  訂單狀態
+                </th>
+                <th
+                  class="font-label-md text-label-md text-primary-container py-4 px-6 font-semibold whitespace-nowrap text-right">
+                  操作
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-surface-border bg-surface-elevated erp-table-body">
+              <!-- Row 1 -->
+              <tr class="hover:bg-surface-container-low/50 transition-colors group">
+                <td class="font-body-md text-body-md py-4 px-6 text-primary font-medium">
+                  ORD-01
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-on-surface-variant">
+                  2026/05/30
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary">
+                  王大明
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-on-surface-variant">
+                  王大明
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary">
+                  Porsche Taycan 4S
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary text-right tabular-nums">
+                  600,000 元
+                </td>
+                <td class="py-4 px-6 text-center">
+                  <span class="erp-badge is-warning"> 待處理 </span>
+                </td>
+                <td class="py-4 px-6 text-right">
+                  <div class="erp-table-actions">
+                    <button class="erp-btn-sm is-secondary" onclick="
+                          window.location.href = './order-detail.html?id=ORD001'
+                        ">
+                      查看
+                    </button>
+                    <button class="erp-btn-sm is-primary" onclick="openEditOrderModal('ORD001')">
+                      編輯
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 2 -->
+              <tr class="hover:bg-surface-container-low/50 transition-colors group">
+                <td class="font-body-md text-body-md py-4 px-6 text-primary font-medium">
+                  ORD-02
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-on-surface-variant">
+                  2026/05/25
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary">
+                  王大明
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-on-surface-variant">
+                  王大明
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary">
+                  Mercedes-Benz S-Class
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary text-right tabular-nums">
+                  850,000 元
+                </td>
+                <td class="py-4 px-6 text-center">
+                  <span class="erp-badge is-success"> 已成交 </span>
+                </td>
+                <td class="py-4 px-6 text-right">
+                  <div class="erp-table-actions">
+                    <button class="erp-btn-sm is-secondary" onclick="
+                          window.location.href = './order-detail.html?id=ORD002'
+                        ">
+                      查看
+                    </button>
+                    <button class="erp-btn-sm is-primary" onclick="openEditOrderModal('ORD002')">
+                      編輯
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 3 -->
+              <tr class="hover:bg-surface-container-low/50 transition-colors group">
+                <td class="font-body-md text-body-md py-4 px-6 text-primary font-medium">
+                  ORD-03
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-on-surface-variant">
+                  2026/05/20
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary">
+                  孫先生
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-on-surface-variant">
+                  李佳玲
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary">
+                  BMW X5 xDrive40i
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary text-right tabular-nums">
+                  650,000 元
+                </td>
+                <td class="py-4 px-6 text-center">
+                  <span class="erp-badge is-success"> 已成交 </span>
+                </td>
+                <td class="py-4 px-6 text-right">
+                  <div class="erp-table-actions">
+                    <button class="erp-btn-sm is-secondary" onclick="
+                          window.location.href = './order-detail.html?id=ORD003'
+                        ">
+                      查看
+                    </button>
+                    <button class="erp-btn-sm is-primary" onclick="openEditOrderModal('ORD003')">
+                      編輯
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Row 4 -->
+              <tr class="hover:bg-surface-container-low/50 transition-colors group">
+                <td class="font-body-md text-body-md py-4 px-6 text-primary font-medium">
+                  ORD-04
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-on-surface-variant">
+                  2026/05/18
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary">
+                  張先生
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-on-surface-variant">
+                  王大明
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary">
+                  Audi Q7 55 TFSI
+                </td>
+                <td class="font-body-md text-body-md py-4 px-6 text-primary text-right tabular-nums">
+                  800,000 元
+                </td>
+                <td class="py-4 px-6 text-center">
+                  <span class="erp-badge is-danger"> 已取消 </span>
+                </td>
+                <td class="py-4 px-6 text-right">
+                  <div class="erp-table-actions">
+                    <button class="erp-btn-sm is-secondary" onclick="
+                          window.location.href = './order-detail.html?id=ORD004'
+                        ">
+                      查看
+                    </button>
+                    <button class="erp-btn-sm is-primary" onclick="openEditOrderModal('ORD004')">
+                      編輯
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- Pagination -->
+        <div
+          class="px-6 py-4 border-t border-surface-border bg-surface-bright flex items-center justify-between erp-pagination">
+          <div class="font-body-sm text-body-sm text-on-surface-variant erp-pagination-info">
+            顯示第 1 至 4 筆，共
+            <span class="font-semibold text-primary">128</span> 筆資料
+          </div>
+          <div class="flex items-center gap-1 erp-pagination-pages">
+            <button
+              class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container transition-colors disabled:opacity-50 erp-page"
+              disabled="">
+              <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+            </button>
+            <button
+              class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-surface-bright font-label-sm text-label-sm erp-page is-active">
+              1
+            </button>
+            <button
+              class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container transition-colors font-label-sm text-label-sm erp-page">
+              2
+            </button>
+            <button
+              class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container transition-colors font-label-sm text-label-sm erp-page">
+              3
+            </button>
+            <span
+              class="w-8 h-8 flex items-center justify-center text-on-surface-variant font-label-sm text-label-sm">...</span>
+            <button
+              class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container transition-colors font-label-sm text-label-sm erp-page">
+              10
+            </button>
+            <button
+              class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-container transition-colors erp-page">
+              <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- 編輯訂單 Modal -->
+  <div id="editOrderModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-tertiary/60 backdrop-blur-sm overflow-y-auto modal-backup" onclick="if(event.target===this)closeEditOrderModal()">
+    <div class="bg-surface-elevated w-full max-w-5xl rounded-xl shadow-2xl border border-surface-border flex flex-col max-h-[90vh] my-auto">
+
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between px-8 py-6 border-b border-surface-border bg-surface-container-low rounded-t-xl">
+        <div>
+          <h2 class="font-headline-md text-headline-md text-on-surface">編輯銷售訂單</h2>
+          <p id="editOrderSubtitle" class="font-body-sm text-body-sm text-on-surface-variant mt-1">訂單編號：ORD-02</p>
+        </div>
+        <button type="button" onclick="closeEditOrderModal()" class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="flex-1 overflow-y-auto px-8 py-8 bg-surface space-y-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+          <!-- Left: 客戶資訊 -->
+          <div class="space-y-5">
+            <div class="flex items-center gap-2 pb-2 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">客戶資訊</h3>
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface-variant block">客戶姓名</label>
+              <input type="text" id="editCustomerName"
+                class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface-variant block">聯絡電話</label>
+              <input type="tel" id="editPhone"
+                class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface-variant block">電子郵件</label>
+              <input type="email" id="editEmail"
+                class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface-variant block">付款方式</label>
+              <div class="relative">
+                <select id="editPayment" class="w-full appearance-none bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all pr-10">
+                  <option value="">選擇付款方式</option>
+                  <option value="cash">現金匯款</option>
+                  <option value="loan">銀行貸款</option>
+                  <option value="lease">企業租賃</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[20px]">expand_more</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: 車輛與成交資訊 -->
+          <div class="space-y-5">
+            <div class="flex items-center gap-2 pb-2 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">車輛與成交資訊</h3>
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface-variant block">車籍資料</label>
+              <div class="flex gap-3">
+                <input type="text" id="editPlateInput"
+                  class="flex-1 bg-surface-container-lowest border-2 border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary outline-none transition-all" />
+                <button type="button" onclick="editModalFillVehicle()" class="erp-btn-secondary is-lg whitespace-nowrap">一鍵帶入</button>
+              </div>
+            </div>
+            <div id="editVehicleCard" class="bg-surface-container-low border border-surface-border rounded-lg p-4 space-y-2">
+              <h4 id="editVehicleTitle" class="font-headline-md text-headline-md text-on-surface"></h4>
+              <div class="flex flex-wrap gap-x-5 gap-y-1 font-body-sm text-body-sm text-on-surface-variant">
+                <span id="editVehicleColor"></span>
+                <span id="editVehicleModel"></span>
+              </div>
+              <div>
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-secondary-fixed text-on-secondary-fixed-variant">預計在庫</span>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">成交價格</label>
+                <div class="relative">
+                  <span class="absolute left-3 top-1/2 -translate-y-1/2 font-body-sm text-body-sm text-on-surface-variant">NT$</span>
+                  <input type="text" id="editPrice"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded pl-11 pr-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">已付訂金</label>
+                <div class="relative">
+                  <span class="absolute left-3 top-1/2 -translate-y-1/2 font-body-sm text-body-sm text-on-surface-variant">NT$</span>
+                  <input type="text" id="editDeposit"
+                    class="w-full bg-surface-container-lowest border border-outline-variant rounded pl-11 pr-4 py-2.5 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+                </div>
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface-variant block">預計交車日期</label>
+              <input type="date" id="editDeliveryDate"
+                class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 備註與特殊要求 -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 pb-2 border-b border-surface-border">
+            <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+            <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">備註與特殊要求</h3>
+          </div>
+          <textarea id="editNotes" rows="4"
+            class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all resize-none"
+            placeholder="請輸入任何關於此訂單的額外說明事項..."></textarea>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-8 py-5 border-t border-surface-border bg-surface flex justify-end gap-4 rounded-b-xl">
+        <button type="button" onclick="closeEditOrderModal()" class="erp-btn-secondary is-lg">取消</button>
+        <button type="button" class="erp-btn-primary is-lg">
+          <span class="material-symbols-outlined text-[18px]">save</span>
+          更新訂單
+        </button>
+      </div>
+    </div>
+  </div>
+
+  </main>
+<script>
+  function orderModalFillVehicle() {
+    const plate = document.getElementById('orderModalPlateInput').value.trim();
+    if (!plate) return;
+    // 模擬帶入車輛資料
+    const card = document.getElementById('orderModalVehicleCard');
+    card.querySelector('h4').textContent = '2020 Mercedes-Benz S-Class';
+    card.querySelector('.vehicle-color').textContent = '車色：黑色';
+    card.querySelector('.vehicle-model').textContent = '年份／型號：2020 / S 580';
+    card.classList.remove('hidden');
+  }
+</script>
+<script>
+  const orderData = {
+    'ORD001': { name: '王大明',  phone: '0912-111-222', email: 'daming.wang@example.com', payment: 'cash',  plate: 'TST-0001', vehicleTitle: '2020 Porsche Taycan 4S',         vehicleColor: '車色：白色', vehicleModel: '年份／型號：2020 / Taycan 4S', price: '600,000', deposit: '60,000',  delivery: '2026-07-01', notes: '' },
+    'ORD002': { name: '李大媽',  phone: '0912-345-678', email: 'dama.lee@example.com',   payment: 'cash',  plate: 'ABC-1234', vehicleTitle: '2020 Mercedes-Benz S-Class', vehicleColor: '車色：黑色', vehicleModel: '年份／型號：2020 / S 580',       price: '850,000', deposit: '50,000',  delivery: '2026-06-01', notes: '客戶要求加裝隔熱紙（型號 3M-V50）以及全車大美容，領牌當天需陪同確認證件。' },
+    'ORD003': { name: '孫先生',  phone: '0921-333-444', email: 'sun@example.com',        payment: 'loan',  plate: 'SUN-5678', vehicleTitle: '2022 BMW X5 xDrive40i',     vehicleColor: '車色：深藍', vehicleModel: '年份／型號：2022 / X5 xDrive40i', price: '650,000', deposit: '65,000',  delivery: '2026-05-20', notes: '' },
+    'ORD004': { name: '張先生',  phone: '0930-555-666', email: 'chang@example.com',      payment: 'lease', plate: 'AUD-9999', vehicleTitle: '2023 Audi Q7 55 TFSI',      vehicleColor: '車色：銀色', vehicleModel: '年份／型號：2023 / Q7 55 TFSI',   price: '800,000', deposit: '80,000',  delivery: '2026-05-18', notes: '' }
+  };
+
+  function openEditOrderModal(orderId) {
+    const d = orderData[orderId];
+    if (!d) return;
+    const paymentMap = { cash: '現金匯款', loan: '銀行貸款', lease: '企業租賃' };
+    document.getElementById('editOrderSubtitle').textContent = '訂單編號：' + orderId.replace('ORD', 'ORD-');
+    document.getElementById('editCustomerName').value  = d.name;
+    document.getElementById('editPhone').value         = d.phone;
+    document.getElementById('editEmail').value         = d.email;
+    document.getElementById('editPlateInput').value    = d.plate;
+    document.getElementById('editPrice').value         = d.price;
+    document.getElementById('editDeposit').value       = d.deposit;
+    document.getElementById('editDeliveryDate').value  = d.delivery;
+    document.getElementById('editNotes').value         = d.notes;
+    document.getElementById('editVehicleTitle').textContent  = d.vehicleTitle;
+    document.getElementById('editVehicleColor').textContent  = d.vehicleColor;
+    document.getElementById('editVehicleModel').textContent  = d.vehicleModel;
+    const sel = document.getElementById('editPayment');
+    for (let i = 0; i < sel.options.length; i++) {
+      sel.options[i].selected = (sel.options[i].value === d.payment);
+    }
+    const modal = document.getElementById('editOrderModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeEditOrderModal() {
+    const modal = document.getElementById('editOrderModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  function editModalFillVehicle() {
+    const plate = document.getElementById('editPlateInput').value.trim();
+    if (!plate) return;
+    document.getElementById('editVehicleTitle').textContent = '2020 Mercedes-Benz S-Class';
+    document.getElementById('editVehicleColor').textContent = '車色：黑色';
+    document.getElementById('editVehicleModel').textContent = '年份／型號：2020 / S 580';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeEditOrderModal();
+  });
+</script>
+<script>
+  // 等網頁元素都載入完成後執行
+  (function () {
+    // 1. 抓到畫面上所有有 data-modal-open 和 data-modal-close 的按鈕
+    const modalOpens = document.querySelectorAll("[data-modal-open]");
+    const modalCloses = document.querySelectorAll("[data-modal-close]");
+
+    // 2. 【開啟功能】幫每個「開啟按鈕」綁定點擊事件
+    modalOpens.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const targetId = trigger.getAttribute("data-modal-open"); // 拿到 "editVehicleModal"
+        const modal = document.getElementById(targetId);          // 抓到該視窗
+        if (!modal) return;
+        
+        modal.classList.remove("hidden"); // 移除隱藏
+        modal.classList.add("flex");      // 變成 flex 顯示出來
+      });
+    });
+
+    // 3. 【關閉功能】幫每個「關閉按鈕」綁定點擊事件
+    modalCloses.forEach((closeBtn) => {
+      closeBtn.addEventListener("click", () => {
+        // 尋找離這個關閉按鈕最近的、有 .modal-backup 類別的父層元素
+        const modal = closeBtn.closest(".modal-backup");
+        if (!modal) return;
+
+        modal.classList.remove("flex");   // 移除顯示
+        modal.classList.add("hidden");    // 重新隱藏起來
+      });
+    });
+  })();
+</script>
+</body>
+
+</html>

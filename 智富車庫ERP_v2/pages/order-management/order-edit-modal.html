@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>進階篩選 - 智富車庫 ERP</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#bdc8cf",
+              "surface-tint": "#6e5a52",
+              "inverse-primary": "#dbc1b7",
+              "surface-container-high": "#ede7e4",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#55433b",
+              "on-secondary-fixed-variant": "#5c4200",
+              "on-surface-variant": "#4f4541",
+              "on-error": "#ffffff",
+              "primary-fixed": "#f9ddd2",
+              "inverse-on-surface": "#f6efec",
+              "on-tertiary-fixed": "#121d22",
+              "on-surface": "#1d1b1a",
+              "tertiary-fixed": "#d9e4ec",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed": "#ffdea3",
+              "surface-variant": "#e8e1de",
+              background: "#fff8f5",
+              tertiary: "#000000",
+              "surface-container-low": "#f9f2ef",
+              "surface-container-highest": "#e8e1de",
+              "surface-bright": "#fff8f5",
+              "error-muted": "#BA1A1A",
+              surface: "#fff8f5",
+              "on-primary": "#ffffff",
+              "secondary-container": "#fdd587",
+              "outline-variant": "#d2c3be",
+              "surface-dim": "#dfd9d6",
+              secondary: "#775a19",
+              primary: "#000000",
+              "on-secondary-container": "#785a19",
+              "gold-accent": "#775A19",
+              "on-background": "#1d1b1a",
+              error: "#ba1a1a",
+              "surface-elevated": "#FFFFFF",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "secondary-fixed-dim": "#e8c176",
+              "on-secondary": "#ffffff",
+              "on-tertiary-container": "#7a858c",
+              "sidebar-bg": "#140804",
+              "primary-container": "#271812",
+              "inverse-surface": "#33302e",
+              "surface-container": "#f3ecea",
+              "on-secondary-fixed": "#261900",
+              "surface-border": "#EBE1D9",
+              outline: "#817570",
+              "success-muted": "#8DA399",
+              "tertiary-container": "#121d22",
+              "on-primary-container": "#967f76",
+              "primary-fixed-dim": "#dbc1b7",
+              "on-primary-fixed": "#271812",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-desktop": "48px",
+              unit: "4px",
+              gutter: "24px",
+              "container-max": "1440px",
+              "margin-mobile": "16px",
+            },
+            fontFamily: {
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .icon-fill {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+
+      /* Custom Scrollbar for Modal */
+      .modal-scroll::-webkit-scrollbar {
+        width: 6px;
+      }
+      .modal-scroll::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .modal-scroll::-webkit-scrollbar-thumb {
+        background-color: #d2c3be; /* outline-variant */
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md antialiased min-h-screen flex overflow-hidden"
+  >
+    <!-- SideNavBar -->
+    <script>
+      window.currentPage = "order";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col min-w-0 md:pl-[280px] relative">
+      <!-- TopNavBar -->
+      <header
+        class="flex justify-between items-center h-[70px] px-margin-desktop sticky top-0 z-20 bg-sidebar-bg border-b border-primary-container shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)] w-full"
+      >
+        <div class="flex items-center gap-4">
+          <h2 class="text-[28px] font-bold text-on-primary">訂單管理</h2>
+        </div>
+        <div class="flex items-center gap-6">
+          <div
+            class="flex items-center gap-4 border-l border-primary-container pl-6"
+          >
+            <button
+              class="text-on-primary-container hover:text-gold-accent cursor-pointer transition-colors relative"
+            >
+              <span class="material-symbols-outlined">notifications</span>
+              <span
+                class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"
+              ></span>
+            </button>
+            <button
+              class="text-on-primary-container hover:text-gold-accent cursor-pointer transition-colors"
+            >
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+            <div
+              class="flex items-center gap-3 ml-2 cursor-pointer opacity-100 hover:opacity-80 transition-opacity"
+            >
+              <div class="text-right hidden sm:block">
+                <p class="font-label-md text-label-md text-on-primary">
+                  王大明
+                </p>
+                <p
+                  class="font-label-sm text-label-sm text-on-primary-container"
+                >
+                  銷售主管
+                </p>
+              </div>
+              <div
+                class="w-10 h-10 rounded-full bg-primary-container overflow-hidden border border-primary-container"
+              >
+                <!-- Placeholder avatar -->
+                <div
+                  class="w-full h-full bg-primary-container flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-on-primary-container"
+                    >person</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Page Content Canvas (Blurred out for modal context) -->
+      <div
+        class="flex-1 p-margin-desktop overflow-y-auto filter blur-sm pointer-events-none select-none opacity-50 transition-all duration-300"
+      >
+        <div class="max-w-container-max mx-auto">
+          <div class="flex justify-between items-end mb-8">
+            <div>
+              <h1 class="font-headline-lg text-headline-lg text-primary mb-2">
+                訂單管理
+              </h1>
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                管理與追蹤車輛銷售訂單
+              </p>
+            </div>
+            <button
+              class="bg-primary-container text-surface-container-lowest px-6 py-3 rounded flex items-center gap-2 font-label-md text-label-md hover:bg-[#38241b] transition-colors"
+            >
+              <span class="material-symbols-outlined text-[18px]">add</span>
+              新增訂單
+            </button>
+          </div>
+          <!-- Fake Controls Bar -->
+          <div class="flex gap-4 mb-6">
+            <div
+              class="flex-1 h-12 bg-surface-elevated border border-surface-border rounded shadow-sm"
+            ></div>
+            <div
+              class="w-48 h-12 bg-surface-elevated border border-surface-border rounded shadow-sm"
+            ></div>
+            <div
+              class="w-32 h-12 bg-surface-elevated border border-surface-border rounded shadow-sm"
+            ></div>
+          </div>
+          <!-- Fake Table -->
+          <div
+            class="bg-surface-elevated rounded-lg shadow-[0_4px_20px_-10px_rgba(20,8,4,0.08)] border border-surface-border overflow-hidden"
+          >
+            <div
+              class="h-14 bg-surface-container-low border-b border-surface-border"
+            ></div>
+            <div class="h-16 border-b border-surface-border"></div>
+            <div class="h-16 border-b border-surface-border"></div>
+            <div class="h-16"></div>
+          </div>
+        </div>
+      </div>
+      <!-- MODAL OVERLAY: 進階篩選 -->
+      <div
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-tertiary/20 backdrop-blur-[2px]"
+      >
+        <!-- Modal Panel -->
+        <div
+          class="bg-surface-elevated w-full max-w-[640px] rounded-xl shadow-[0_24px_48px_-12px_rgba(20,8,4,0.15)] border border-surface-border flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+        >
+          <!-- Modal Header -->
+          <div
+            class="flex items-center justify-between px-8 py-5 border-b border-surface-border bg-surface-elevated"
+          >
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-gold-accent"
+                >tune</span
+              >
+              <h3
+                class="font-headline-md text-headline-md text-primary tracking-tight"
+              >
+                進階篩選
+              </h3>
+            </div>
+            <button
+              aria-label="關閉視窗"
+              class="text-on-surface-variant hover:text-error transition-colors p-1 rounded-full hover:bg-surface-container-low"
+            >
+              <span class="material-symbols-outlined text-[24px]">close</span>
+            </button>
+          </div>
+          <!-- Modal Body -->
+          <div
+            class="px-8 py-6 overflow-y-auto modal-scroll max-h-[calc(100vh-200px)] flex flex-col gap-8 bg-background/50"
+          >
+            <!-- Section: 車輛資訊 -->
+            <section>
+              <h4
+                class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.1em] mb-4 border-b border-surface-border pb-2 flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >directions_car</span
+                >
+                車輛資訊
+              </h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    class="font-label-md text-label-md text-on-surface"
+                    for="vehicle-brand"
+                    >車輛廠牌</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full appearance-none bg-surface-elevated border border-surface-border rounded-md px-4 py-2.5 font-body-md text-body-md text-primary focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-shadow shadow-sm cursor-pointer"
+                      id="vehicle-brand"
+                    >
+                      <option disabled="" selected="" value="">
+                        請選擇廠牌
+                      </option>
+                      <option value="porsche">Porsche</option>
+                      <option value="mercedes">Mercedes-Benz</option>
+                      <option value="bmw">BMW</option>
+                      <option value="audi">Audi</option>
+                      <option value="lexus">Lexus</option>
+                    </select>
+                    <!-- 箭頭重複 -->
+                    <!-- <span
+                      class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                      >arrow_drop_down</span
+                    > -->
+                  </div>
+                </div>
+                <!-- Placeholder for future vehicle models -->
+                <div
+                  class="flex flex-col gap-1.5 opacity-50 pointer-events-none"
+                >
+                  <label class="font-label-md text-label-md text-on-surface"
+                    >車輛型號</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full appearance-none bg-surface-container-low border border-surface-border rounded-md px-4 py-2.5 font-body-md text-body-md text-on-surface-variant"
+                      disabled=""
+                    >
+                      <option>請先選擇廠牌</option>
+                    </select>
+                    <!-- 箭頭重複 -->
+                    <!-- <span
+                      class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant"
+                      >arrow_drop_down</span
+                    > -->
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- Section: 業務資訊 -->
+            <section>
+              <h4
+                class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.1em] mb-4 border-b border-surface-border pb-2 flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >person</span
+                >
+                業務資訊
+              </h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    class="font-label-md text-label-md text-on-surface"
+                    for="sales-rep"
+                    >負責業務</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full appearance-none bg-surface-elevated border border-surface-border rounded-md px-4 py-2.5 font-body-md text-body-md text-primary focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-shadow shadow-sm cursor-pointer"
+                      id="sales-rep"
+                    >
+                      <option disabled="" selected="" value="">
+                        請選擇業務人員
+                      </option>
+                      <option value="wang">王大明</option>
+                      <option value="lee">李佳玲</option>
+                      <option value="lin">林佳豪</option>
+                      <option value="chen">陳建宏</option>
+                    </select>
+                    <!-- 箭頭重複 -->
+                    <!-- <span
+                      class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                      >arrow_drop_down</span
+                    > -->
+                  </div>
+                </div>
+                <div class="sm:col-span-2 flex flex-col gap-1.5">
+                  <label class="font-label-md text-label-md text-on-surface"
+                    >訂單日期</label
+                  >
+                  <div class="flex items-center gap-3">
+                    <div class="relative flex-1">
+                      <input
+                        class="w-full bg-surface-elevated border border-surface-border rounded-md px-4 py-2.5 font-body-md text-body-md text-primary focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-shadow shadow-sm"
+                        type="date"
+                      />
+                    </div>
+                    <span class="text-on-surface-variant font-body-md"></span>
+                    <div class="relative flex-1">
+                      <input
+                        class="w-full bg-surface-elevated border border-surface-border rounded-md px-4 py-2.5 font-body-md text-body-md text-primary focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-shadow shadow-sm"
+                        type="date"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- Section: 付款資訊 -->
+            <section>
+              <h4
+                class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.1em] mb-4 border-b border-surface-border pb-2 flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined text-[16px]"
+                  >payments</span
+                >
+                付款資訊
+              </h4>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    class="font-label-md text-label-md text-on-surface"
+                    for="payment-method"
+                    >付款方式</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full appearance-none bg-surface-elevated border border-surface-border rounded-md px-4 py-2.5 font-body-md text-body-md text-primary focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-shadow shadow-sm cursor-pointer"
+                      id="payment-method"
+                    >
+                      <option disabled="" selected="" value="">
+                        全部付款方式
+                      </option>
+                      <option value="cash">現金付款</option>
+                      <option value="loan">銀行貸款</option>
+                      <option value="lease">企業租賃</option>
+                    </select>
+                    <!-- 箭頭重複 -->
+                    <!-- <span
+                      class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                      >arrow_drop_down</span
+                    > -->
+                  </div>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label
+                    class="font-label-md text-label-md text-on-surface"
+                    for="order-status"
+                    >訂單狀態</label
+                  >
+                  <div class="relative">
+                    <select
+                      class="w-full appearance-none bg-surface-elevated border border-surface-border rounded-md px-4 py-2.5 font-body-md text-body-md text-primary focus:border-gold-accent focus:ring-1 focus:ring-gold-accent outline-none transition-shadow shadow-sm cursor-pointer"
+                      id="order-status"
+                    >
+                      <option disabled="" selected="" value="">全部狀態</option>
+                      <option value="pending">待處理</option>
+                      <option value="processing">處理中</option>
+                      <option value="completed">已完成</option>
+                      <option value="cancelled">已取消</option>
+                    </select>
+                    <!-- 箭頭重複 -->
+                    <!-- <span
+                      class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                      >arrow_drop_down</span
+                    > -->
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <!-- Modal Footer -->
+          <div
+            class="px-8 py-5 border-t border-surface-border bg-surface-container-lowest flex justify-end items-center gap-4"
+          >
+            <button class="erp-btn-secondary is-md">重設</button>
+            <button class="erp-btn-primary is-md">確認篩選</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

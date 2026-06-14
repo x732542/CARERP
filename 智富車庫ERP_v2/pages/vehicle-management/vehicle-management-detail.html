@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>智富車庫 ERP - 車輛詳細資料</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#f9f2ef",
+              tertiary: "#000000",
+              "surface-variant": "#e8e1de",
+              "tertiary-container": "#121d22",
+              "surface-container-high": "#ede7e4",
+              "sidebar-bg": "#140804",
+              outline: "#817570",
+              "on-secondary-container": "#785a19",
+              "secondary-fixed": "#ffdea3",
+              "tertiary-fixed": "#d9e4ec",
+              "on-primary-fixed": "#271812",
+              "on-secondary": "#ffffff",
+              error: "#ba1a1a",
+              "on-tertiary-fixed": "#121d22",
+              "on-error": "#ffffff",
+              "surface-elevated": "#FFFFFF",
+              "on-tertiary": "#ffffff",
+              surface: "#fff8f5",
+              "inverse-on-surface": "#f6efec",
+              "surface-container-highest": "#e8e1de",
+              "secondary-fixed-dim": "#e8c176",
+              "primary-container": "#271812",
+              "on-primary-fixed-variant": "#55433b",
+              "primary-fixed": "#f9ddd2",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#967f76",
+              "on-error-container": "#93000a",
+              "outline-variant": "#d2c3be",
+              "on-background": "#1d1b1a",
+              background: "#fff8f5",
+              "surface-border": "#EBE1D9",
+              "inverse-surface": "#33302e",
+              "surface-container": "#f3ecea",
+              "error-container": "#ffdad6",
+              primary: "#000000",
+              "gold-accent": "#775A19",
+              "inverse-primary": "#dbc1b7",
+              secondary: "#775a19",
+              "on-secondary-fixed": "#261900",
+              "surface-dim": "#dfd9d6",
+              "on-surface-variant": "#4f4541",
+              "surface-tint": "#6e5a52",
+              "surface-bright": "#fff8f5",
+              "primary-fixed-dim": "#dbc1b7",
+              "success-muted": "#8DA399",
+              "on-tertiary-container": "#7a858c",
+              "on-surface": "#1d1b1a",
+              "on-secondary-fixed-variant": "#5c4200",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              unit: "4px",
+              "container-max": "1440px",
+              gutter: "24px",
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+            },
+            fontFamily: {
+              "label-sm": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: theme("colors.background");
+        color: theme("colors.on-background");
+      }
+
+      .ambient-shadow {
+        box-shadow: 0 16px 32px -12px rgba(20, 8, 4, 0.08);
+      }
+
+      .erp-modal-overlay {
+        background: rgba(20, 8, 4, 0.55);
+        backdrop-filter: blur(3px);
+      }
+
+      .erp-modal-panel {
+        box-shadow: 0 30px 70px -30px rgba(20, 8, 4, 0.45);
+      }
+
+      .erp-modal-input {
+        width: 100%;
+        height: 44px;
+        border: 1px solid #e4d8d1;
+        border-radius: 12px;
+        padding: 0 12px;
+        font-size: 14px;
+        color: #2b140a;
+        background: #ffffff;
+        outline: none;
+      }
+
+      .erp-modal-input:focus {
+        border-color: #c8b6ab;
+      }
+    </style>
+    <link href="../../assets/css/components.css" rel="stylesheet" />
+  </head>
+  <body class="antialiased min-h-screen flex bg-surface">
+    <script>
+      window.currentPage = "vehicle";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+
+    <div class="flex-1 md:ml-[280px] flex flex-col min-h-screen">
+      <header
+        class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] h-[70px] bg-sidebar-bg border-b border-primary-container flex justify-between items-center px-4 md:px-margin-desktop z-10 shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
+      >
+        <div class="ml-auto flex items-center justify-end gap-4">
+          <button
+            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <button
+            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+          >
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+          <div class="h-8 w-px bg-primary-container"></div>
+          <div class="flex items-center gap-3 cursor-pointer">
+            <img
+              alt="王大明"
+              class="w-10 h-10 rounded-full object-cover border border-primary-container"
+              src="../../assets/images/avatar-default.jpg"
+            />
+            <div class="text-left hidden md:block">
+              <p class="font-label-md text-label-md text-on-primary">王大明</p>
+              <p class="font-label-sm text-label-sm text-on-primary-container">
+                業務主管
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main
+        class="flex-1 overflow-x-hidden erp-page-a erp-page-container is-header-offset"
+      >
+        <div
+          class="erp-main-page-header flex flex-col md:flex-row md:items-end justify-between gap-5"
+        >
+          <div>
+            <h1 class="erp-main-page-title">車輛詳細資料</h1>
+            <p class="erp-main-page-desc">檢視與維護單一車輛完整資訊</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <a href="./vehicle-management.html" class="erp-btn-secondary is-lg">
+              <span class="material-symbols-outlined text-[18px]"
+                >arrow_back</span
+              >
+              返回車輛列表
+            </a>
+            <button
+              class="erp-btn-primary is-lg"
+              data-modal-open="editVehicleModal"
+              type="button"
+            >
+              <span class="material-symbols-outlined text-[18px]">edit</span>
+              編輯車輛資料  
+            </button>
+          </div>
+        </div>
+
+        <section
+          class="bg-surface-elevated rounded-xl p-6 ambient-shadow border border-surface-border"
+        >
+          <div class="flex flex-col gap-4">
+            <div class="erp-search-wrapper erp-header-search-wrapper">
+              <input
+                type="text"
+                class="erp-search erp-header-search"
+                placeholder="搜尋車牌號碼、VIN、車型"
+              />
+              <span
+                class="material-symbols-outlined erp-search-icon erp-header-search-icon"
+                >search</span
+              >
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="relative">
+                <select class="erp-filter-control">
+                  <option>全部狀態</option>
+                  <option selected>在庫中</option>
+                  <option>整備中</option>
+                  <option>已售出</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none"
+                  >expand_more</span
+                >
+              </div>
+              <div class="relative">
+                <select class="erp-filter-control">
+                  <option>全部年份</option>
+                  <option selected>2021</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none"
+                  >expand_more</span
+                >
+              </div>
+              <div class="flex justify-end">
+                <button
+                  class="erp-btn-primary is-md w-full md:w-auto"
+                  type="button"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >search</span
+                  >
+                  查詢資料
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="erp-kpi-grid-responsive">
+          <article class="erp-kpi-card">
+            <div class="erp-kpi-head">
+              <p class="erp-kpi-title">建議售價</p>
+              <span class="erp-kpi-icon">
+                <span class="material-symbols-outlined">sell</span>
+              </span>
+            </div>
+            <div class="erp-kpi-value-row">
+              <p class="erp-kpi-value erp-kpi-value-fluid">1,280</p>
+              <span class="erp-kpi-unit">千元</span>
+            </div>
+          </article>
+          <article class="erp-kpi-card">
+            <div class="erp-kpi-head">
+              <p class="erp-kpi-title">收車價格</p>
+              <span class="erp-kpi-icon">
+                <span class="material-symbols-outlined">payments</span>
+              </span>
+            </div>
+            <div class="erp-kpi-value-row">
+              <p class="erp-kpi-value erp-kpi-value-fluid">1,050</p>
+              <span class="erp-kpi-unit">千元</span>
+            </div>
+          </article>
+          <article class="erp-kpi-card">
+            <div class="erp-kpi-head">
+              <p class="erp-kpi-title">預估毛利</p>
+              <span class="erp-kpi-icon">
+                <span class="material-symbols-outlined">monitoring</span>
+              </span>
+            </div>
+            <div class="erp-kpi-value-row">
+              <p class="erp-kpi-value erp-kpi-value-fluid">205</p>
+              <span class="erp-kpi-unit">千元</span>
+            </div>
+          </article>
+        </section>
+
+        <section
+          class="w-full aspect-[21/9] rounded-xl overflow-hidden ambient-shadow border border-surface-border relative group"
+        >
+          <img
+            alt="Professional studio photography of a black 2021 BMW 320i"
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYcq87rDAOJLZ4PEc-FE4RXBVcMBXuL4noJ_6Hc009H5bVzUmdjKiGepRA58UCw7XP9VIAuTP1wxZKt10Br3MSvG82Pe4D3Mcl0TCGJl9GmNQrOmwqiRU4cu0WAscypnnWEOpEIujTBG3gj0ectU0RSzf3IkEha8YQYv-6thy3vgin-aNpqQuL800dnRb2viN6RQ8McnnICHOkWYeRTWAnfPxAY2FGg6OW9bvJqz2xw-xWTNc8xNwprFwJyh4MSk8F1uUCZEw9CFc"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent pointer-events-none"
+          ></div>
+        </section>
+
+        <section class="erp-table-card">
+          <div class="erp-table-wrap">
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">
+              車輛基本資料
+            </h3>
+            <div class="erp-table-responsive">
+              <table class="erp-table">
+                <thead>
+                  <tr class="erp-table-header">
+                    <th>欄位</th>
+                    <th>內容</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>車牌號碼</td>
+                    <td>ABC-1234</td>
+                  </tr>
+                  <tr>
+                    <td>出廠年份</td>
+                    <td>2021</td>
+                  </tr>
+                  <tr>
+                    <td>廠牌</td>
+                    <td>BMW</td>
+                  </tr>
+                  <tr>
+                    <td>車型</td>
+                    <td>320i M Sport</td>
+                  </tr>
+                  <tr>
+                    <td>排氣量</td>
+                    <td>1,998 cc</td>
+                  </tr>
+                  <tr>
+                    <td>車身顏色</td>
+                    <td>Black Sapphire</td>
+                  </tr>
+                  <tr>
+                    <td>車身號碼 (VIN)</td>
+                    <td>WBA5F1234567890</td>
+                  </tr>
+                  <tr>
+                    <td>庫存狀態</td>
+                    <td><span class="erp-badge is-success">在庫中</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="erp-table-card">
+          <div class="erp-table-wrap">
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <h3 class="font-headline-md text-headline-md text-on-surface">
+                整備紀錄
+              </h3>
+              <button
+                class="erp-btn-secondary is-md"
+                data-modal-open="editVehicleModal"
+                type="button"
+              >
+                <span class="material-symbols-outlined text-[18px]">add</span>
+                新增整備項目
+              </button>
+            </div>
+            <div class="erp-table-responsive">
+              <table class="erp-table">
+                <thead>
+                  <tr class="erp-table-header">
+                    <th class="erp-col-date">日期</th>
+                    <th>項目</th>
+                    <th class="erp-col-amount erp-col-right">費用</th>
+                    <th class="erp-col-status">狀態</th>
+                    <th class="erp-col-action erp-col-right">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>2023-10-22</td>
+                    <td>全車大美容、內裝清潔保養</td>
+                    <td class="erp-col-right">$12,000</td>
+                    <td><span class="erp-badge is-success">已完成</span></td>
+                    <td>
+                      <div class="erp-table-actions">
+                        <button class="erp-btn-table is-sm" type="button">
+                          查看
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2023-10-21</td>
+                    <td>更換原廠機油、機油芯</td>
+                    <td class="erp-col-right">$8,000</td>
+                    <td><span class="erp-badge is-success">已完成</span></td>
+                    <td>
+                      <div class="erp-table-actions">
+                        <button class="erp-btn-table is-sm" type="button">
+                          查看
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2023-10-20</td>
+                    <td>前後來令片更換</td>
+                    <td class="erp-col-right">$5,000</td>
+                    <td><span class="erp-badge is-warning">待驗收</span></td>
+                    <td>
+                      <div class="erp-table-actions">
+                        <button class="erp-btn-table is-sm" type="button">
+                          查看
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="erp-pagination">
+            <p class="erp-pagination-info">顯示 1-3 筆，共 3 筆資料</p>
+            <div class="erp-pagination-pages">
+              <button class="erp-page" type="button">‹</button>
+              <button class="erp-page is-active" type="button">1</button>
+              <button class="erp-page" type="button">›</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div
+      id="editVehicleModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4 erp-modal-overlay"
+    >
+      <div
+        class="erp-modal-panel bg-surface-elevated w-full max-w-[720px] rounded-xl border border-surface-border overflow-hidden"
+      >
+        <div
+          class="px-6 py-5 border-b border-surface-border flex items-center justify-between"
+        >
+          <h3 class="font-headline-md text-headline-md text-on-surface">
+            編輯車輛資料
+          </h3>
+          <button
+            class="text-on-surface-variant hover:text-on-surface"
+            data-modal-close
+            type="button"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <label class="text-sm text-on-surface-variant">
+            車牌號碼
+            <input class="erp-modal-input mt-2" type="text" value="ABC-1234" />
+          </label>
+          <label class="text-sm text-on-surface-variant">
+            車身號碼 (VIN)
+            <input
+              class="erp-modal-input mt-2"
+              type="text"
+              value="WBA5F1234567890"
+            />
+          </label>
+          <label class="text-sm text-on-surface-variant">
+            廠牌
+            <input class="erp-modal-input mt-2" type="text" value="BMW" />
+          </label>
+          <label class="text-sm text-on-surface-variant">
+            車型
+            <input
+              class="erp-modal-input mt-2"
+              type="text"
+              value="320i M Sport"
+            />
+          </label>
+        </div>
+        <div
+          class="px-6 py-4 border-t border-surface-border flex justify-end gap-3 bg-surface-container-low"
+        >
+          <button
+            class="erp-btn-secondary is-md"
+            data-modal-close
+            type="button"
+          >
+            取消
+          </button>
+          <button class="erp-btn-primary is-md" type="button">儲存變更</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const modalOpens = document.querySelectorAll("[data-modal-open]");
+        const modalCloses = document.querySelectorAll("[data-modal-close]");
+
+        modalOpens.forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            const targetId = trigger.getAttribute("data-modal-open");
+            const modal = document.getElementById(targetId);
+            if (!modal) return;
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+          });
+        });
+
+        modalCloses.forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            const modal = trigger.closest(".erp-modal-overlay");
+            if (!modal) return;
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+          });
+        });
+
+        document.querySelectorAll(".erp-modal-overlay").forEach((overlay) => {
+          overlay.addEventListener("click", (event) => {
+            if (event.target !== overlay) return;
+            overlay.classList.add("hidden");
+            overlay.classList.remove("flex");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

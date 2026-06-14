@@ -1,0 +1,13 @@
+:root {
+  --erp-search-height: 48px;
+  --erp-search-pl: 44px;
+  --erp-search-pr: 16px;
+  --erp-search-radius: 16px;
+  --erp-search-border: #e4d8d1;
+  --erp-search-bg: #ffffff;
+  --erp-search-border-hover: #d9cac1;
+  --erp-search-border-focus: #a67c52;
+  --erp-search-focus-ring: transparent;
+  --erp-search-placeholder: #b8aaa2;
+  --erp-search-icon: #9b8b83;
+}

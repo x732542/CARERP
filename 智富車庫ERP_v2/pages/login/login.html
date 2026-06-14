@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>登入 - 智富車庫 ERP 系統</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              surface: "#fff8f5",
+              "inverse-primary": "#dbc1b6",
+              "on-primary-fixed-variant": "#55433a",
+              error: "#ba1a1a",
+              "on-tertiary-fixed-variant": "#494644",
+              "tertiary-container": "#23211f",
+              "surface-tint": "#6e5a51",
+              "primary-fixed-dim": "#dbc1b6",
+              "on-surface-variant": "#4f4540",
+              "on-tertiary-fixed": "#1d1b1a",
+              "on-secondary-fixed-variant": "#5d4201",
+              "on-error": "#ffffff",
+              "surface-container": "#f5ece8",
+              "primary-fixed": "#f9ddd1",
+              "tertiary-fixed-dim": "#cbc5c3",
+              "on-primary": "#ffffff",
+              background: "#fff8f5",
+              outline: "#817570",
+              "outline-variant": "#d2c3be",
+              "on-secondary-container": "#785a1a",
+              "inverse-surface": "#342f2d",
+              "tertiary-fixed": "#e8e1de",
+              "error-container": "#ffdad6",
+              "surface-container-low": "#fbf2ee",
+              "secondary-fixed": "#ffdea5",
+              "surface-dim": "#e1d8d4",
+              "secondary-container": "#fed488",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#9b847a",
+              "secondary-fixed-dim": "#e9c176",
+              "surface-variant": "#eae1dd",
+              "on-surface": "#1f1b19",
+              "on-background": "#1f1b19",
+              "surface-container-highest": "#eae1dd",
+              secondary: "#775a19",
+              "on-error-container": "#93000a",
+              primary: "#140804",
+              "surface-container-high": "#efe6e2",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#fff8f5",
+              tertiary: "#0c0a09",
+              "inverse-on-surface": "#f8efeb",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#261900",
+              "primary-container": "#140804",
+              "on-primary-fixed": "#271811",
+              "on-tertiary-container": "#8c8885",
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "0.75rem",
+              xl: "1rem",
+              full: "9999px",
+            },
+            spacing: {
+              "margin-mobile": "16px",
+              "base-unit": "8px",
+              gutter: "24px",
+              "container-max-width": "1440px",
+              "margin-desktop": "32px",
+              "sidebar-width": "250px",
+              "topbar-height": "70px",
+            },
+            fontFamily: {
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+              "display-lg": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "title-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "title-sm": ["18px", { lineHeight: "24px", fontWeight: "600" }],
+              "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+              "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+              "label-md": [
+                "12px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "500",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #fff8f5;
+      }
+      .erp-btn-primary {
+        background-color: #2d1e17;
+        color: #ffffff;
+        transition: all 0.2s;
+      }
+      .erp-btn-primary:hover {
+        opacity: 0.9;
+      }
+      .erp-input {
+        border: 1px solid #d2c3be;
+        transition: all 0.2s;
+      }
+      .erp-input:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(45, 30, 23, 0.1);
+        border-color: #2d1e17;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col font-sans text-on-surface">
+    <!-- Topbar -->
+    <header
+      class="h-[70px] bg-primary-container flex items-center justify-center text-surface-bright shadow-sm fixed top-0 w-full z-50"
+    >
+      <h1 class="font-headline-md text-headline-md flex items-center gap-2">
+        <span
+          class="material-symbols-outlined"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >directions_car</span
+        >
+        智富車庫 ERP 系統
+      </h1>
+    </header>
+    <!-- Main Content -->
+    <main
+      class="flex-grow flex flex-col lg:flex-row items-center justify-center pt-[70px] p-gutter gap-12 container mx-auto max-w-container-max-width"
+    >
+      <!-- Login Card -->
+      <div
+        class="bg-surface-container-lowest rounded-xl shadow-[0_4px_24px_rgba(45,30,23,0.08)] w-full max-w-[560px] mt-[50px] p-8 flex flex-col items-center border border-outline-variant"
+      >
+        <div
+          class="w-16 h-16 bg-primary-container/5 rounded-full flex items-center justify-center mb-6"
+        >
+          <span
+            class="material-symbols-outlined text-primary-container text-3xl"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >directions_car</span
+          >
+        </div>
+        <h2
+          class="font-headline-md text-headline-md mb-2 text-center text-on-surface"
+        >
+          歡迎登入
+        </h2>
+        <p
+          class="font-body-sm text-body-sm text-on-surface-variant mb-8 text-center"
+        >
+          請輸入您的帳號與密碼
+        </p>
+        <form class="w-full" id="loginForm" onsubmit="handleLogin(event)">
+          <!-- Account Field -->
+          <div class="mb-4 w-full">
+            <label
+              class="block font-title-sm text-title-sm text-on-surface mb-2"
+              for="account"
+              >帳號</label
+            >
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
+                >person</span
+              >
+              <input
+                class="erp-input w-full h-[48px] pl-10 pr-4 rounded-lg bg-surface font-body-md text-body-md"
+                id="account"
+                placeholder="請輸入帳號"
+                required=""
+                type="text"
+              />
+            </div>
+          </div>
+          <!-- Password Field -->
+          <div class="mb-4 w-full">
+            <label
+              class="block font-title-sm text-title-sm text-on-surface mb-2"
+              for="password"
+              >密碼</label
+            >
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
+                >lock</span
+              >
+              <input
+                class="erp-input w-full h-[48px] pl-10 pr-10 rounded-lg bg-surface font-body-md text-body-md"
+                id="password"
+                placeholder="請輸入密碼"
+                required=""
+                type="password"
+              />
+              <button
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors"
+                onclick="togglePassword()"
+                type="button"
+              >
+                <span class="material-symbols-outlined" id="eyeIcon"
+                  >visibility</span
+                >
+              </button>
+            </div>
+          </div>
+          <!-- Helpers -->
+          <div class="flex items-center justify-between mb-8 w-full">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                class="rounded border-outline-variant text-primary-container focus:ring-primary-container h-4 w-4"
+                type="checkbox"
+              />
+              <span class="font-body-sm text-body-sm text-on-surface-variant"
+                >記住我</span
+              >
+            </label>
+            <a
+              class="font-body-sm text-body-sm text-primary-container font-semibold hover:underline transition-colors"
+              href="#"
+              >忘記密碼?</a
+            >
+          </div>
+          <!-- Login Button -->
+          <button
+            class="erp-btn-primary w-full h-[48px] rounded-lg font-title-sm text-title-sm flex items-center justify-center gap-2 bg-primary-container"
+            type="submit"
+          >
+            登入
+            <span class="material-symbols-outlined">login</span>
+          </button>
+          <!-- Alert Area -->
+          <div
+            class="mt-4 hidden p-3 rounded-lg font-body-sm text-body-sm text-center"
+            id="loginAlert"
+          ></div>
+        </form>
+      </div>
+      <!-- RBAC Diagram -->
+      <div
+        class="bg-surface-container-lowest rounded-xl shadow-[0_4px_24px_rgba(45,30,23,0.06)] w-full max-w-[800px] p-8 hidden lg:block border border-outline-variant"
+      >
+        <h3
+          class="font-title-sm text-title-sm mb-6 text-center text-on-surface flex items-center justify-center gap-2"
+        >
+          <span class="material-symbols-outlined text-primary-container"
+            >account_tree</span
+          >
+          權限分級 (RBAC Diagram)
+        </h3>
+        <div class="grid grid-cols-3 gap-6 relative">
+          <!-- System Admin -->
+          <div
+            class="bg-primary-container/5 rounded-xl p-6 border border-primary-container/10 flex flex-col items-center"
+          >
+            <div
+              class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-on-primary"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >admin_panel_settings</span
+              >
+            </div>
+            <h4
+              class="font-title-sm text-title-sm text-primary-container mb-3 text-center"
+            >
+              系統管理員
+            </h4>
+            <p
+              class="font-body-sm text-body-sm text-center text-on-surface-variant"
+            >
+              全權限存取：<br />Dashboard, Vehicle, Customer, User Mgmt 等
+            </p>
+            <div
+              class="mt-4 text-xs font-semibold text-on-primary-fixed-variant bg-primary-fixed rounded-full px-3 py-1"
+            >
+              admin / admin123
+            </div>
+          </div>
+          <!-- Accountant -->
+          <div
+            class="bg-surface-container-high rounded-xl p-6 border border-outline-variant flex flex-col items-center"
+          >
+            <div
+              class="w-12 h-12 bg-on-tertiary-container rounded-full flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-surface-bright"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >account_balance</span
+              >
+            </div>
+            <h4
+              class="font-title-sm text-title-sm text-on-surface mb-3 text-center"
+            >
+              會計人員
+            </h4>
+            <p
+              class="font-body-sm text-body-sm text-center text-on-surface-variant"
+            >
+              財務存取：<br />Orders, Accounting, Procurement
+            </p>
+            <div
+              class="mt-4 text-xs font-semibold text-on-tertiary-fixed-variant bg-tertiary-fixed rounded-full px-3 py-1"
+            >
+              accounting / acc123
+            </div>
+          </div>
+          <!-- Sales -->
+          <div
+            class="bg-surface-container-low rounded-xl p-6 border border-outline-variant flex flex-col items-center"
+          >
+            <div
+              class="w-12 h-12 bg-surface-tint rounded-full flex items-center justify-center mb-4"
+            >
+              <span
+                class="material-symbols-outlined text-surface-bright"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >storefront</span
+              >
+            </div>
+            <h4
+              class="font-title-sm text-title-sm text-on-surface mb-3 text-center"
+            >
+              業務人員
+            </h4>
+            <p
+              class="font-body-sm text-body-sm text-center text-on-surface-variant"
+            >
+              業務存取：<br />Vehicles, Customers, Appointments
+            </p>
+            <div
+              class="mt-4 text-xs font-semibold text-on-primary-container bg-surface-variant rounded-full px-3 py-1"
+            >
+              sales / sales123
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="py-6 text-center font-body-sm text-body-sm text-outline">
+      © 2026 Car ERP 系統｜版本 1.0.0
+    </footer>
+    <script>
+      function togglePassword() {
+        const pwdInput = document.getElementById("password");
+        const eyeIcon = document.getElementById("eyeIcon");
+        if (pwdInput.type === "password") {
+          pwdInput.type = "text";
+          eyeIcon.textContent = "visibility_off";
+        } else {
+          pwdInput.type = "password";
+          eyeIcon.textContent = "visibility";
+        }
+      }
+
+      function showAlert(message, type) {
+        const alertDiv = document.getElementById("loginAlert");
+        alertDiv.textContent = message;
+        alertDiv.classList.remove(
+          "hidden",
+          "bg-error-container",
+          "text-on-error-container",
+          "bg-primary-container/10",
+          "text-primary-container",
+        );
+
+        if (type === "error") {
+          alertDiv.classList.add(
+            "bg-error-container",
+            "text-on-error-container",
+          );
+        } else {
+          alertDiv.classList.add(
+            "bg-primary-container/10",
+            "text-primary-container",
+          );
+        }
+      }
+
+      function handleLogin(event) {
+        event.preventDefault();
+        const account = document.getElementById("account").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        if (!account || !password) {
+          showAlert("請填寫帳號與密碼", "error");
+          return;
+        }
+
+        if (account === "admin" && password === "admin123") {
+          showAlert("登入成功，角色：系統管理員", "success");
+          setTimeout(() => (window.location.href = "#"), 1000);
+        } else if (account === "accounting" && password === "acc123") {
+          showAlert("登入成功，角色：會計人員", "success");
+          setTimeout(() => (window.location.href = "#"), 1000);
+        } else if (account === "sales" && password === "sales123") {
+          showAlert("登入成功，角色：業務人員", "success");
+          setTimeout(() => (window.location.href = "#"), 1000);
+        } else {
+          showAlert("帳號或密碼錯誤", "error");
+        }
+      }
+    </script>
+  </body>
+</html>

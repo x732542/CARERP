@@ -1,0 +1,659 @@
+﻿<!-- 車?管? -->
+<!doctype html>
+
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>車籍資料 - 智富車庫 ERP</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#7a858c",
+              "secondary-container": "#fdd587",
+              "error-container": "#ffdad6",
+              "secondary-fixed": "#ffdea3",
+              "surface-border": "#EBE1D9",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#121d22",
+              tertiary: "#000000",
+              "primary-fixed-dim": "#dbc1b7",
+              "inverse-primary": "#dbc1b7",
+              "on-secondary-fixed": "#261900",
+              "on-tertiary-fixed-variant": "#3e484e",
+              "surface-bright": "#fff8f5",
+              background: "#fff8f5",
+              "surface-container-high": "#ede7e4",
+              "on-secondary-fixed-variant": "#5c4200",
+              "error-muted": "#BA1A1A",
+              "sidebar-bg": "#140804",
+              "gold-accent": "#775A19",
+              outline: "#817570",
+              "outline-variant": "#d2c3be",
+              "tertiary-container": "#121d22",
+              "success-muted": "#8DA399",
+              "surface-container": "#f3ecea",
+              "on-primary-fixed": "#271812",
+              "on-primary-fixed-variant": "#55433b",
+              "on-primary-container": "#967f76",
+              surface: "#fff8f5",
+              error: "#ba1a1a",
+              secondary: "#775a19",
+              "surface-dim": "#dfd9d6",
+              "primary-fixed": "#f9ddd2",
+              "on-background": "#1d1b1a",
+              "on-surface-variant": "#4f4541",
+              "on-surface": "#1d1b1a",
+              "on-secondary-container": "#785a19",
+              "surface-container-low": "#f9f2ef",
+              "inverse-surface": "#33302e",
+              "surface-tint": "#6e5a52",
+              "on-primary": "#ffffff",
+              "primary-container": "#271812",
+              "inverse-on-surface": "#f6efec",
+              "surface-elevated": "#FFFFFF",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e8e1de",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#e8c176",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#bdc8cf",
+              "surface-variant": "#e8e1de",
+              "on-tertiary": "#ffffff",
+              primary: "#000000",
+              "tertiary-fixed": "#d9e4ec",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "container-max": "1440px",
+              "margin-mobile": "16px",
+              "margin-desktop": "48px",
+              gutter: "24px",
+              unit: "4px",
+            },
+            fontFamily: {
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "label-sm": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "34px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                { lineHeight: "28px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "label-sm": [
+                "11px",
+                {
+                  lineHeight: "14px",
+                  letterSpacing: "0.02em",
+                  fontWeight: "500",
+                },
+              ],
+              "headline-xl": [
+                "40px",
+                {
+                  lineHeight: "48px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": [
+                "16px",
+                { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "32px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "40px",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" },
+              ],
+              "label-md": [
+                "13px",
+                {
+                  lineHeight: "16px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #fff8f5;
+        color: #1d1b1a;
+      }
+      .ambient-shadow {
+        box-shadow: 0 16px 32px -4px rgba(20, 8, 4, 0.08);
+      }
+
+      /* Modal transitions */
+      .modal-overlay {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .modal-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal-content {
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .modal-overlay.active .modal-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Dropdown transitions */
+      .user-dropdown {
+        opacity: 0;
+        transform: scale(0.95);
+        pointer-events: none;
+        transition: all 0.2s ease;
+        transform-origin: top right;
+      }
+      .user-dropdown.active {
+        opacity: 1;
+        transform: scale(1);
+        pointer-events: auto;
+      }
+    </style>
+    <link href="../../assets/css/components.css" rel="stylesheet" />
+  </head>
+  <body class="flex bg-surface text-on-surface antialiased min-h-screen">
+    <!-- Sidebar Navigation -->
+    <!-- Sidebar Navigation -->
+    <script>
+      window.currentPage = "registry";
+    </script>
+    <div data-sidebar></div>
+    <script src="../../assets/layouts/sidebar.js"></script>
+    <!-- Main Content Area -->
+    <main class="flex-1 md:ml-[280px] min-h-screen flex flex-col relative">
+      <!-- Top App Bar -->
+      <header
+        class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] h-[70px] bg-sidebar-bg border-b border-primary-container flex items-center justify-between px-margin-desktop z-30 shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
+      >
+        <div class="ml-auto flex items-center justify-end gap-4">
+          <!-- no page title -->
+          <button
+            class="text-on-primary-container hover:text-gold-accent transition-colors"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <button
+            class="text-on-primary-container hover:text-gold-accent transition-colors"
+          >
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+          <div class="h-8 w-px bg-primary-container"></div>
+          <!-- User Profile Dropdown -->
+          <div class="relative">
+            <button
+              class="flex items-center gap-3 text-on-primary-container hover:text-gold-accent transition-colors"
+              id="userMenuBtn"
+            >
+              <img
+                alt="使用者頭像"
+                class="w-10 h-10 rounded-full object-cover border border-primary-container"
+                src="../../assets/images/avatar-default.jpg"
+              />
+              <div class="text-left hidden sm:block">
+                <p class="font-label-md text-label-md text-on-primary">
+                  王大明
+                </p>
+                <p class="text-on-primary-container text-[10px] font-normal">
+                  業務主管
+                </p>
+              </div>
+            </button>
+            <div
+              class="user-dropdown absolute right-0 mt-2 w-48 bg-surface-elevated rounded-lg ambient-shadow border border-surface-border z-50 py-2"
+              id="userDropdown"
+            >
+              <a
+                class="block px-4 py-2 font-body-sm text-body-sm text-on-surface hover:bg-surface-container transition-colors"
+                href="#"
+                >變更密碼</a
+              >
+              <div class="h-px bg-surface-border my-1"></div>
+              <a
+                class="block px-4 py-2 font-body-sm text-body-sm text-error hover:bg-error-container transition-colors"
+                href="#"
+                >登出</a
+              >
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- Page Canvas -->
+      <div
+        class="flex-1 overflow-x-hidden overflow-y-auto erp-page-a erp-page-container is-header-offset"
+      >
+        <div class="erp-main-page-header">
+          <h3 class="erp-main-page-title">車籍資料</h3>
+          <p class="erp-main-page-desc">管理車籍、認證與文件資訊</p>
+        </div>
+        <!-- Controls Row -->
+        <div
+          class="bg-surface-elevated rounded-lg shadow-ambient border border-surface-border p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+        >
+          <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+            <div
+              class="w-full sm:w-[320px] erp-search-wrapper erp-header-search-wrapper"
+            >
+              <span
+                class="material-symbols-outlined erp-search-icon erp-header-search-icon"
+                >search</span
+              >
+              <input
+                class="erp-search erp-header-search"
+                placeholder="搜尋車牌、編號或底盤..."
+                type="text"
+              />
+            </div>
+            <div class="relative min-w-[160px]">
+              <select
+                class="erp-filter-control font-body-sm text-body-sm text-on-surface cursor-pointer"
+              >
+                <option value="all">全部狀態</option>
+                <option value="selling">販售中</option>
+                <option value="sold">已售出</option>
+                <option value="prep">整備中</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-sm"
+                >expand_more</span
+              >
+            </div>
+          </div>
+          <button
+            class="erp-btn-primary is-lg w-full md:w-auto"
+            onclick="openModal()"
+          >
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            新增車籍資料
+          </button>
+        </div>
+        <!-- Data Table Card -->
+        <div
+          class="bg-surface-elevated rounded-xl ambient-shadow border border-surface-border overflow-hidden erp-table-card"
+        >
+          <div class="overflow-x-auto erp-table-responsive erp-table-container">
+            <table
+              class="w-full text-left border-collapse erp-table"
+            >
+              <thead>
+                <tr
+                  class="border-b border-surface-border bg-surface-container-low erp-table-header"
+                >
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant">年份</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant">車牌號碼</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant">廠牌</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant">車型</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant">燃料類型</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant">車身顏色</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant text-right">里程數</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant text-center">認證狀態</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant text-right">售價</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant text-center">狀態</th>
+                  <th class="px-4 py-4 font-label-md text-label-md text-on-primary-fixed-variant text-right">操作</th>
+                </tr>
+              </thead>
+              <tbody
+                class="font-body-sm text-body-sm text-on-surface erp-table-body"
+              >
+                <tr
+                  class="border-b border-surface-border hover:bg-surface-container-lowest transition-colors"
+                >
+                  <td class="px-4 py-3 erp-col-year">2024</td>
+                  <td class="px-4 py-3 font-medium erp-col-plate">ABC-1234</td>
+                  <td class="px-4 py-3 erp-col-brand">Toyota</td>
+                  <td class="px-4 py-3 erp-col-model">Corolla Cross</td>
+                  <td class="px-4 py-3 erp-col-type">汽油</td>
+                  <td class="px-4 py-3 erp-col-color">白色</td>
+                  <td class="px-4 py-3 erp-col-mileage erp-num">8,000</td>
+                  <td class="px-4 py-3 erp-col-status text-center">可認證</td>
+                  <td class="px-4 py-3 font-medium erp-col-amount-lg erp-num">
+                    $798,000
+                  </td>
+                  <td class="px-4 py-3 erp-col-status text-center">
+                    <span class="erp-badge is-success"> 販售中 </span>
+                  </td>
+                  <td class="px-4 py-3 text-right erp-col-action">
+                    <div class="erp-table-actions">
+                      <button class="erp-btn-sm is-secondary">查看</button>
+                      <button
+                        class="erp-btn-sm is-primary"
+                        onclick="openModal()"
+                      >
+                        編輯
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr
+                  class="border-b border-surface-border hover:bg-surface-container-lowest transition-colors"
+                >
+                  <td class="px-4 py-3 erp-col-year">2022</td>
+                  <td class="px-4 py-3 font-medium erp-col-plate">XYZ-9876</td>
+                  <td class="px-4 py-3 erp-col-brand">Mercedes-Benz</td>
+                  <td class="px-4 py-3 erp-col-model">GLC 300</td>
+                  <td class="px-4 py-3 erp-col-type">油電</td>
+                  <td class="px-4 py-3 erp-col-color">黑色</td>
+                  <td class="px-4 py-3 erp-col-mileage erp-num">24,500</td>
+                  <td class="px-4 py-3 erp-col-status text-center">CPO認證</td>
+                  <td class="px-4 py-3 font-medium erp-col-amount-lg erp-num">
+                    $2,150,000
+                  </td>
+                  <td class="px-4 py-3 erp-col-status text-center">
+                    <span class="erp-badge is-neutral"> 已售出 </span>
+                  </td>
+                  <td class="px-4 py-3 text-right erp-col-action">
+                    <div class="erp-table-actions">
+                      <button class="erp-btn-sm is-secondary">查看</button>
+                      <button class="erp-btn-sm is-primary">編輯</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Modal Form -->
+    <div
+      class="modal-overlay fixed inset-0 bg-sidebar-bg/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+      id="formModal"
+    >
+      <div
+        class="modal-content bg-surface-elevated w-full max-w-4xl rounded-xl ambient-shadow border border-surface-border flex flex-col max-h-[90vh]"
+      >
+        <!-- Modal Header -->
+        <div
+          class="flex items-center justify-between px-6 py-4 border-b border-surface-border"
+        >
+          <h3 class="font-headline-md text-headline-md text-on-surface">
+            新增車籍資料
+          </h3>
+          <button
+            class="text-on-surface-variant hover:text-on-surface transition-colors p-1"
+            onclick="closeModal()"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <!-- Modal Body (Scrollable) -->
+        <div class="p-6 overflow-y-auto custom-scrollbar flex-1">
+          <form class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >年份</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="2024"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >車牌號碼</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="ABC-1234"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >廠牌</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="Toyota"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >車型</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="Corolla Cross"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >車身顏色</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="白色"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >里程數</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="8000"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >車身號碼</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="JTDBR32E000000001"
+              />
+            </div>
+            <div class="space-y-1.5 relative">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >燃料類型</label
+              >
+              <div class="relative">
+                <select
+                  class="w-full appearance-none px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all cursor-pointer"
+                >
+                  <option selected="" value="gasoline">汽油</option>
+                  <option value="diesel">柴油</option>
+                  <option value="hybrid">油電</option>
+                  <option value="ev">電動車</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-sm"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >排氣量(cc)</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="1798"
+              />
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >售價</label
+              >
+              <input
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all"
+                type="text"
+                value="798000"
+              />
+            </div>
+            <div class="space-y-1.5 relative">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >是否認證</label
+              >
+              <div class="relative">
+                <select
+                  class="w-full appearance-none px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all cursor-pointer"
+                >
+                  <option selected="" value="yes">可認證</option>
+                  <option value="no">不可認證</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-sm"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+            <div class="space-y-1.5 relative">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >狀態</label
+              >
+              <div class="relative">
+                <select
+                  class="w-full appearance-none px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all cursor-pointer"
+                >
+                  <option selected="" value="selling">販售中</option>
+                  <option value="prep">整備中</option>
+                  <option value="sold">已售出</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-sm"
+                  >expand_more</span
+                >
+              </div>
+            </div>
+            <div class="space-y-1.5 md:col-span-2">
+              <label class="font-label-sm text-label-sm text-on-surface-variant"
+                >備註 / 車況紀錄</label
+              >
+              <textarea
+                class="w-full px-3 py-2 bg-surface border border-surface-border rounded font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-gold-accent focus:ring-1 focus:ring-gold-accent transition-all resize-none"
+                rows="3"
+              >
+ACC環景、CarPlay</textarea
+              >
+            </div>
+          </form>
+        </div>
+        <!-- Modal Footer -->
+        <div
+          class="px-6 py-4 border-t border-surface-border bg-surface-container-low flex justify-end gap-3 rounded-b-xl"
+        >
+          <button class="erp-btn-secondary is-md" onclick="closeModal()">
+            取消
+          </button>
+          <button class="erp-btn-primary is-md" onclick="closeModal()">
+            儲存
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Dropdown Logic
+      const userBtn = document.getElementById("userMenuBtn");
+      const userDropdown = document.getElementById("userDropdown");
+
+      userBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle("active");
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!userDropdown.contains(e.target) && e.target !== userBtn) {
+          userDropdown.classList.remove("active");
+        }
+      });
+
+      // Modal Logic
+      const modal = document.getElementById("formModal");
+
+      function openModal() {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden"; // Prevent background scrolling
+      }
+
+      function closeModal() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // Close modal on outside click
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Escape key to close modal
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
