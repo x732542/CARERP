@@ -1,0 +1,648 @@
+<!-- 車籍資料管理 -->
+
+<style>
+    /* ========== 全域基礎 ========== */
+    body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f4f6f9;
+        color: #1f2937;
+    }
+
+    /* ========== 頁面區 ========== */
+    .vehicle-page {
+        padding: 20px;
+    }
+
+    /* ========== 標題列 ========== */
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+    }
+
+    .page-header h2 {
+        /* font-size:22px; */
+        font-weight: 600;
+    }
+
+    /* 新增按鈕 */
+    .btn-add {
+        background: #111827;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: 0.2s;
+    }
+
+    .btn-add:hover {
+        background: #000;
+        transform: translateY(-1px);
+    }
+
+    /* ========== 卡片 ========== */
+    .card {
+        margin: 20px;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    /* 搜尋區 */
+    .card-header {
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        background: #fafafa;
+    }
+
+    .search-area {
+        display: flex;
+        gap: 10px;
+    }
+
+    .search-area input,
+    .search-area select {
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .search-area input:focus,
+    .search-area select:focus {
+        border-color: #3b82f6;
+    }
+
+    /* ========== 表格 ========== */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background: #f9fafb;
+        text-align: left;
+        padding: 14px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #000000;
+        border-bottom: 1px solid #eee;
+    }
+
+    td {
+        padding: 14px;
+        border-bottom: 1px solid #f1f1f1;
+        font-size: 14px;
+    }
+
+    tr:hover {
+        background: #f9fafb;
+    }
+
+    /* ========== 狀態標籤 ========== */
+    .status {
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+    }
+
+    /* 販售中 */
+    .status-sale {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    /* 已售出 */
+    .status-sold {
+        background: #e5e7eb;
+        color: #4b5563;
+    }
+
+    /* 整備中 */
+    .status-repair {
+        background: #fee2e2;
+        color: #dc2626;
+    }
+
+    /* ========== 操作按鈕 ========== */
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-start;
+    }
+
+    /* 編輯 */
+    .btn-edit {
+        background: #b9b9b9;
+        color: rgb(0, 0, 0);
+        border: none;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-edit:hover {
+        background: #7a7a7a;
+    }
+
+    /* 刪除 */
+    .btn-delete {
+        background: hsl(0, 100%, 80%);
+        color: rgb(134, 0, 0);
+        border: none;
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-delete:hover {
+        background: #d64040;
+    }
+
+    /* ========== Modal ========== */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+    }
+
+    .modal-content {
+        width: 900px;
+        max-width: 95%;
+        max-height: 90vh;
+
+        background: white;
+        border-radius: 14px;
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* modal header */
+    .modal-header {
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #eee;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    /* form */
+    .form-area {
+        padding: 20px;
+
+        overflow-y: auto;
+        flex: 1;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group label {
+        font-size: 13px;
+        margin-bottom: 6px;
+        color: #6b7280;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: #3b82f6;
+    }
+
+    /* footer */
+    .footer {
+        padding: 15px 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        border-top: 1px solid #eee;
+    }
+
+    /* 刪除按鈕 */
+    .btn-cancel {
+        background: #e5e7eb;
+        color: #374151;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .btn-cancel:hover {
+        background: #d1d5db;
+    }
+
+    /* 儲存按鈕 */
+    .btn-save {
+        background: #111827;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .btn-save:hover {
+        background: #000;
+    }
+</style>
+
+<div class="vehicle-page">
+
+    <!-- ===== Header ===== -->
+    <div class="page-header">
+
+        <h2>車籍資料</h2>
+
+        <button class="btn-add" onclick="openModal()">
+            ＋ 新增車籍資料
+        </button>
+
+    </div>
+
+    <!-- ===== 搜尋區 ===== -->
+    <div class="card">
+
+        <div class="card-header">
+
+            <div class="search-area">
+
+                <input type="text" placeholder="搜尋車牌 / VIN / 廠牌">
+
+                <select>
+                    <option>全部狀態</option>
+                    <option>販售中</option>
+                    <option>已售出</option>
+                    <option>整備中</option>
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ===== 表格 ===== -->
+    <div class="card">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>年份</th>
+                    <th>車牌</th>
+                    <th>廠牌</th>
+                    <th>車型</th>
+                    <th>車身顏色</th>
+                    <th>里程</th>
+                    <th>認證</th>
+                    <th>收車價格</th>
+                    <th>狀態</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+
+            <tbody id="carTableBody"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<!-- ===== Modal ===== -->
+<div class="modal" id="modal">
+
+    <div class="modal-content">
+
+        <!-- header -->
+        <div class="modal-header">
+
+            <div>車籍資料</div>
+
+            <div style="cursor:pointer;" onclick="closeModal()">✕</div>
+
+        </div>
+
+        <!-- form -->
+        <div class="form-area">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>年份</label>
+                    <input id="year">
+                </div>
+
+
+                <div class="form-group">
+                    <label>車牌號碼</label>
+                    <input id="number">
+                </div>
+
+                <div class="form-group">
+                    <label>廠牌</label>
+                    <input id="brand">
+                </div>
+
+                <div class="form-group">
+                    <label>車型</label>
+                    <input id="model">
+                </div>
+
+                <div class="form-group">
+                    <label>車身顏色</label>
+                    <input id="color">
+                </div>
+
+                <div class="form-group">
+                    <label>里程</label>
+                    <input id="mileage">
+                </div>
+
+                <div class="form-group">
+                    <label>車身號碼 (VIN)</label>
+                    <input id="vin">
+                </div>
+
+                <div class="form-group">
+                    <label>燃料種類</label>
+                    <select id="fuel">
+                        <option>汽油</option>
+                        <option>柴油</option>
+                        <option>油電</option>
+                        <option>電動</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>排氣量 (cc)</label>
+                    <input id="displacement">
+                </div>
+
+                <div class="form-group">
+                    <label>收車價格</label>
+                    <input id="price">
+                </div>
+
+                <div class="form-group">
+                    <label>是否可認證</label>
+                    <select id="certified">
+                        <option>可認證</option>
+                        <option>不可認證</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>狀態</label>
+                    <select id="status">
+                        <option>販售中</option>
+                        <option>已售出</option>
+                        <option>整備中</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="grid-column:1/3;">
+                    <label>備註 / 重點配備</label>
+                    <textarea id="equipment" rows="4"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- footer -->
+        <div class="footer">
+
+            <button class="btn-cancel" onclick="closeModal()">
+                取消
+            </button>
+
+            <button class="btn-save" onclick="saveCar()">
+                儲存
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    let carData = [
+        {
+            year: "2024",
+            number: "ABC-1234",
+            vin: "JTDBR32E000000001",
+            brand: "Toyota",
+            model: "Corolla Cross",
+            fuel: "汽油",
+            displacement: "2.0",
+            color: "白色",
+            mileage: "8000",
+            price: "798000",
+            certified: "可認證",
+            status: "販售中",
+            equipment: "ACC、環景、CarPlay"
+        }
+    ];
+
+    let editIndex = -1;
+
+    // ❌ 你原本呼叫但沒定義 → 這裡補上
+    renderTable();
+
+
+    /* =========================
+       ✔ 正確 renderTable()
+    ========================= */
+    function renderTable() {
+
+        let html = "";
+
+        carData.forEach((car, index) => {
+
+            let statusClass =
+                car.status === "販售中" ? "status-sale" :
+                    car.status === "已售出" ? "status-sold" :
+                        "status-repair";
+
+            html += `
+            <tr>
+
+                <td>${car.year}</td>
+                <td>${car.number}</td>
+
+                <td>${car.brand}</td>
+                <td>${car.model}</td>
+                <td>${car.color}</td>
+
+                <td>${car.mileage}</td>
+                <td>${car.certified}</td>
+                <td>${Number(car.price).toLocaleString()}</td>
+
+                <td>
+                    <span class="status ${statusClass}">
+                        ${car.status}
+                    </span>
+                </td>
+
+                <td>
+                    <div class="action-buttons">
+
+                        <button class="btn-edit" onclick="editCar(${index})">
+                            編輯
+                        </button>
+
+                        <button class="btn-delete" onclick="deleteCar(${index})">
+                            刪除
+                        </button>
+
+                    </div>
+                </td>
+
+            </tr>
+            `;
+        });
+
+        document.getElementById("carTableBody").innerHTML = html;
+    }
+
+
+    /* ===== 開啟 modal ===== */
+    function openModal() {
+
+        editIndex = -1;
+
+        document.getElementById("year").value = "";
+        document.getElementById("number").value = "";
+        document.getElementById("brand").value = "";
+        document.getElementById("model").value = "";
+        document.getElementById("color").value = "";
+        document.getElementById("mileage").value = "";
+        document.getElementById("price").value = "";
+        document.getElementById("vin").value = "";
+        document.getElementById("fuel").value = "汽油";
+        document.getElementById("displacement").value = "";
+
+        document.getElementById("certified").value = "可認證";
+        document.getElementById("status").value = "販售中";
+        document.getElementById("equipment").value = "";
+
+        document.getElementById("modal").style.display = "flex";
+    }
+
+
+    /* ===== 關閉 modal ===== */
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+
+
+    /* ===== 編輯 ===== */
+    function editCar(index) {
+
+        editIndex = index;
+
+        let car = carData[index];
+
+        document.getElementById("year").value = car.year;
+        document.getElementById("number").value = car.number;
+        document.getElementById("brand").value = car.brand;
+        document.getElementById("model").value = car.model;
+        document.getElementById("color").value = car.color;
+        document.getElementById("mileage").value = car.mileage;
+        document.getElementById("price").value = car.price;
+        document.getElementById("vin").value = car.vin;
+        document.getElementById("fuel").value = car.fuel;
+        document.getElementById("displacement").value = car.displacement;
+        document.getElementById("certified").value = car.certified;
+        document.getElementById("status").value = car.status;
+        document.getElementById("equipment").value = car.equipment || "";
+
+        document.getElementById("modal").style.display = "flex";
+    }
+
+
+    /* ===== 儲存 ===== */
+    function saveCar() {
+
+        let car = {
+            year: document.getElementById("year").value,
+            number: document.getElementById("number").value,
+            vin: document.getElementById("vin").value,
+            fuel: document.getElementById("fuel").value,
+            displacement: document.getElementById("displacement").value,
+            brand: document.getElementById("brand").value,
+            model: document.getElementById("model").value,
+            color: document.getElementById("color").value,
+            mileage: document.getElementById("mileage").value,
+            price: document.getElementById("price").value,
+            certified: document.getElementById("certified").value,
+            status: document.getElementById("status").value,
+            equipment: document.getElementById("equipment").value
+        };
+
+        if (editIndex >= 0) {
+            carData[editIndex] = car;
+        } else {
+            carData.push(car);
+        }
+
+        renderTable();
+        closeModal();
+    }
+
+
+    /* ===== 刪除 ===== */
+    function deleteCar(index) {
+
+        if (confirm("確定刪除？")) {
+            carData.splice(index, 1);
+            renderTable();
+        }
+    }
+
+</script>

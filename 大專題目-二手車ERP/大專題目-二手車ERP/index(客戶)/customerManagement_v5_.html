@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二手車ERP系統|客戶管理</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        /* ===== 前端介面固定框架樣式 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden;
+            background: #f5f6fa;
+        }
+
+        /* Header */
+        .header {
+            height: 70px;
+            background: #212529;
+            color: white;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 25px;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            z-index: 999;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-info {
+            text-align: right;
+        }
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        .user-role {
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .setting-btn {
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: calc(100vh - 70px);
+
+            background: #343a40;
+
+            position: fixed;
+            top: 70px;
+            left: 0;
+
+            overflow-y: auto;
+        }
+
+        .menu-title {
+            color: #adb5bd;
+            padding: 15px 20px;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .menu-item {
+            color: white;
+            padding: 15px 20px;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            transition: .3s;
+        }
+
+        .menu-item:hover {
+            background: #495057;
+        }
+
+        .menu-item.active {
+            background: #0d6efd;
+        }
+
+        /* Content */
+        .content {
+            margin-top: 70px;
+            margin-left: 250px;
+
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+
+            padding: 25px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .card-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .08);
+        }
+
+        .dashboard-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .dashboard-card h3 {
+            margin-top: 10px;
+            color: #0d6efd;
+        }
+
+        /* ===== 客戶管理頁面自訂樣式 ===== */
+        .mousepattern {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="logo">
+            🚗 Car ERP 系統 (我們的網站的名稱)
+        </div>
+
+        <div class="user-area">
+
+            <!-- header 齒輪設定欄位 -->
+            <div class="dropdown">
+                <i class="fa-solid fa-gear setting-btn" data-bs-toggle="dropdown"></i>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-solid fa-key me-2"></i>
+                            變更密碼
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-solid fa-right-from-bracket me-2"></i>
+                            登出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- header 名稱 + 職稱 -->
+            <div class="user-info">
+                <div class="user-name">王大明</div>
+                <div class="user-role">業務(職稱)</div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="menu-item" data-page="儀錶板">
+            <i class="fa-solid fa-chart-line"></i>
+            儀錶板
+        </div>
+
+        <div class="menu-item" data-page="車輛管理" id="allCar">
+            <i class="fa-solid fa-car"></i>
+            車輛管理
+        </div>
+
+        <div class="menu-item active" data-page="客戶管理">
+            <i class="fa-solid fa-users"></i>
+            客戶管理
+        </div>
+
+        <div class="menu-item" data-page="訂單管理">
+            <i class="fa-solid fa-file-invoice"></i>
+            訂單管理
+        </div>
+
+        <div class="menu-item" data-page="業務管理">
+            <i class="fa-solid fa-user-tie"></i>
+            業務管理
+        </div>
+
+        <div class="menu-item" data-page="採購管理">
+            <i class="fa-solid fa-cart-shopping"></i>
+            採購管理
+        </div>
+
+        <div class="menu-item" data-page="車籍資料" id="carHistory">
+            <i class="fa-solid fa-id-card"></i>
+            車籍資料
+        </div>
+
+        <div class="menu-item" data-page="文件管理">
+            <i class="fa-solid fa-folder-open"></i>
+            文件管理
+        </div>
+
+    </aside>
+
+    <!-- Content -->
+    <main class="content">
+
+        <div id="pageContent">
+
+            <!-- ===== 客戶管理頁面內容（預設顯示） ===== -->
+            <div class="page-title">客戶管理</div>
+
+            <!-- 新增客戶按鈕（靠右） -->
+            <button type="button" class="btn btn-warning fw-bold mb-3 float-end"
+                data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                + 新增客戶資料
+            </button>
+
+            <!-- 搜尋列 -->
+            <div class="row my-3 align-items-center">
+                <div class="col-auto">
+                    <label class="fw-bold">搜尋文字</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" placeholder="客戶姓名、聯絡電話">
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-dark fw-bold">搜尋</button>
+                </div>
+            </div>
+
+            <!-- 客戶資料表格 -->
+            <div class="table-responsive my-4">
+                <table class="table table-striped table-hover table-bordered align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" style="white-space: nowrap;">建立日期</th>
+                            <th scope="col" style="white-space: nowrap;">客戶姓名</th>
+                            <th scope="col" style="white-space: nowrap;">聯絡電話</th>
+                            <th scope="col" style="white-space: nowrap;">偏好車型</th>
+                            <th scope="col" style="white-space: nowrap;">預算區間</th>
+                            <th scope="col" style="white-space: nowrap;">狀態</th>
+                            <th scope="col" style="white-space: nowrap;">客源管道</th>
+                            <th scope="col" style="white-space: nowrap;">負責業務</th>
+                            <th scope="col" style="white-space: nowrap;">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 第一筆客戶 -->
+                        <tr>
+                            <td>2026-03-09</td>
+                            <td>陳大明</td>
+                            <td>0912-345678</td>
+                            <td>BMW 320i</td>
+                            <td>100-120 萬</td>
+                            <td><span class="badge bg-warning text-dark">邀約賞車</span></td>
+                            <td>8891車介</td>
+                            <td>王小明</td>
+                            <td>
+                                <button class="btn btn-sm btn-info fw-bold text-white"
+                                    data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                                    查看客戶資料
+                                </button>
+                            </td>
+                        </tr>
+                        <!-- 第二筆客戶 -->
+                        <tr>
+                            <td>2026-03-08</td>
+                            <td>林阿南</td>
+                            <td>0987-654321</td>
+                            <td>Toyota RAV4</td>
+                            <td>50-70 萬</td>
+                            <td><span class="badge bg-secondary">初步洽談</span></td>
+                            <td>FB粉絲團</td>
+                            <td>陳小華</td>
+                            <td>
+                                <button class="btn btn-sm btn-info fw-bold text-white"
+                                    data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+                                    查看客戶資料
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div><!-- end #pageContent -->
+
+    </main>
+
+
+    <!-- ===== Bootstrap Modal 彈出式新增客戶表單 ===== -->
+    <div class="modal fade" id="addCustomerModal" tabindex="-1"
+        aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- 視窗標頭 -->
+                <div class="modal-header bg-light">
+                    <h5 class="modal-title fw-bold" id="addCustomerModalLabel">表單填寫 (新增客戶資料)</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- 視窗內容/表單主體 -->
+                <div class="modal-body p-4">
+                    <form id="customerForm">
+                        <h5 class="fw-bold mb-4 text-secondary">表單項目</h5>
+
+                        <!-- 建立日期 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="topic" class="col-sm-3 col-form-label text-sm-end">建立日期：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="topic" name="topic">
+                            </div>
+                        </div>
+
+                        <!-- 客戶姓名 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="customerName" class="col-sm-3 col-form-label text-sm-end">*客戶姓名：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="customerName" name="name" required>
+                            </div>
+                        </div>
+
+                        <!-- 聯絡電話 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="customerPhone" class="col-sm-3 col-form-label text-sm-end">*聯絡電話：</label>
+                            <div class="col-sm-9">
+                                <input type="tel" class="form-control" id="customerPhone" name="phone" required>
+                            </div>
+                        </div>
+
+                        <!-- 客戶類別 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="customerType" class="col-sm-3 col-form-label text-sm-end">客戶類別：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="customerType" name="customerType">
+                            </div>
+                        </div>
+
+                        <!-- 偏好車型 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="carModel" class="col-sm-3 col-form-label text-sm-end">#偏好車型：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="carModel" name="carModel">
+                            </div>
+                        </div>
+
+                        <!-- 預算區間 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="budget" class="col-sm-3 col-form-label text-sm-end">#預算區間：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="budget" name="budget">
+                            </div>
+                        </div>
+
+                        <!-- 出廠年份區間 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="yearRange" class="col-sm-3 col-form-label text-sm-end">出廠年份區間：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="yearRange" name="yearRange">
+                            </div>
+                        </div>
+
+                        <!-- 顏色偏好 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="colorPref" class="col-sm-3 col-form-label text-sm-end">顏色偏好：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="colorPref" name="colorPref">
+                            </div>
+                        </div>
+
+                        <!-- 付款方式 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="payment" class="col-sm-3 col-form-label text-sm-end">付款方式：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="payment" name="payment">
+                            </div>
+                        </div>
+
+                        <!-- 貸款協助需求 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="loanHelp" class="col-sm-3 col-form-label text-sm-end">貸款協助需求：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="loanHelp" name="loanHelp">
+                            </div>
+                        </div>
+
+                        <!-- 是否需要舊換新 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="tradeIn" class="col-sm-3 col-form-label text-sm-end">是否需要舊換新：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="tradeIn" name="tradeIn">
+                            </div>
+                        </div>
+
+                        <!-- 負責業務 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="salesPerson" class="col-sm-3 col-form-label text-sm-end">負責業務：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="salesPerson" name="salesPerson">
+                            </div>
+                        </div>
+
+                        <!-- 目前進度 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="status" class="col-sm-3 col-form-label text-sm-end">目前進度：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="status" name="status">
+                            </div>
+                        </div>
+
+                        <!-- 客源管道 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="source" class="col-sm-3 col-form-label text-sm-end">客源管道：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="source" name="source">
+                            </div>
+                        </div>
+
+                        <!-- 備註欄 -->
+                        <div class="row mb-3 align-items-center">
+                            <label for="noteField" class="col-sm-3 col-form-label text-sm-end">備註欄：</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="noteField" name="note">
+                            </div>
+                        </div>
+
+                        <div>
+                            <p>
+                                備註: (1)*為必填項目<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2)#符號中，意象車型與預算區間至少有一項須擇一填寫
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- 視窗頁尾按鈕 -->
+                <div class="modal-footer bg-light">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="submit" form="customerForm" class="btn btn-info text-white fw-bold">送出表單</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ===== 客戶管理頁面的 HTML（點其他選單時會被取代，點回客戶管理時恢復） =====
+        const customerPageHTML = document.getElementById("pageContent").innerHTML;
+
+        // ===== Sidebar 選單切換邏輯 =====
+        const menuItems = document.querySelectorAll(".menu-item");
+        const pageContent = document.getElementById("pageContent");
+
+        menuItems.forEach(item => {
+            item.addEventListener("click", function () {
+
+                // 取消所有 active
+                menuItems.forEach(x => x.classList.remove("active"));
+
+                // 給目前點擊的選單 active
+                this.classList.add("active");
+
+                const pageName = this.dataset.page;
+
+                if (pageName === "客戶管理") {
+                    // 切回客戶管理頁面時，還原完整內容
+                    pageContent.innerHTML = customerPageHTML;
+                } else {
+                    // 其他頁面顯示佔位內容
+                    pageContent.innerHTML = `
+                        <div class="page-title">${pageName}</div>
+                        <div class="card-box">
+                            <p>這裡放置「${pageName}」功能內容</p>
+                        </div>`;
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
