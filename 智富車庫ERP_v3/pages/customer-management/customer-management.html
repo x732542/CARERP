@@ -189,6 +189,10 @@
         flex-wrap: nowrap;
       }
 
+      select.appearance-none {
+        background-image: none !important;
+      }
+
       .modal-backup {
         position: fixed;
         top: 0; left: 0;
@@ -197,8 +201,8 @@
         justify-content: center;
         align-items: center;
       }
-      .hidden { display: none !important; }
-      .flex { display: flex !important; }
+      .hidden { display: none ; }
+      .flex { display: flex ; }
     </style>
     <link href="../../assets/css/components.css" rel="stylesheet" />
   </head>
@@ -211,50 +215,49 @@
     <script src="../../assets/layouts/sidebar.js"></script>
     <!-- Main Content Canvas -->
     <div class="flex-1 md:ml-[280px] flex flex-col min-h-screen">
-      <!-- TopAppBar -->
+     <!-- TopAppBar Component (Anchored) -->
       <header
-        class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] h-[70px] bg-sidebar-bg border-b border-primary-container flex justify-between items-center px-4 md:px-margin-desktop z-10 shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
+        class="h-[70px] bg-sidebar-bg border-b border-primary-container flex items-center justify-between px-margin-desktop sticky top-0 z-30 w-full shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
       >
         <div class="ml-auto flex items-center justify-end gap-4">
           <button
-            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+            class="p-2 text-on-primary-container hover:text-gold-accent transition-colors rounded-full hover:bg-primary-container relative"
           >
-            <span class="material-symbols-outlined" data-icon="notifications"
-              >notifications</span
-            >
+            <span class="material-symbols-outlined">notifications</span>
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"
+            ></span>
           </button>
           <button
-            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+            class="p-2 text-on-primary-container hover:text-gold-accent transition-colors rounded-full hover:bg-primary-container"
           >
-            <span class="material-symbols-outlined" data-icon="settings"
-              >settings</span
-            >
+            <span class="material-symbols-outlined">settings</span>
           </button>
           <div class="h-8 w-px bg-primary-container"></div>
-          <div class="flex items-center gap-3 cursor-pointer">
+          <button
+            class="flex items-center gap-3 hover:bg-primary-container p-1.5 rounded-full pr-4 transition-colors"
+          >
             <img
-              alt="王大明"
+              alt="Profile"
               class="w-10 h-10 rounded-full object-cover border border-primary-container"
-              data-alt="A professional headshot of an Asian male automotive sales executive wearing a crisp white shirt and dark tailored suit jacket. The background is a slightly blurred, high-end, well-lit modern car showroom interior. Soft, flattering lighting highlights a confident, approachable expression, consistent with luxury brand representation."
+              data-alt="A professional headshot of an Asian male executive in a sharp navy suit, clean corporate background, high key lighting, crisp focus, projecting authority and approachability suitable for an enterprise dashboard profile picture."
               src="../../assets/images/avatar-default.jpg"
             />
             <div class="text-left hidden md:block">
-              <p class="font-label-md text-label-md text-on-primary">王大明</p>
-              <p class="font-label-sm text-label-sm text-on-primary-container">
-                業務主管
+              <p class="text-label-md font-label-md text-on-primary">王大明</p>
+              <p class="text-[10px] font-label-sm text-on-primary-container">
+                系統管理員
               </p>
             </div>
-          </div>
+          </button>
         </div>
       </header>
       <!-- Page Content -->
       <main
-        class="flex-1 overflow-x-hidden erp-page-a erp-page-container is-header-offset"
+        class="w-full erp-page-a erp-page-container"
       >
         <!-- Header Section -->
-        <div
-          class="erp-main-page-header flex flex-col md:flex-row md:items-end justify-between gap-6"
-        >
+        <div class="erp-main-page-header flex justify-between items-end">
           <div>
             <h3 class="erp-main-page-title">客戶管理</h3>
             <p class="erp-main-page-desc">管理與追蹤客戶資料</p>
@@ -276,8 +279,9 @@
         <div
           class="bg-surface-elevated rounded-xl p-6 ambient-shadow border border-surface-border"
         >
-          <div class="flex flex-col gap-4">
-            <div class="erp-search-wrapper erp-header-search-wrapper">
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Search Input -->
+            <div class="erp-search-wrapper erp-header-search-wrapper w-full sm:w-64">
               <input
                 type="text"
                 class="erp-search erp-header-search"
@@ -288,70 +292,54 @@
                 >search</span
               >
             </div>
-
-            <div
-              class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-3"
-            >
-              <div
-                class="grid grid-cols-1 md:grid-cols-3 gap-3 flex-1 xl:max-w-[780px]"
+            <!-- Status Dropdown -->
+            <div class="relative w-full sm:w-auto">
+              <select class="erp-filter-control w-full sm:w-36">
+                <option>全部狀態</option>
+                <option>初步洽談</option>
+                <option>已預約賞車</option>
+                <option>考慮中</option>
+                <option>已簽約付款</option>
+                <option>已交車完成</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
+                >expand_more</span
               >
-                <div class="relative">
-                  <select class="erp-filter-control">
-                    <option>全部狀態</option>
-                    <option>初步洽談</option>
-                    <option>已預約賞車</option>
-                    <option>考慮中</option>
-                    <option>已簽約付款</option>
-                    <option>已交車完成</option>
-                  </select>
-                  <span
-                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
-                    >expand_more</span
-                  >
-                </div>
-
-                <div class="relative">
-                  <select class="erp-filter-control">
-                    <option>全部業務</option>
-                    <option>王大明</option>
-                    <option>李佳玲</option>
-                  </select>
-                  <span
-                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
-                    >expand_more</span
-                  >
-                </div>
-
-                <div class="relative">
-                  <select class="erp-filter-control">
-                    <option>全部來源</option>
-                    <option>8891汽車網</option>
-                    <option>Facebook 粉絲專頁</option>
-                    <option>LINE 官方帳號</option>
-                    <option>客戶介紹</option>
-                  </select>
-                  <span
-                    class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
-                    >expand_more</span
-                  >
-                </div>
-              </div>
-
-              <div class="flex items-center gap-2 shrink-0 xl:pl-4">
-                <button class="erp-btn-primary is-lg">
-                  <span class="material-symbols-outlined text-[18px]"
-                    >search</span
-                  >
-                  搜尋
-                </button>
-                <button class="erp-btn-secondary is-lg">
-                  <span class="material-symbols-outlined text-[18px]"
-                    >refresh</span
-                  >
-                  重設
-                </button>
-              </div>
             </div>
+            <!-- Sales Dropdown -->
+            <div class="relative w-full sm:w-auto">
+              <select class="erp-filter-control w-full sm:w-36">
+                <option>全部業務</option>
+                <option>王大明</option>
+                <option>李佳玲</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
+                >expand_more</span
+              >
+            </div>
+            <!-- Source Dropdown -->
+            <div class="relative w-full sm:w-auto">
+              <select class="erp-filter-control w-full sm:w-44">
+                <option>全部來源</option>
+                <option>8891汽車網</option>
+                <option>Facebook 粉絲專頁</option>
+                <option>LINE 官方帳號</option>
+                <option>客戶介紹</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#9b8b83] pointer-events-none text-[20px]"
+                >expand_more</span
+              >
+            </div>
+            <!-- Spacer -->
+            <div class="flex-1"></div>
+            <!-- Search Button -->
+            <button class="erp-btn-primary is-lg w-full sm:w-auto">
+              <span class="material-symbols-outlined text-[18px]">search</span>
+              搜尋
+            </button>
           </div>
         </div>
         <!-- Data Table Card -->
@@ -366,6 +354,11 @@
                 <tr
                   class="border-b border-surface-border bg-surface-container-low/50 erp-table-header"
                 >
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
+                  >
+                    客戶編號
+                  </th>
                   <th
                     class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
                   >
@@ -385,11 +378,6 @@
                     class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
                   >
                     偏好車型
-                  </th>
-                  <th
-                    class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
-                  >
-                    預算範圍
                   </th>
                   <th
                     class="py-4 px-6 font-label-md text-label-md text-primary whitespace-nowrap"
@@ -420,11 +408,11 @@
                 <tr
                   class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
                 >
+                  <td class="py-4 px-6 text-on-surface-variant whitespace-nowrap">C001</td>
                   <td class="py-4 px-6 whitespace-nowrap">2023-10-24</td>
                   <td class="py-4 px-6 font-medium">王小明</td>
                   <td class="py-4 px-6">0912-345-678</td>
                   <td class="py-4 px-6">S-Class 350d</td>
-                  <td class="py-4 px-6">400 - 450</td>
                   <td class="py-4 px-6">
                     <span class="erp-badge is-neutral">初步洽談</span>
                   </td>
@@ -434,19 +422,29 @@
                     <div class="erp-table-actions justify-center">
                       <button
                         class="erp-btn-sm is-secondary"
-                        onclick="
-                          window.location.href =
-                            '../sales-center/salesperson-customers.html?customerId=C001'
-                        "
+                        onclick="window.location.href='../sales-center/salesperson-customers.html?customerId=C001'"
                       >
                         查看客戶
                       </button>
                       <button
                         class="erp-btn-sm is-primary"
-                        onclick="
-                          window.location.href =
-                            './customer-create-modal.html?mode=edit&id=C001'
-                        "
+                        data-edit-customer
+                        data-id="C001"
+                        data-date="2023-10-24"
+                        data-category=""
+                        data-name="王小明"
+                        data-phone="0912-345-678"
+                        data-car="S-Class 350d"
+                        data-budget="400 - 450"
+                        data-year=""
+                        data-color=""
+                        data-payment=""
+                        data-loan=""
+                        data-trade=""
+                        data-sales="王大明"
+                        data-status="初步洽談"
+                        data-source="8891汽車網"
+                        data-note=""
                       >
                         編輯
                       </button>
@@ -457,35 +455,43 @@
                 <tr
                   class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
                 >
+                  <td class="py-4 px-6 text-on-surface-variant whitespace-nowrap">C002</td>
                   <td class="py-4 px-6 whitespace-nowrap">2023-10-23</td>
                   <td class="py-4 px-6 font-medium">林佳玲</td>
                   <td class="py-4 px-6">0988-123-456</td>
                   <td class="py-4 px-6">Macan S</td>
-                  <td class="py-4 px-6">350 - 400</td>
                   <td class="py-4 px-6">
                     <span class="erp-badge is-warning">已預約賞車</span>
                   </td>
-                  <td class="py-4 px-6 text-on-surface-variant">
-                    Facebook 粉絲專頁
-                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">Facebook 粉絲專頁</td>
                   <td class="py-4 px-6">王大明</td>
                   <td class="py-4 px-6 text-center">
                     <div class="erp-table-actions justify-center">
                       <button
                         class="erp-btn-sm is-secondary"
-                        onclick="
-                          window.location.href =
-                            '../sales-center/salesperson-customers.html?customerId=C002'
-                        "
+                        onclick="window.location.href='../sales-center/salesperson-customers.html?customerId=C002'"
                       >
                         查看客戶
                       </button>
                       <button
                         class="erp-btn-sm is-primary"
-                        onclick="
-                          window.location.href =
-                            './customer-create-modal.html?mode=edit&id=C002'
-                        "
+                        data-edit-customer
+                        data-id="C002"
+                        data-date="2023-10-23"
+                        data-category=""
+                        data-name="林佳玲"
+                        data-phone="0988-123-456"
+                        data-car="Macan S"
+                        data-budget="350 - 400"
+                        data-year=""
+                        data-color=""
+                        data-payment=""
+                        data-loan=""
+                        data-trade=""
+                        data-sales="王大明"
+                        data-status="已預約賞車"
+                        data-source="Facebook 粉絲專頁"
+                        data-note=""
                       >
                         編輯
                       </button>
@@ -496,35 +502,43 @@
                 <tr
                   class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
                 >
+                  <td class="py-4 px-6 text-on-surface-variant whitespace-nowrap">C003</td>
                   <td class="py-4 px-6 whitespace-nowrap">2023-10-21</td>
                   <td class="py-4 px-6 font-medium">張建國</td>
                   <td class="py-4 px-6">0933-987-654</td>
                   <td class="py-4 px-6">Cayenne Coupe</td>
-                  <td class="py-4 px-6">500萬以上</td>
                   <td class="py-4 px-6">
                     <span class="erp-badge is-neutral">考慮中</span>
                   </td>
-                  <td class="py-4 px-6 text-on-surface-variant">
-                    LINE 官方帳號
-                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">LINE 官方帳號</td>
                   <td class="py-4 px-6">李佳玲</td>
                   <td class="py-4 px-6 text-center">
                     <div class="erp-table-actions justify-center">
                       <button
                         class="erp-btn-sm is-secondary"
-                        onclick="
-                          window.location.href =
-                            '../sales-center/salesperson-customers.html?customerId=C003'
-                        "
+                        onclick="window.location.href='../sales-center/salesperson-customers.html?customerId=C003'"
                       >
                         查看客戶
                       </button>
                       <button
                         class="erp-btn-sm is-primary"
-                        onclick="
-                          window.location.href =
-                            './customer-create-modal.html?mode=edit&id=C003'
-                        "
+                        data-edit-customer
+                        data-id="C003"
+                        data-date="2023-10-21"
+                        data-category=""
+                        data-name="張建國"
+                        data-phone="0933-987-654"
+                        data-car="Cayenne Coupe"
+                        data-budget="500萬以上"
+                        data-year=""
+                        data-color=""
+                        data-payment=""
+                        data-loan=""
+                        data-trade=""
+                        data-sales="李佳玲"
+                        data-status="考慮中"
+                        data-source="LINE 官方帳號"
+                        data-note=""
                       >
                         編輯
                       </button>
@@ -535,11 +549,11 @@
                 <tr
                   class="border-b border-surface-border hover:bg-surface-container-low/30 transition-colors"
                 >
+                  <td class="py-4 px-6 text-on-surface-variant whitespace-nowrap">C004</td>
                   <td class="py-4 px-6 whitespace-nowrap">2023-10-18</td>
                   <td class="py-4 px-6 font-medium">黃先生</td>
                   <td class="py-4 px-6">0955-444-333</td>
                   <td class="py-4 px-6">G-Class 500</td>
-                  <td class="py-4 px-6">800萬以上</td>
                   <td class="py-4 px-6">
                     <span class="erp-badge is-success">已簽約付款</span>
                   </td>
@@ -549,19 +563,29 @@
                     <div class="erp-table-actions justify-center">
                       <button
                         class="erp-btn-sm is-secondary"
-                        onclick="
-                          window.location.href =
-                            '../sales-center/salesperson-customers.html?customerId=C004'
-                        "
+                        onclick="window.location.href='../sales-center/salesperson-customers.html?customerId=C004'"
                       >
                         查看客戶
                       </button>
                       <button
                         class="erp-btn-sm is-primary"
-                        onclick="
-                          window.location.href =
-                            './customer-create-modal.html?mode=edit&id=C004'
-                        "
+                        data-edit-customer
+                        data-id="C004"
+                        data-date="2023-10-18"
+                        data-category=""
+                        data-name="黃先生"
+                        data-phone="0955-444-333"
+                        data-car="G-Class 500"
+                        data-budget="800萬以上"
+                        data-year=""
+                        data-color=""
+                        data-payment=""
+                        data-loan=""
+                        data-trade=""
+                        data-sales="王大明"
+                        data-status="已簽約付款"
+                        data-source="客戶介紹"
+                        data-note=""
                       >
                         編輯
                       </button>
@@ -570,35 +594,43 @@
                 </tr>
                 <!-- Row 5 -->
                 <tr class="hover:bg-surface-container-low/30 transition-colors">
+                  <td class="py-4 px-6 text-on-surface-variant whitespace-nowrap">C005</td>
                   <td class="py-4 px-6 whitespace-nowrap">2023-10-10</td>
                   <td class="py-4 px-6 font-medium">陳怡君</td>
                   <td class="py-4 px-6">0922-555-888</td>
                   <td class="py-4 px-6">GLE 300d</td>
-                  <td class="py-4 px-6">300 - 350</td>
                   <td class="py-4 px-6">
                     <span class="erp-badge is-success">已交車完成</span>
                   </td>
-                  <td class="py-4 px-6 text-on-surface-variant">
-                    WeWanted 購好幫
-                  </td>
+                  <td class="py-4 px-6 text-on-surface-variant">WeWanted 購好幫</td>
                   <td class="py-4 px-6">王大明</td>
                   <td class="py-4 px-6 text-center">
                     <div class="erp-table-actions justify-center">
                       <button
                         class="erp-btn-sm is-secondary"
-                        onclick="
-                          window.location.href =
-                            '../sales-center/salesperson-customers.html?customerId=C005'
-                        "
+                        onclick="window.location.href='../sales-center/salesperson-customers.html?customerId=C005'"
                       >
                         查看客戶
                       </button>
                       <button
                         class="erp-btn-sm is-primary"
-                        onclick="
-                          window.location.href =
-                            './customer-create-modal.html?mode=edit&id=C005'
-                        "
+                        data-edit-customer
+                        data-id="C005"
+                        data-date="2023-10-10"
+                        data-category=""
+                        data-name="陳怡君"
+                        data-phone="0922-555-888"
+                        data-car="GLE 300d"
+                        data-budget="300 - 350"
+                        data-year=""
+                        data-color=""
+                        data-payment=""
+                        data-loan=""
+                        data-trade=""
+                        data-sales="王大明"
+                        data-status="已交車完成"
+                        data-source="WeWanted 購好幫"
+                        data-note=""
                       >
                         編輯
                       </button>
@@ -690,7 +722,10 @@
               <div class="space-y-1.5">
                 <label class="font-label-md text-label-md text-on-surface-variant block">客戶類別</label>
                 <div class="relative">
-                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                  <select class="w-full bg-surface-container-lowest border 
+                  border-outline-variant rounded px-4 py-2.5 font-body-md 
+                  text-body-md text-on-surface focus:border-secondary focus:ring-1 
+                  focus:ring-secondary outline-none transition-all appearance-none">
                     <option value="">請選擇</option>
                     <option>潛在客戶</option>
                     <option>意向客戶</option>
@@ -789,10 +824,72 @@
             </div>
           </div>
 
+          <!-- 業務資訊區塊 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">業務資訊</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">負責業務</label>
+                <div class="relative">
+                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇業務</option>
+                    <option>王大明</option>
+                    <option>李佳玲</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">狀態</label>
+                <div class="relative">
+                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇狀態</option>
+                    <option>初步洽談</option>
+                    <option>已預約賞車</option>
+                    <option>考慮中</option>
+                    <option>已簽約付款</option>
+                    <option>已交車完成</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">客源管道</label>
+                <div class="relative">
+                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇來源</option>
+                    <option>8891汽車網</option>
+                    <option>Facebook 粉絲專頁</option>
+                    <option>LINE 官方帳號</option>
+                    <option>客戶介紹</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 備註欄區塊 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">備註欄</h3>
+            </div>
+            <div class="space-y-1.5">
+              <label class="font-label-md text-label-md text-on-surface-variant block sr-only">備註內容</label>
+              <textarea
+                rows="4"
+                placeholder="填寫客戶備註、特殊需求或其他說明..."
+                class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all resize-y"
+              ></textarea>
+            </div>
+          </div>
+
         </form>
       </div>
-
-      <!-- Modal Footer -->
       <div class="px-8 py-5 border-t border-surface-border bg-surface flex items-center justify-between gap-4 rounded-b-xl">
         <p class="font-body-sm text-body-sm text-on-surface-variant">標示「*」為必填欄位，「#」為擇一填寫欄位</p>
         <div class="flex gap-4">
@@ -800,6 +897,207 @@
           <button type="button" class="erp-btn-primary is-lg">
             <span class="material-symbols-outlined text-[18px]">save</span>
             儲存客戶
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 編輯客戶 Modal -->
+  <div id="editCustomerModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-tertiary/60 backdrop-blur-sm overflow-y-auto modal-backup">
+    <div class="bg-surface-elevated w-full max-w-2xl rounded-xl shadow-2xl border border-surface-border flex flex-col max-h-[90vh] my-auto">
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between px-8 py-6 border-b border-surface-border bg-surface-container-low rounded-t-xl">
+        <div>
+          <h2 class="font-headline-md text-headline-md text-on-surface">編輯客戶資料</h2>
+          <p class="font-body-sm text-body-sm text-on-surface-variant mt-1" id="editCustomerSubtitle">—</p>
+        </div>
+        <button data-modal-close type="button" class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded-full hover:bg-surface-variant">
+          <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+      </div>
+      <!-- Modal Body -->
+      <div class="flex-1 overflow-y-auto px-8 py-8 bg-surface">
+        <form id="editCustomerForm" class="space-y-5">
+          <!-- 基本資料 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">基本資料</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">客戶編號</label>
+                <input id="edit-id" type="text" readonly class="w-full bg-surface-container-low border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface-variant outline-none" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">建立日期</label>
+                <input id="edit-date" type="date" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">客戶類別</label>
+                <div class="relative">
+                  <select id="edit-category" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇</option>
+                    <option>潛在客戶</option>
+                    <option>意向客戶</option>
+                    <option>成交客戶</option>
+                    <option>舊客回購</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block"><span class="text-error mr-0.5">*</span>客戶姓名</label>
+                <input id="edit-name" type="text" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block"><span class="text-error mr-0.5">*</span>聯絡電話</label>
+                <input id="edit-phone" type="tel" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+            </div>
+          </div>
+          <!-- 購車偏好 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">購車偏好</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">偏好車型</label>
+                <input id="edit-car" type="text" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">預算區間</label>
+                <input id="edit-budget" type="text" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">出廠年份區間</label>
+                <input id="edit-year" type="text" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">顏色偏好</label>
+                <input id="edit-color" type="text" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all" />
+              </div>
+            </div>
+          </div>
+          <!-- 財務需求 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">財務需求</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">付款方式</label>
+                <div class="relative">
+                  <select id="edit-payment" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇</option>
+                    <option>全額付清</option>
+                    <option>銀行貸款</option>
+                    <option>分期付款</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">是否有貸款協助需求</label>
+                <div class="relative">
+                  <select id="edit-loan" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇</option>
+                    <option>是</option>
+                    <option>否</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">是否需要舊換新</label>
+                <div class="relative">
+                  <select id="edit-trade" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇</option>
+                    <option>是</option>
+                    <option>否</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 業務資訊 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">業務資訊</h3>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">負責業務</label>
+                <div class="relative">
+                  <select id="edit-sales" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇業務</option>
+                    <option>王大明</option>
+                    <option>李佳玲</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">狀態</label>
+                <div class="relative">
+                  <select id="edit-status" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇狀態</option>
+                    <option>初步洽談</option>
+                    <option>已預約賞車</option>
+                    <option>考慮中</option>
+                    <option>已簽約付款</option>
+                    <option>已交車完成</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+              <div class="space-y-1.5">
+                <label class="font-label-md text-label-md text-on-surface-variant block">客源管道</label>
+                <div class="relative">
+                  <select id="edit-source" class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all appearance-none">
+                    <option value="">請選擇來源</option>
+                    <option>8891汽車網</option>
+                    <option>Facebook 粉絲專頁</option>
+                    <option>LINE 官方帳號</option>
+                    <option>客戶介紹</option>
+                    <option>WeWanted 購好幫</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 備註欄 -->
+          <div>
+            <div class="flex items-center gap-2 pb-2 mb-4 border-b border-surface-border">
+              <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+              <h3 class="font-label-md text-label-md text-secondary uppercase tracking-wider">備註欄</h3>
+            </div>
+            <div class="space-y-1.5">
+              <textarea
+                id="edit-note"
+                rows="4"
+                placeholder="填寫客戶備註、特殊需求或其他說明..."
+                class="w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50 focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all resize-y"
+              ></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- Modal Footer -->
+      <div class="px-8 py-5 border-t border-surface-border bg-surface flex items-center justify-between gap-4 rounded-b-xl">
+        <p class="font-body-sm text-body-sm text-on-surface-variant">標示「*」為必填欄位</p>
+        <div class="flex gap-4">
+          <button type="button" data-modal-close class="erp-btn-secondary is-lg">取消</button>
+          <button type="button" class="erp-btn-primary is-lg">
+            <span class="material-symbols-outlined text-[18px]">save</span>
+            儲存變更
           </button>
         </div>
       </div>
@@ -829,6 +1127,41 @@
           modal.classList.remove("flex");
           modal.classList.add("hidden");
           document.body.style.overflow = "";
+        });
+      });
+
+      // 編輯按鈕：帶入資料並開啟 editCustomerModal
+      document.querySelectorAll("[data-edit-customer]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const d = btn.dataset;
+          const modal = document.getElementById("editCustomerModal");
+          // 更新副標題
+          document.getElementById("editCustomerSubtitle").textContent =
+            d.id + "　" + d.name;
+          // 帶入欄位
+          const setVal = (id, val) => {
+            const el = document.getElementById(id);
+            if (el) el.value = val || "";
+          };
+          setVal("edit-id", d.id);
+          setVal("edit-date", d.date);
+          setVal("edit-category", d.category);
+          setVal("edit-name", d.name);
+          setVal("edit-phone", d.phone);
+          setVal("edit-car", d.car);
+          setVal("edit-budget", d.budget);
+          setVal("edit-year", d.year);
+          setVal("edit-color", d.color);
+          setVal("edit-payment", d.payment);
+          setVal("edit-loan", d.loan);
+          setVal("edit-trade", d.trade);
+          setVal("edit-sales", d.sales);
+          setVal("edit-status", d.status);
+          setVal("edit-source", d.source);
+          setVal("edit-note", d.note);
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          document.body.style.overflow = "hidden";
         });
       });
 

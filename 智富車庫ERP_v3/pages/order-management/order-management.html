@@ -330,7 +330,7 @@
                   <div class="space-y-1.5">
                     <label class="font-label-md text-label-md text-on-surface-variant block">付款方式</label>
                     <div class="relative">
-                      <select class="w-full appearance-none bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all pr-10">
+                      <select class="appearance-none bg-none w-full bg-surface-container-lowest border border-outline-variant rounded px-4 py-2.5 font-body-md text-body-md text-on-surface focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-all pr-10">
                         <option disabled selected value="">選擇付款方式</option>
                         <option value="cash">現金匯款</option>
                         <option value="loan">銀行貸款</option>
@@ -420,41 +420,46 @@
         </div>
 
       </div>
-      <!-- Search & Filters Bar (Bento style integration) -->
+      <!-- Search & Filters Bar -->
       <div class="bg-surface-elevated rounded-lg shadow-ambient border border-surface-border p-6">
-        <div class="flex flex-col xl:flex-row gap-4">
-          <!-- Dynamic Search -->
-          <div class="flex-1 erp-search-wrapper erp-header-search-wrapper">
+        <div class="flex flex-wrap items-center gap-3">
+          <!-- Search Input -->
+          <div class="erp-search-wrapper erp-header-search-wrapper w-full sm:w-64">
             <span class="material-symbols-outlined erp-search-icon erp-header-search-icon">search</span>
             <input class="erp-search erp-header-search" placeholder="搜尋訂單編號、客戶姓名" type="text" />
           </div>
-          <!-- Quick Filters -->
-          <div class="flex gap-4 flex-wrap xl:flex-nowrap">
-            <div class="relative min-w-[200px]">
-              <input class="erp-filter-control" type="date" />
-            </div>
-            <div class="relative min-w-[160px]">
-              <select class="erp-filter-control">
-                <option value="">全部狀態</option>
-                <option value="pending">待處理</option>
-                <option value="completed">已成交</option>
-                <option value="cancelled">已取消</option>
-              </select>
-              <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
-            </div>
-            <div class="relative min-w-[160px]">
-              <select class="erp-filter-control">
-                <option value="">全部業務</option>
-                <option value="1">王大明</option>
-                <option value="2">李佳玲</option>
-              </select>
-              <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
-            </div>
-            <button class="erp-btn-secondary is-lg">
-              <span class="material-symbols-outlined text-[18px]">filter_list</span>
-              篩選
-            </button>
+          <!-- Status Dropdown -->
+          <div class="relative w-full sm:w-auto">
+            <select class="erp-filter-control w-full sm:w-36">
+              <option value="">全部狀態</option>
+              <option value="pending">待處理</option>
+              <option value="completed">已成交</option>
+              <option value="cancelled">已取消</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
           </div>
+          <!-- Sales Dropdown -->
+          <div class="relative w-full sm:w-auto">
+            <select class="erp-filter-control w-full sm:w-36">
+              <option value="">全部業務</option>
+              <option value="1">王大明</option>
+              <option value="2">李佳玲</option>
+            </select>
+            <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[20px]">expand_more</span>
+          </div>
+          <!-- Date Range -->
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <input class="erp-filter-control w-full sm:w-36" type="date" placeholder="起始日期" />
+            <span class="text-on-surface-variant text-sm">—</span>
+            <input class="erp-filter-control w-full sm:w-36" type="date" placeholder="結束日期" />
+          </div>
+          <!-- Spacer -->
+          <div class="flex-1"></div>
+          <!-- Search Button -->
+          <button class="erp-btn-primary is-lg w-full sm:w-auto">
+            <span class="material-symbols-outlined text-[18px]">search</span>
+            搜尋
+          </button>
         </div>
       </div>
       <!-- Data Table Card -->

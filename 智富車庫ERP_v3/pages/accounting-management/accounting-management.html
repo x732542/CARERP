@@ -331,6 +331,8 @@
         data-topbar-module="accounting"
         data-topbar-role="財務主管"
       ></div>
+
+      
       <script src="../../assets/layouts/sales-center-topbar.js"></script>
 
       <div class="accounting-scroll-shell">
@@ -342,16 +344,17 @@
           >
             <div>
               <h1 class="erp-main-page-title">會計中心</h1>
-              <p class="erp-main-page-desc">Accounting &amp; Finance</p>
+              <p class="erp-main-page-desc">管理會計帳目、請款審核與稅務作業</p>
             </div>
             <div class="flex flex-wrap items-center gap-3">
-              <button class="erp-btn-secondary is-lg" type="button">
+              <!-- 應該不用篩選 -->
+              <!-- <button class="erp-btn-secondary is-lg" type="button">
                 <span class="material-symbols-outlined text-[18px]">tune</span>
                 篩選
-              </button>
+              </button> -->
               <button
                 class="erp-btn-primary is-lg"
-                data-modal-open="recordModal"
+                data-modal-open="addRecordModal"
                 type="button"
               >
                 <span class="material-symbols-outlined text-[18px]">add</span>
@@ -363,10 +366,9 @@
           <section
             class="erp-page-filter bg-surface-elevated rounded-xl border border-surface-border ambient-shadow"
           >
-            <div
-              class="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4"
-            >
-              <div class="erp-header-search-wrapper xl:max-w-[420px] w-full">
+            <div class="flex flex-wrap items-center gap-3">
+              <!-- Search Input -->
+              <div class="erp-header-search-wrapper w-full sm:w-64">
                 <input
                   class="erp-header-search"
                   placeholder="搜尋車牌、編號或底盤..."
@@ -377,37 +379,36 @@
                   >search</span
                 >
               </div>
-              <div
-                class="grid grid-cols-1 md:grid-cols-3 gap-3 w-full xl:w-auto xl:min-w-[620px]"
-              >
-                <div class="relative">
-                  <select class="erp-filter-control">
-                    <option>2023 年 10 月</option>
-                    <option>2023 年 9 月</option>
-                  </select>
-                  <span
-                    class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
-                    >expand_more</span
-                  >
-                </div>
-                <div class="relative">
-                  <select class="erp-filter-control">
-                    <option>全部認證狀態</option>
-                    <option>SAVE 認證</option>
-                    <option>待認證</option>
-                  </select>
-                  <span
-                    class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
-                    >expand_more</span
-                  >
-                </div>
-                <!-- <button class="erp-btn-secondary is-lg w-full" type="button">
-                  <span class="material-symbols-outlined text-[18px]"
-                    >download</span
-                  >
-                  匯出報表
-                </button> -->
+              <!-- Date Dropdown -->
+              <div class="relative w-full sm:w-auto">
+                <select class="erp-filter-control w-full sm:w-40">
+                  <option>2023 年 10 月</option>
+                  <option>2023 年 9 月</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                  >expand_more</span
+                >
               </div>
+              <!-- Cert Status Dropdown -->
+              <div class="relative w-full sm:w-auto">
+                <select class="erp-filter-control w-full sm:w-40">
+                  <option>全部認證狀態</option>
+                  <option>SAVE 認證</option>
+                  <option>待認證</option>
+                </select>
+                <span
+                  class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                  >expand_more</span
+                >
+              </div>
+              <!-- Spacer -->
+              <div class="flex-1"></div>
+              <!-- Search Button -->
+              <button class="erp-btn-primary is-lg w-full sm:w-auto" type="button">
+                <span class="material-symbols-outlined text-[18px]">search</span>
+                搜尋
+              </button>
             </div>
           </section>
 
@@ -621,6 +622,9 @@
                           data-record-price="780000"
                           data-record-commission="15000"
                           data-record-date="2023-10-12"
+                          data-record-deposit="30000"
+                          data-record-balance="750000"
+                          data-record-loan="0"
                           type="button"
                         >
                           編輯
@@ -690,6 +694,9 @@
                           data-record-price=""
                           data-record-commission=""
                           data-record-date=""
+                          data-record-deposit=""
+                          data-record-balance=""
+                          data-record-loan=""
                           type="button"
                         >
                           編輯
@@ -804,129 +811,129 @@
       </div>
     </div>
 
+    <!-- 編輯會計記錄 Modal -->
     <div
       class="fixed inset-0 z-50 hidden items-center justify-center p-4 erp-modal-overlay"
       data-modal="recordModal"
     >
       <div
-        class="erp-modal-panel bg-surface-elevated w-full max-w-[960px] rounded-xl border border-surface-border overflow-hidden"
+        class="erp-modal-panel bg-surface-elevated w-full max-w-[760px] rounded-xl border border-surface-border overflow-hidden flex flex-col max-h-[90vh]"
       >
+        <!-- Header -->
         <div
-          class="px-8 py-6 border-b border-surface-border flex items-center justify-between bg-surface-container-low"
+          class="px-8 py-6 border-b border-surface-border flex items-center justify-between bg-surface-container-low flex-shrink-0"
         >
           <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-gold-accent"
-              >payments</span
-            >
-            <h3 class="font-headline-md text-headline-md text-primary">
-              編輯會計記錄
-            </h3>
+            <!-- 這是icon，先不用 -->
+            <!-- <span class="material-symbols-outlined text-gold-accent">edit_note</span> -->
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary">編輯會計記錄</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5" id="recordModalSubtitle">—</p>
+            </div>
           </div>
           <button
-            class="text-on-surface-variant hover:text-primary transition-colors"
+            class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-full hover:bg-surface-container"
             data-modal-close="recordModal"
             type="button"
           >
             <span class="material-symbols-outlined">close</span>
           </button>
         </div>
-        <div class="p-8">
-          <form class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >車牌號碼</label
-              >
-              <input
-                class="erp-modal-input"
-                placeholder="例: ABC-1234"
-                type="text"
-              />
+        <!-- Body -->
+        <div class="p-8 overflow-y-auto flex-1 space-y-8">
+          <form id="recordEditForm">
+            <!-- 車輛基本資訊 -->
+            <div class="mb-8">
+              <div class="flex items-center gap-2 mb-5 pb-2 border-b border-surface-border">
+                <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">車輛基本資訊</h4>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-record-id">管理編號</label>
+                  <input class="erp-modal-input" id="edit-record-id" readonly type="text" placeholder="—" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-plate">車牌號碼</label>
+                  <input class="erp-modal-input" id="edit-plate" placeholder="例: ABC-1234" type="text" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-brand">廠牌</label>
+                  <input class="erp-modal-input" id="edit-brand" placeholder="例: Toyota" type="text" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-model">車種型式</label>
+                  <input class="erp-modal-input" id="edit-model" placeholder="例: RAV4 2.0" type="text" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-year">年份</label>
+                  <input class="erp-modal-input" id="edit-year" placeholder="例: 2020" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-cert">認證狀態</label>
+                  <select class="erp-modal-input" id="edit-cert">
+                    <option value="未認證">未認證</option>
+                    <option value="SAVE">SAVE 認證</option>
+                    <option value="HOT">HOT 認證</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >管理編號</label
-              >
-              <input
-                class="erp-modal-input"
-                readonly
-                type="text"
-                value="ACC-2310-004"
-              />
+            <!-- 成交資訊 -->
+            <div class="mb-8">
+              <div class="flex items-center gap-2 mb-5 pb-2 border-b border-surface-border">
+                <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">成交資訊</h4>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-purchase">收車價</label>
+                  <input class="erp-modal-input" id="edit-purchase" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-prep">整備成本</label>
+                  <input class="erp-modal-input" id="edit-prep" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-price">售價</label>
+                  <input class="erp-modal-input" id="edit-price" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-date">成交日期</label>
+                  <input class="erp-modal-input" id="edit-date" type="date" />
+                </div>
+              </div>
             </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >廠牌</label
-              >
-              <input class="erp-modal-input" type="text" />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >車種型式</label
-              >
-              <input class="erp-modal-input" type="text" />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >年份</label
-              >
-              <input class="erp-modal-input" type="number" />
-            </div>
-            <div class="hidden xl:block"></div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >收車價</label
-              >
-              <input class="erp-modal-input" type="number" />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >整備成本</label
-              >
-              <input class="erp-modal-input" type="number" />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >認證狀態</label
-              >
-              <select class="erp-modal-input">
-                <option>未認證</option>
-                <option>SAVE</option>
-                <option>HOT</option>
-              </select>
-            </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >預計售價</label
-              >
-              <input class="erp-modal-input" type="number" />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >業務抽成</label
-              >
-              <input class="erp-modal-input" type="number" />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="block font-label-md text-label-md text-on-surface-variant"
-                >成交日期</label
-              >
-              <input class="erp-modal-input" type="date" />
+            <!-- 財務明細 -->
+            <div>
+              <div class="flex items-center gap-2 mb-5 pb-2 border-b border-surface-border">
+                <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">財務明細</h4>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-commission">業務抽成</label>
+                  <input class="erp-modal-input" id="edit-commission" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-deposit">訂金</label>
+                  <input class="erp-modal-input" id="edit-deposit" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-balance">尾款</label>
+                  <input class="erp-modal-input" id="edit-balance" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="edit-loan">貸款（期數）</label>
+                  <input class="erp-modal-input" id="edit-loan" placeholder="例: 36" type="number" />
+                </div>
+              </div>
             </div>
           </form>
         </div>
+        <!-- Footer -->
         <div
-          class="px-8 py-5 bg-surface-container-low border-t border-surface-border flex justify-end gap-3"
+          class="px-8 py-5 bg-surface-container-low border-t border-surface-border flex justify-end gap-3 flex-shrink-0"
         >
           <button
             class="erp-btn-secondary is-lg"
@@ -953,7 +960,8 @@
           class="px-8 py-6 border-b border-surface-border flex items-center justify-between bg-surface-container-low"
         >
           <div class="flex items-center gap-3">
-            <span class="material-symbols-outlined text-gold-accent">receipt_long</span>
+            <!-- 這是icon，先不用 -->
+            <!-- <span class="material-symbols-outlined text-gold-accent">receipt_long</span> -->
             <div>
               <h3 class="font-headline-md text-headline-md text-primary">財務記錄詳情</h3>
               <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">ACC-2310-001</p>
@@ -1103,6 +1111,138 @@
       </div>
     </div>
 
+    <!-- 新增會計記錄 Modal -->
+    <div
+      class="fixed inset-0 z-50 hidden items-center justify-center p-4 erp-modal-overlay"
+      data-modal="addRecordModal"
+    >
+      <div
+        class="erp-modal-panel bg-surface-elevated w-full max-w-[760px] rounded-xl border border-surface-border overflow-hidden flex flex-col max-h-[90vh]"
+      >
+        <!-- Header -->
+        <div
+          class="px-8 py-6 border-b border-surface-border flex items-center justify-between bg-surface-container-low flex-shrink-0"
+        >
+          <div class="flex items-center gap-3">
+            <!-- 這是icon，先不用 -->
+            <!-- <span class="material-symbols-outlined text-gold-accent">add_circle</span> -->
+            <div>
+              <h3 class="font-headline-md text-headline-md text-primary">新增會計記錄</h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">建立一筆新的財務明細</p>
+            </div>
+          </div>
+          <button
+            class="text-on-surface-variant hover:text-primary transition-colors p-1 rounded-full hover:bg-surface-container"
+            data-modal-close="addRecordModal"
+            type="button"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <!-- Body -->
+        <div class="p-8 overflow-y-auto flex-1 space-y-8">
+          <form id="addRecordForm">
+            <!-- 車輛基本資訊 -->
+            <div class="mb-8">
+              <div class="flex items-center gap-2 mb-5 pb-2 border-b border-surface-border">
+                <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">車輛基本資訊</h4>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-plate">車牌號碼</label>
+                  <input class="erp-modal-input" id="add-plate" placeholder="例: ABC-1234" type="text" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-brand">廠牌</label>
+                  <input class="erp-modal-input" id="add-brand" placeholder="例: Toyota" type="text" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-model">車種型式</label>
+                  <input class="erp-modal-input" id="add-model" placeholder="例: RAV4 2.0" type="text" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-year">年份</label>
+                  <input class="erp-modal-input" id="add-year" placeholder="例: 2020" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-cert">認證狀態</label>
+                  <select class="erp-modal-input" id="add-cert">
+                    <option value="未認證">未認證</option>
+                    <option value="SAVE">SAVE 認證</option>
+                    <option value="HOT">HOT 認證</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- 成交資訊 -->
+            <div class="mb-8">
+              <div class="flex items-center gap-2 mb-5 pb-2 border-b border-surface-border">
+                <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">成交資訊</h4>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-purchase">收車價</label>
+                  <input class="erp-modal-input" id="add-purchase" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-prep">整備成本</label>
+                  <input class="erp-modal-input" id="add-prep" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-price">售價</label>
+                  <input class="erp-modal-input" id="add-price" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-date">成交日期</label>
+                  <input class="erp-modal-input" id="add-date" type="date" />
+                </div>
+              </div>
+            </div>
+            <!-- 財務明細 -->
+            <div>
+              <div class="flex items-center gap-2 mb-5 pb-2 border-b border-surface-border">
+                <span class="w-1 h-5 bg-secondary rounded-full inline-block"></span>
+                <h4 class="font-label-md text-label-md text-secondary uppercase tracking-wider">財務明細</h4>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-commission">業務抽成</label>
+                  <input class="erp-modal-input" id="add-commission" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-deposit">訂金</label>
+                  <input class="erp-modal-input" id="add-deposit" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-balance">尾款</label>
+                  <input class="erp-modal-input" id="add-balance" placeholder="0" type="number" />
+                </div>
+                <div class="space-y-2">
+                  <label class="block font-label-md text-label-md text-on-surface-variant" for="add-loan">貸款（期數）</label>
+                  <input class="erp-modal-input" id="add-loan" placeholder="例: 36" type="number" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- Footer -->
+        <div
+          class="px-8 py-5 bg-surface-container-low border-t border-surface-border flex justify-end gap-3 flex-shrink-0"
+        >
+          <button
+            class="erp-btn-secondary is-lg"
+            data-modal-close="addRecordModal"
+            type="button"
+          >
+            取消
+          </button>
+          <button class="erp-btn-primary is-lg" type="button">建立記錄</button>
+        </div>
+      </div>
+    </div>
+
     <script>
       (function () {
         const modalOpens = document.querySelectorAll("[data-modal-open]");
@@ -1116,30 +1256,28 @@
           // 若是編輯會計記錄 modal，帶入該列資料
           if (name === "recordModal" && trigger && trigger.dataset.recordId) {
             const d = trigger.dataset;
-            const form = modal.querySelector("form");
-            if (form) {
-              const setVal = (label, val) => {
-                const labels = form.querySelectorAll("label");
-                for (const l of labels) {
-                  if (l.textContent.trim() === label) {
-                    const inp = l.closest(".space-y-2").querySelector("input,select");
-                    if (inp) inp.value = val ?? "";
-                    break;
-                  }
-                }
-              };
-              setVal("管理編號", d.recordId);
-              setVal("車牌號碼", d.recordPlate);
-              setVal("廠牌", d.recordBrand);
-              setVal("車種型式", d.recordModel);
-              setVal("年份", d.recordYear);
-              setVal("收車價", d.recordPurchase);
-              setVal("整備成本", d.recordPrep);
-              setVal("認證狀態", d.recordCert);
-              setVal("預計售價", d.recordPrice);
-              setVal("業務抽成", d.recordCommission);
-              setVal("成交日期", d.recordDate);
-            }
+            // 更新 header 副標題顯示編號
+            const subtitle = modal.querySelector("#recordModalSubtitle");
+            if (subtitle) subtitle.textContent = d.recordId || "—";
+            // 帶入各欄位值
+            const setById = (id, val) => {
+              const el = modal.querySelector("#" + id);
+              if (el) el.value = val ?? "";
+            };
+            setById("edit-record-id", d.recordId);
+            setById("edit-plate", d.recordPlate);
+            setById("edit-brand", d.recordBrand);
+            setById("edit-model", d.recordModel);
+            setById("edit-year", d.recordYear);
+            setById("edit-cert", d.recordCert);
+            setById("edit-purchase", d.recordPurchase);
+            setById("edit-prep", d.recordPrep);
+            setById("edit-price", d.recordPrice);
+            setById("edit-date", d.recordDate);
+            setById("edit-commission", d.recordCommission);
+            setById("edit-deposit", d.recordDeposit);
+            setById("edit-balance", d.recordBalance);
+            setById("edit-loan", d.recordLoan);
           }
 
           modal.classList.remove("hidden");

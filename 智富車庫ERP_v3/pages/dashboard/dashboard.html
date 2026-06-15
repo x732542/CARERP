@@ -176,7 +176,6 @@
   </head>
   <body class="bg-surface text-on-surface h-screen flex overflow-hidden">
     <!-- SideNavBar -->
-    <!-- SideNavBar -->
     <script>
       window.currentPage = "dashboard";
     </script>
@@ -184,33 +183,37 @@
     <script src="../../assets/layouts/sidebar.js"></script>
     <!-- Main Content -->
     <main class="flex-1 ml-[280px] overflow-y-auto bg-background">
-      <!-- TopAppBar -->
+      <!-- TopAppBar Component (Anchored) -->
       <header
-        class="h-[70px] bg-sidebar-bg border-b border-primary-container flex items-center justify-between px-margin-desktop sticky top-0 z-30 shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
+        class="h-[70px] bg-sidebar-bg border-b border-primary-container flex items-center justify-between px-margin-desktop sticky top-0 z-30 w-full shadow-[0_8px_20px_-12px_rgba(20,8,4,0.45)]"
       >
         <div class="ml-auto flex items-center justify-end gap-4">
           <button
-            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+            class="p-2 text-on-primary-container hover:text-gold-accent transition-colors rounded-full hover:bg-primary-container relative"
           >
             <span class="material-symbols-outlined">notifications</span>
+            <span
+              class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"
+            ></span>
           </button>
           <button
-            class="text-on-primary-container hover:text-gold-accent transition-colors p-2"
+            class="p-2 text-on-primary-container hover:text-gold-accent transition-colors rounded-full hover:bg-primary-container"
           >
             <span class="material-symbols-outlined">settings</span>
           </button>
           <div class="h-8 w-px bg-primary-container"></div>
           <button
-            class="flex items-center gap-3 hover:bg-primary-container p-1.5 rounded-full pr-3 transition-colors"
+            class="flex items-center gap-3 hover:bg-primary-container p-1.5 rounded-full pr-4 transition-colors"
           >
             <img
-              alt="使用者頭像"
+              alt="Profile"
               class="w-10 h-10 rounded-full object-cover border border-primary-container"
+              data-alt="A professional headshot of an Asian male executive in a sharp navy suit, clean corporate background, high key lighting, crisp focus, projecting authority and approachability suitable for an enterprise dashboard profile picture."
               src="../../assets/images/avatar-default.jpg"
             />
             <div class="text-left hidden md:block">
               <p class="text-label-md font-label-md text-on-primary">王大明</p>
-              <p class="text-label-sm font-label-sm text-on-primary-container">
+              <p class="text-[10px] font-label-sm text-on-primary-container">
                 系統管理員
               </p>
             </div>
